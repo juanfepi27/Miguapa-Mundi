@@ -1,0 +1,23 @@
+.bg-secondary {
+    background-color: #fdff9f !important;
+}
+
+.bg-primary {
+    background-color: #fadf7d !important;
+}
+
+.copyright {
+    background-color: #1a252f;
+}
+
+nav{
+    font-weight: 700;
+}
+
+.img-logo{
+    padding: 0;
+    height: 75px;
+    width: 75px;
+    transform: scale(2);
+}
+

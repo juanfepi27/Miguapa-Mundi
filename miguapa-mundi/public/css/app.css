@@ -21,3 +21,7 @@ nav{
     transform: scale(2);
 }
 
+.in-front{
+    z-index: 1;
+    position: relative;
+}

@@ -25,4 +25,14 @@ class NewsController extends Controller
 
         return view('news.index')->with('viewData', $viewData);
     }
+
+    public function show(String $id): View
+    {   
+        $viewData = [];
+        $news = News::findOrFail($id);
+        $viewData['titleTemplate'] = ($news->getTitle()).' - Miguapa Mundi';
+        $viewData['news'] = $news;
+
+        return view('news.show')->with('viewData', $viewData);
+    }
 }

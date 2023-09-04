@@ -16,10 +16,10 @@
         @method('GET')
     </form>
 </div>
-<div class="container container-news text-center">
+<div class="container container-1000px text-center">
     <div class="card mt-3">
         @foreach($viewData['news'] as $news)
-        <a href="">  
+        <a href="{{ route('news.show', ['id' => $news['id']]) }}">  
             <div class="card mb-3">
                 <div class="card-header">
                     <h5 class="card-title">{{ $news->getTitle() }}</h5>

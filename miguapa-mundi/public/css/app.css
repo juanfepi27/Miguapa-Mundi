@@ -1,3 +1,32 @@
+a {
+    color: #1a252f;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #888;
+    text-decoration: none;
+}
+
+.page-link{
+    color: #70a9f8 !important;
+}
+
+.active .page-link{
+    color: #ffffff !important;
+    background-color: #70a9f8 !important;
+    border-color: #70a9f8 !important;
+}
+
+.form-control:focus {
+    border-color: #bbb;
+    box-shadow: none;
+}
+
+.container-news{
+    max-width: 1000px;
+}
+
 .bg-secondary {
     background-color: #fdff9f !important;
 }
@@ -24,4 +53,8 @@ nav{
 .in-front{
     z-index: 1;
     position: relative;
+}
+
+.ms-n5{
+    margin-left: -40px;
 }

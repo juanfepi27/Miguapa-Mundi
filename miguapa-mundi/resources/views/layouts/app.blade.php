@@ -28,7 +28,7 @@
                     <a class="nav-link active" href="#">Countries</a>
                     <a class="nav-link active" href="#">Offers</a>
                     <a class="nav-link active" href="#">Alliances</a>
-                    <a class="nav-link active" href="#">News</a>
+                    <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="#">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
                     <a class="nav-link active" href="#">Logout</a>

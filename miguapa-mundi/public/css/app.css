@@ -3,6 +3,18 @@ a {
     text-decoration: none;
 }
 
+.btn-primary{
+    background-color: #70a9f8 !important;
+    border-color: #70a9f8 !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover{
+    background-color: #7b70f6 !important;
+    border-color: #7b70f6 !important;
+    color: #ffffff !important;
+}
+
 a:hover {
     color: #888;
     text-decoration: none;

@@ -16,8 +16,8 @@
             </ul>
         </div>
     </div>
-    <div class="text-center">
-        button back
+    <div class="text-center mt-3">
+        <a href="{{ route('news.index') }}" class="btn btn-primary">Back to news</a>
     </div>
 </div>
 @endsection

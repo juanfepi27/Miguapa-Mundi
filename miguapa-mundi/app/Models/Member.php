@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Country;
+use App\Models\Alliance;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Member extends Model
 {
@@ -15,14 +18,20 @@ class Member extends Model
      * $this->attributes['is_accepted'] - boolean - contains whether it is accepted or not as a member
      * $this->attributes['created_at'] - datetime - contains the date and time when the member was created
      * $this->attributes['updated_at'] - datetime - contains the date and time when the member's information was updated
+     * $this->attributes['country_id'] - int - contains the associated Country Id
+     * $this->attributes['alliance_id'] - int - contains the associated Alliance Id
+     * $this->country - Country - contains the associated Country
+     * $this->alliance - Alliance - contains the associated Alliance
      */
-    protected $fillable = ['founder', 'moderator'];
+    protected $fillable = ['founder', 'moderator', 'country_id', 'alliance_id'];
 
     public function validate(Request $request): void
     {
         $request->validate([
             'founder' => 'required',
             'moderator' => 'required',
+            'country_id' => 'required',
+            'alliance_id' => 'required',
         ]);
     }
 
@@ -70,4 +79,55 @@ class Member extends Model
     {
         return $this->attributes['updated_at'];
     }
+
+    public function getCountryId(): int
+    {
+        return $this->attributes['country_id'];
+    }
+
+    public function setCountryId(int $country_id): void
+    {
+        $this->attributes['country_id'] = $country_id;
+    }
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(Country $country): void
+    {
+        $this->country = $country;
+    }
+
+    public function getAllianceId(): int
+    {
+        return $this->attributes['alliance_id'];
+    }
+
+    public function setAllianceId(int $alliance_id): void 
+    {
+        $this->attributes['alliance_id'] = $alliance_id;
+    }
+
+    public function alliance(): BelongsTo
+    {
+        return $this->belongsTo(Alliance::class);
+    }
+
+    public function getAlliance(): Alliance
+    {
+        return $this->alliance;
+    }
+
+    public function setAlliance(Alliance $alliance): void
+    {
+        $this->alliance = $alliance;
+    }
+
 }

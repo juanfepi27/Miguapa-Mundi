@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Alliance extends Model
 {
@@ -14,6 +17,7 @@ class Alliance extends Model
      * $this->attributes['image'] - string - contains the image of the alliance
      * $this->attributes['created_at'] - datetime - contains the date and time when the alliance was created
      * $this->attributes['updated_at'] - datetime - contains the date and time when the alliance's information was updated
+     * $this->members - Member[] - contains the associated members
      */
     protected $fillable = ['name', 'image'];
 
@@ -59,4 +63,20 @@ class Alliance extends Model
     {
         return $this->attributes['updated_at'];
     }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(Member::class);
+    }
+
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function setMembers(Collection $members): void
+    {
+        $this->members = $members;
+    }
+
 }

@@ -28,7 +28,7 @@
                     <a class="nav-link active" href="#">Countries</a>
                     <a class="nav-link active" href="#">Offers</a>
                     <a class="nav-link active" href="#">Alliances</a>
-                    <a class="nav-link active" href="#">News</a>
+                    <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="#">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
                     <a class="nav-link active" href="#">Logout</a>
@@ -45,7 +45,7 @@
 
 <!-- footer -->
 <div class="bg-primary py-1 text-center">
-    <div class="container pb-2">
+    <div class="container pb-2 in-front">
         <small>
             Author - <a class="text-reset fw-bold text-decoration-none" target="_blank"
             href="https://www.linkedin.com/in/juan-felipe-pinzón-trejo-319711247">
@@ -72,5 +72,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 </script>
+<script src="https://kit.fontawesome.com/6f83f56a7b.js" crossorigin="anonymous"></script>
 </body>
 </html>

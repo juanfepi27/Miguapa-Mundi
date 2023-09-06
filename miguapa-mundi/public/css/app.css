@@ -1,3 +1,44 @@
+a {
+    color: #1a252f;
+    text-decoration: none;
+}
+
+.btn-primary{
+    background-color: #70a9f8 !important;
+    border-color: #70a9f8 !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover{
+    background-color: #7b70f6 !important;
+    border-color: #7b70f6 !important;
+    color: #ffffff !important;
+}
+
+a:hover {
+    color: #888;
+    text-decoration: none;
+}
+
+.page-link{
+    color: #70a9f8 !important;
+}
+
+.active .page-link{
+    color: #ffffff !important;
+    background-color: #70a9f8 !important;
+    border-color: #70a9f8 !important;
+}
+
+.form-control:focus {
+    border-color: #bbb;
+    box-shadow: none;
+}
+
+.container-1000px{
+    max-width: 1000px;
+}
+
 .bg-secondary {
     background-color: #fdff9f !important;
 }
@@ -21,3 +62,11 @@ nav{
     transform: scale(2);
 }
 
+.in-front{
+    z-index: 1;
+    position: relative;
+}
+
+.ms-n5{
+    margin-left: -40px;
+}

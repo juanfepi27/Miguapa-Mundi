@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
-
+Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
+Route::get('/news/search', 'App\Http\Controllers\NewsController@search')->name('news.search');
+Route::get('/news/show/{id}', 'App\Http\Controllers\NewsController@show')->name('news.show');

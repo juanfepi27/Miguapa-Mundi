@@ -25,7 +25,7 @@ class Member extends Model
      */
     protected $fillable = ['founder', 'moderator', 'country_id', 'alliance_id'];
 
-    public function validate(Request $request): void
+    public static function validate(Request $request): void
     {
         $request->validate([
             'founder' => 'required',

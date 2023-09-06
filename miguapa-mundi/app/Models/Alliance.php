@@ -21,7 +21,7 @@ class Alliance extends Model
      */
     protected $fillable = ['name', 'image'];
 
-    public function validate(Request $request): void
+    public static function validate(Request $request): void
     {
         $request->validate([
             'name' => 'required',

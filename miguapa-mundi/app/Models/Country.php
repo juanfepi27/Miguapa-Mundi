@@ -26,7 +26,7 @@ class Country extends Model
      */
     protected $fillable = ['name', 'nick_name', 'color', 'flag', 'in_offer', 'minimum_attractive_value', 'attractive_value'];
 
-    public function validate(Request $request): void
+    public static function validate(Request $request): void
     {
         $request->validate([
             'name' => 'required',

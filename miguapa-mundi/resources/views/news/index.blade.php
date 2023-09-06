@@ -3,7 +3,6 @@
 @section('content')
 <div class="row mt-5">
     <form method="GET" action="{{ route('news.search') }}">
-        @csrf
         <div class="col-md-5 mx-auto">
             <div>Write the name of a country or a title</div>
             <div class="input-group">
@@ -13,13 +12,12 @@
                 </button>
             </div>
         </div>
-        @method('GET')
     </form>
 </div>
 <div class="container container-1000px text-center">
     <div class="card mt-3">
         @foreach($viewData['news'] as $news)
-        <a href="{{ route('news.show', ['id' => $news['id']]) }}">  
+        <a href="{{ route('news.show', ['id' => $news->getId()]) }}">  
             <div class="card mb-3">
                 <div class="card-header">
                     <h5 class="card-title">{{ $news->getTitle() }}</h5>

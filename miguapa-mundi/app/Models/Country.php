@@ -58,9 +58,9 @@ class Country extends Model
         return $this->attributes['nick_name'];
     }
 
-    public function setNickName(string $nick_name): void
+    public function setNickName(string $nickName): void
     {
-        $this->attributes['nick_name'] = $nick_name;
+        $this->attributes['nick_name'] = $nickName;
     }
 
     public function getColor(): string
@@ -88,9 +88,9 @@ class Country extends Model
         return $this->attributes['in_offer'];
     }
 
-    public function setInOffer(bool $in_offer): void
+    public function setInOffer(bool $inOffer): void
     {
-        $this->attributes['in_offer'] = $in_offer;
+        $this->attributes['in_offer'] = $inOffer;
     }
 
     public function getMinimumOfferValue(): int
@@ -98,9 +98,9 @@ class Country extends Model
         return $this->attributes['minimum_offer_value'];
     }
 
-    public function setMinimumOfferValue(int $minimum_offer_value): void
+    public function setMinimumOfferValue(int $minimumOfferValue): void
     {
-        $this->attributes['minimum_offer_value'] = $minimum_offer_value;
+        $this->attributes['minimum_offer_value'] = $minimumOfferValue;
     }
 
     public function getAttractiveValue(): int
@@ -108,9 +108,9 @@ class Country extends Model
         return $this->attributes['attractive_value'];
     }
 
-    public function setAttractiveValue(int $attractive_value): void
+    public function setAttractiveValue(int $attractiveValue): void
     {
-        $this->attributes['attractive_value'] = $attractive_value;
+        $this->attributes['attractive_value'] = $attractiveValue;
     }
 
     public function getCreatedAt(): string

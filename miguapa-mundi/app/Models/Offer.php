@@ -29,7 +29,7 @@ class Offer extends Model
             'status' => 'required|in:SENT,REJECTED,ACCEPTED',
             'price' => 'required|numeric|min:0',
             'country_id' => 'required',
-            'offeror_id' => 'required',
+            'user_offeror_id' => 'required',
         ]);
     }
 

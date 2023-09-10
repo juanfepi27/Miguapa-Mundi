@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link active" href="#">Countries</a>
-                    <a class="nav-link active" href="#">Offers</a>
+                    <a class="nav-link active" href="{{route('offer.toMe')}}">Offers</a>
                     <a class="nav-link active" href="#">Alliances</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="#">Profile</a>
@@ -37,7 +37,24 @@
         </div>
     </div>
 </nav>
+@yield('secondary-nav')
 <!-- header -->
+
+<!-- messages -->
+@if($errors->any())
+<ul id="errors" class="alert alert-danger list-unstyled">
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+@if(session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Element created successfully.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+<!-- messages -->
 
 <div class="container my-4">
     @yield('content')

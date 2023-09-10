@@ -17,11 +17,11 @@ class Offer extends Model
     $this -> attributes['updated_at] - updated_at - when the offer was updated
     $this -> attributes['country_id'] - int - contains the id of the country, primary key in the database
     $this -> country - Country - contains the country of the offer
-    $this -> attributes['offeror_id'] - int - contains the id of the offeror user, primary key in the database
+    $this -> attributes['user_offeror_id'] - int - contains the id of the offeror user, primary key in the database
     $this -> offeror - User - contains the offeror user
     */
 
-    protected $fillable = ['status', 'price', 'country_id', 'offeror_id'];
+    protected $fillable = ['status', 'price', 'country_id', 'user_offeror_id'];
 
     public static function validate(Request $request): void
     {

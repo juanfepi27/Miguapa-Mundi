@@ -33,7 +33,7 @@ class Country extends Model
      * $this->financialEffects - FinancialEffect[] - contains the associated financial effects
      * $this->offers - Offer[] - contains the associated offers
      */
-    protected $fillable = ['name', 'nick_name', 'color', 'flag', 'in_offer', 'minimum_attractive_value', 'attractive_value', 'default_offer_value', 'user_owner_id'];
+    protected $fillable = ['name', 'nick_name', 'color', 'flag', 'in_offer', 'minimum_offer_value', 'attractive_value', 'default_offer_value', 'user_owner_id'];
 
     public static function validate(Request $request): void
     {

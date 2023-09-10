@@ -16,6 +16,7 @@
     </div>
     <div class="navbar navbar-expand-lg navbar-light">
         <div class="container ">
+        @auth
             <div>
                 User: -----  Budget: $ -----
             </div>
@@ -31,9 +32,25 @@
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="#">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
-                    <a class="nav-link active" href="#">Logout</a>
+                    <form id="logout" action="{{ route('logout') }}" method="POST"> 
+                        <a role="button" class="nav-link active" 
+                        onclick="document.getElementById('logout').submit();">Logout</a> 
+                        @csrf 
+                    </form> 
                 </div>
             </div>
+        @else
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" href="{{ route('login') }}">Login</a> 
+                    <a class="nav-link active" href="{{ route('register') }}">Register</a> 
+                </div>
+            </div>
+        @endauth
         </div>
     </div>
 </nav>

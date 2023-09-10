@@ -24,3 +24,5 @@ Route::get('/offer/delete/{id}', 'App\Http\Controllers\OfferController@delete')-
 Route::get('/offer/accept/{id}', 'App\Http\Controllers\OfferController@accept')->name('offer.accept');
 Route::get('/offer/reject/{id}', 'App\Http\Controllers\OfferController@reject')->name('offer.reject');
 Route::post('/offer/save', 'App\Http\Controllers\OfferController@save')->name('offer.save');
+
+Auth::routes();

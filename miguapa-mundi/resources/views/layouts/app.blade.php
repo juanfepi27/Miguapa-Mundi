@@ -27,7 +27,7 @@
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link active" href="{{ route('country.index') }}">Countries</a>
                     <a class="nav-link active" href="#">Offers</a>
-                    <a class="nav-link active" href="#">Alliances</a>
+                    <a class="nav-link active" href="{{ route('alliance.index') }}">Alliances</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="#">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
@@ -37,6 +37,7 @@
         </div>
     </div>
 </nav>
+@yield('secondary-nav')
 <!-- header -->
 
 <div class="container my-4">

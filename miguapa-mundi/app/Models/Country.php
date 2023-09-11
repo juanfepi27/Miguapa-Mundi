@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Offer;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\FinancialEffect;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Country extends Model
 {
@@ -22,9 +26,14 @@ class Country extends Model
      * $this->attributes['attractive_value'] - int - contains the attractive value the country has
      * $this->attributes['created_at'] - datetime - contains the date and time when the country was created
      * $this->attributes['updated_at'] - datetime - contains the date and time when the country's information was updated
+     * $this->attributes['default_offer_value'] - int - contains the default offer value of the country
+     * $this->attributes['user_owner_id'] - int - contains the associated User Id that owns the country
+     * $this->user_owner - User - contains the associated user that owns the country
      * $this->members - Member[] - contains the associated members
+     * $this->financialEffects - FinancialEffect[] - contains the associated financial effects
+     * $this->offers - Offer[] - contains the associated offers
      */
-    protected $fillable = ['name', 'nick_name', 'color', 'flag', 'in_offer', 'minimum_attractive_value', 'attractive_value'];
+    protected $fillable = ['name', 'nick_name', 'color', 'flag', 'in_offer', 'minimum_offer_value', 'attractive_value', 'default_offer_value', 'user_owner_id'];
 
     public static function validate(Request $request): void
     {
@@ -35,6 +44,8 @@ class Country extends Model
             'flag' => 'required|image',
             'minimum_offer_value' => 'required|numeric|gt:0',
             'attractive_value' => 'required|numeric',
+            'default_offer_value' => 'required|numeric|gt:0',
+            'user_owner_id' => 'required|numeric',
         ]);
     }
 
@@ -58,9 +69,9 @@ class Country extends Model
         return $this->attributes['nick_name'];
     }
 
-    public function setNickName(string $nick_name): void
+    public function setNickName(string $nickName): void
     {
-        $this->attributes['nick_name'] = $nick_name;
+        $this->attributes['nick_name'] = $nickName;
     }
 
     public function getColor(): string
@@ -88,9 +99,9 @@ class Country extends Model
         return $this->attributes['in_offer'];
     }
 
-    public function setInOffer(bool $in_offer): void
+    public function setInOffer(bool $inOffer): void
     {
-        $this->attributes['in_offer'] = $in_offer;
+        $this->attributes['in_offer'] = $inOffer;
     }
 
     public function getMinimumOfferValue(): int
@@ -98,9 +109,9 @@ class Country extends Model
         return $this->attributes['minimum_offer_value'];
     }
 
-    public function setMinimumOfferValue(int $minimum_offer_value): void
+    public function setMinimumOfferValue(int $minimumOfferValue): void
     {
-        $this->attributes['minimum_offer_value'] = $minimum_offer_value;
+        $this->attributes['minimum_offer_value'] = $minimumOfferValue;
     }
 
     public function getAttractiveValue(): int
@@ -108,9 +119,9 @@ class Country extends Model
         return $this->attributes['attractive_value'];
     }
 
-    public function setAttractiveValue(int $attractive_value): void
+    public function setAttractiveValue(int $attractiveValue): void
     {
-        $this->attributes['attractive_value'] = $attractive_value;
+        $this->attributes['attractive_value'] = $attractiveValue;
     }
 
     public function getCreatedAt(): string
@@ -122,6 +133,42 @@ class Country extends Model
     {
         return $this->attributes['updated_at'];
     }
+
+    public function getDefaultOfferValue(): int
+    {
+        return $this->attributes['default_offer_value'];
+    }
+
+    public function setDefaultOfferValue(int $defaultOfferValue): void
+    {
+        $this->attributes['default_offer_value'] = $defaultOfferValue;
+    }
+
+    public function getUserOwnerId(): int
+    {
+        return $this->attributes['user_owner_id'];
+    }
+
+    public function setUserOwnerId(int $userOwnerId): void
+    {
+        $this->attributes['user_owner_id'] = $userOwnerId;
+    }
+
+    public function user_owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getUserOwner(): User
+    {
+        return $this->user_owner;
+    }
+
+    public function setUserOwner(User $userOwner): void
+    {
+        $this->user_owner = $userOwner;
+    }
+
     
     public function members(): HasMany
     {
@@ -136,5 +183,35 @@ class Country extends Model
     public function setMembers(Collection $members): void
     {
         $this->members = $members;
+    }
+
+    public function financialEffects(): HasMany
+    {
+        return $this->hasMany(FinancialEffect::class);
+    }
+
+    public function getFinancialEffects(): Collection
+    {
+        return $this->financialEffects;
+    }
+
+    public function setFinancialEffects(Collection $financialEffects): void
+    {
+        $this->financialEffects = $financialEffects;
+    }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function setOffers(Collection $offers): void
+    {
+        $this->offers = $offers;
     }
 }

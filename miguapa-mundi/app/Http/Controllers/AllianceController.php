@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\Alliance;
+use App\Models\Member;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -24,6 +25,7 @@ class AllianceController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'Create alliance - Miguapa Mundi';
+        $viewData['countries'] = Country::all();
 
         return view('alliance.create')->with('viewData', $viewData);
     }
@@ -38,7 +40,17 @@ class AllianceController extends Controller
         $allianceData = $request->only(['name', 'image']);
         $allianceData['image'] = $imagePath;
 
-        Alliance::create($allianceData);
+        $alliance = Alliance::create($allianceData);
+        $allianceId = $alliance->id;
+
+        $memberData = $request->only('founder', 'moderator', 'country_id', 'alliance_id');
+        $memberData['alliance_id'] = $allianceId;
+        $member = Member::create($memberData);
+
+        $member->setAttribute('is_accepted', 1);
+        $member->save();
+
+
         return redirect()->route('alliance.index');
     }
 

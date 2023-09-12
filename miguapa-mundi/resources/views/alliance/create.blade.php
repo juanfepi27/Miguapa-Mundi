@@ -25,6 +25,20 @@
                             </div>
                             <br>
                             <div class="form-group row">
+                                <label for="country_id" class="col-sm-4 col-form-label">Who is the founder of the alliance?</label>
+                                <div class="col-sm-8">
+                                    <select name="country_id" class="form-select mb-2" value="{{ old('country_id') }}">
+                                        @foreach ($viewData["countries"] as $country)
+                                            <option value={{$country->getId()}}>{{ $country->getName() }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="hidden" name="founder" value="1">
+                                <input type="hidden" name="moderator" value="1">
+                                <input type="hidden" name="is_accepted" value="1">
+                            </div>
+                            <br>
+                            <div class="form-group row">
                                 <label for="image" class="col-sm-4 col-form-label">Image of the alliance</label>
                                 <div class="col-sm-8">
                                     <input type="file" class="form-control-file mb-2"  name="image" value="{{ old('image') }}" />

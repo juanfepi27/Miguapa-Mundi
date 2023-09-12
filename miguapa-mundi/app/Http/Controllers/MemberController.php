@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Member;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
@@ -15,6 +13,7 @@ class MemberController extends Controller
         Member::validate($request);
 
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
+        
         return redirect()->route('alliance.index');
     }
 }

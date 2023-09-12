@@ -113,7 +113,7 @@ class User extends Authenticatable
 
     public function boughtCountries(): HasMany
     {
-        return $this->hasMany(Country::class);
+        return $this->hasMany(Country::class,'user_owner_id');
     }
 
     public function getBoughtCountries(): Collection
@@ -124,6 +124,21 @@ class User extends Authenticatable
     public function setBoughtCountries(Collection $boughtCountries): void
     {
         $this->boughtCountries = $boughtCountries;
+    }
+
+    public function sentOffers(): HasMany
+    {
+        return $this->hasMany(Offer::class,'user_offeror_id');
+    }
+
+    public function getSentOffers(): Collection
+    {
+        return $this->sentOffers;
+    }
+
+    public function setSentOffers(Collection $sentOffers): void
+    {
+        $this->sentOffers = $sentOffers;
     }
 
     public function getCreatedAt(): string

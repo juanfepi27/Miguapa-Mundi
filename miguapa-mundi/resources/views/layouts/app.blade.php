@@ -18,7 +18,7 @@
         <div class="container ">
         @auth
             <div>
-                User: -----  Budget: $ -----
+                User: {{ request()->user()->getUsername() }}  Budget: $ {{ request()->user()->getBudget() }}
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,15 +59,16 @@
 
 <!-- messages -->
 @if($errors->any())
-<ul id="errors" class="alert alert-danger list-unstyled">
+<ul id="errors" class="alert alert-danger list-unstyled alert-dismissible fade show" role="alert">
     @foreach($errors->all() as $error)
     <li>{{ $error }}</li>
     @endforeach
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </ul>
 @endif
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    Element created successfully.
+    {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif

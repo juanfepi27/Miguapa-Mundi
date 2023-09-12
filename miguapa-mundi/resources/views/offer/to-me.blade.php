@@ -9,8 +9,7 @@
     <div class="offer-card card">
         <h5 class="card-header bg-secondary">Offer #{{$offer->getId()}}</h5>
         <div class="card-body">
-            <p class="my-0 pb-1">Offeror: {{$offer->getUserOferror()["name"]}}</p>
-            <!-- careful here!... need getters and setters for user -->
+            <p class="my-0 pb-1">Offeror: {{$offer->getUserOferror()->getName()}}</p>
             <p class="my-0 pb-1">Country: {{$offer->getCountry()->getName()}}</p>
             <p class="my-0 pb-1">Offered Value: {{$offer->getPrice()}}</p>
             <p class="my-0 pb-1">Sent Date: {{$offer->getCreatedAt()}}</p>

@@ -23,11 +23,12 @@ class Offer extends Model
 
     protected $fillable = ['status', 'price', 'country_id', 'user_offeror_id'];
 
-    public static function validate(Request $request): void
+    public static function validate(Request $request,int $minimumOfferValue): void
     {
+        $userBudget=$request->user()->getBudget();
         $request->validate([
             'status' => 'required|in:SENT,REJECTED,ACCEPTED',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|gt:0|min:'.$minimumOfferValue.'|max:'.$userBudget,
             'country_id' => 'required',
             'user_offeror_id' => 'required',
         ]);

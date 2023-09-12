@@ -7,14 +7,6 @@
             <div class="card">
                 <div class="card-header bg-secondary"><strong>Create a new country</strong></div>
                     <div class="card-body">
-                        @if($errors->any())
-                            <ul id="errors" class="alert alert-danger list-unstyled">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
                         <form method="POST" action="{{ route('country.save') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -36,7 +28,7 @@
                                 <div class="col-sm-8">
                                     <select name="user_owner_id" class="form-select mb-2" value="{{ old('user_owner_id') }}">
                                         @foreach ($viewData["users"] as $user)
-                                            {{-- <option value={{$user->getId()}}>{{ $user->getName() }}</option> --}}
+                                            <option value={{$user->getId()}}>{{ $user->getUsername() }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -9,11 +9,10 @@
                     <div class="card">
                         <img class="card-img-top" src="{{ asset('storage/' . $country->getFlag()) }}" alt="Country's flag">
                         <div class="card-body">
-                            @guest
-                            <h5 class="card-title text-center" style="color: #{{ $country->getColor() }}; text-shadow: 1px 1px 2px black;">{{ $country->getName() }}</h5>
+                            <h5 class="card-title text-center" style="color: {{ $country->getColor() }}; text-shadow: 1px 1px 2px black;">{{ $country->getName() }}</h5>
                             <p class="card-text text-center"><em>{{ $country->getNickName() }}</em></p>
                             <br>
-                            {{-- <p class="card-text">Owner: {{ $country->getUserOwner()->getName() }}</p> --}}
+                            <p class="card-text">Owner: {{ $country->getUserOwner()->getUsername() }}</p>
                             <p class="card-text">Minimum offer value: ${{ $country->getMinimumOfferValue() }}</p>
                             <p class="card-text">Attractive value: {{ $country->getAttractiveValue() }}</p>
                             @if ($country->getInOffer())
@@ -29,6 +28,7 @@
                                 @endforeach
                             </ul>
                             @endif
+                            @guest
                             @else
                             <form class="text-center" action="#" method="POST">
                                 @csrf

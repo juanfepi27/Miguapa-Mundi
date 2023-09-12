@@ -5,9 +5,9 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="d-flex justify-content-center gap-3">
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
         @foreach($viewData['alliances'] as $alliance)
-            <div class="col-md-8 col-lg-3 mb-2 w-50">
+            <div class="col-md-8 col-lg-3 mb-2 w-45 justify-content-center">
                 <div class="card mt-3">
                     <div class="card">
                         <div class="card-header bg-secondary">
@@ -36,14 +36,14 @@
                                     <p class="card-text">Members: </p>
                                     <ul>
                                         @foreach ( $alliance->getMembers() as $member )
-                                            @if ($loop->iteration <= 1)
+                                            @if ($loop->iteration <= 3)
                                                 @if ($member->getIsAccepted())
                                                     <li>{{ $member->getCountry()->getName() }}</li>
                                                 @endif
                                             @endif
                                         @endforeach
                                     </ul>
-                                    @if ($alliance->getMembers()->count() > 1)
+                                    @if ($alliance->getMembers()->count() > 3)
                                     <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal">
                                         See more members
                                     </button>

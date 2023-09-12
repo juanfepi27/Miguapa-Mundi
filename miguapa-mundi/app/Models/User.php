@@ -113,7 +113,7 @@ class User extends Authenticatable
 
     public function boughtCountries(): HasMany
     {
-        return $this->hasMany(Country::class);
+        return $this->hasMany(Country::class, 'user_owner_id');
     }
 
     public function getBoughtCountries(): Collection

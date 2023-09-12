@@ -25,7 +25,8 @@ class AllianceController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'Create alliance - Miguapa Mundi';
-        $viewData['countries'] = Country::all();
+        $user = auth()->user();
+        $viewData['userCountries'] = $user->getBoughtCountries();
 
         return view('alliance.create')->with('viewData', $viewData);
     }
@@ -41,7 +42,7 @@ class AllianceController extends Controller
         $allianceData['image'] = $imagePath;
 
         $alliance = Alliance::create($allianceData);
-        $allianceId = $alliance->id;
+        $allianceId = $alliance->getId();
 
         $memberData = $request->only('founder', 'moderator', 'country_id');
         $memberData['alliance_id'] = $allianceId;

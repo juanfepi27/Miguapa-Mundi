@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
+@section('secondary-nav')
+    @include('alliance.includes.nav2')
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -7,14 +10,6 @@
             <div class="card">
                 <div class="card-header bg-secondary"><strong>Create a new alliance</strong></div>
                     <div class="card-body">
-                        @if($errors->any())
-                            <ul id="errors" class="alert alert-danger list-unstyled">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
                         <form method="POST" action="{{ route('alliance.save') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -28,7 +23,7 @@
                                 <label for="country_id" class="col-sm-4 col-form-label">Who is the founder of the alliance?</label>
                                 <div class="col-sm-8">
                                     <select name="country_id" class="form-select mb-2" value="{{ old('country_id') }}">
-                                        @foreach ($viewData["countries"] as $country)
+                                        @foreach ($viewData["userCountries"] as $country)
                                             <option value={{$country->getId()}}>{{ $country->getName() }}</option>
                                         @endforeach
                                     </select>

@@ -51,12 +51,16 @@
                                 </div>
                             </div>
                             <div class="col-md-4 row align-content-center">
-                                <img class="" src="{{ asset('storage/' . $alliance->getImage()) }}" alt="Alliance's image">
+                                <img src="{{ asset('storage/' . $alliance->getImage()) }}" alt="Alliance's image">
                             </div>
                         </div>
                         <div class="card-footer">
-                            <form class="text-center" action="#" method="POST">
+                            <form class="text-center" action="{{ route('member.save') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="alliance_id" value="{{$alliance->getId()}}">
+                                <input type="hidden" name="founder" value="0">
+                                <input type="hidden" name="moderator" value="0">
+                                <input type="hidden" name="country_id" value="4">
                                 <button type="submit" class="btn bg-primary w-100">Become a member</button>
                             </form>
                         </div>

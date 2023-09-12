@@ -22,3 +22,4 @@ Route::post('/country/save', 'App\Http\Controllers\CountryController@save')->nam
 Route::get('/alliance', 'App\Http\Controllers\AllianceController@index')->name('alliance.index');
 Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
 Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");   
+Route::post('/member/save', 'App\Http\Controllers\MemberController@save')->name("member.save");

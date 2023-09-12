@@ -16,8 +16,15 @@ class AllianceController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'Alliance Page - Miguapa Mundi';
-        $viewData['alliances'] = Alliance::all();
+        $user = auth()->user();
+        $userAlliances = $user->getBoughtCountries()->flatMap(function($country){
+            return $country->getMembers()->pluck('alliance_id');
+        });
 
+        $viewData['alliances'] = Alliance::all()->reject(function($alliance) use ($userAlliances){
+            return in_array($alliance->getId(), $userAlliances->toArray());
+        });
+        
         return view('alliance.index')->with('viewData', $viewData);
     }
 
@@ -59,6 +66,25 @@ class AllianceController extends Controller
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
         
         return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');
+    }
+
+    public function listMembers(): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = 'Alliance Member Page - Miguapa Mundi';
+        $user = auth()->user();
+
+        $boughtCountries = $user->getBoughtCountries();
+        $membersByCountry = [];
+
+        foreach ($boughtCountries as $country) {
+            $membersByCountry[$country->getName()] = $country->getMembers()->where('moderator', 0);
+        };  
+
+        $viewData['alliances_members'] = $membersByCountry;
+
+        
+        return view('alliance.member')->with('viewData', $viewData);
     }
 
 }

@@ -3,7 +3,7 @@
         <a class="link-nav2 p-2" href="{{ route('alliance.index') }}">Alliances</a>
     </div>
     <div class="my-2 mx-4">
-        <a class="link-nav2 p-2" href="#">My alliances as member</a>
+        <a class="link-nav2 p-2" href="{{ route('alliance.member') }}">My alliances as member</a>
     </div>
     <div class="my-2 mx-4">
         <a class="link-nav2 p-2" href="#">My alliances as moderator</a>

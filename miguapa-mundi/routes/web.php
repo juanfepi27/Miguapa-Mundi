@@ -22,6 +22,7 @@ Route::post('/country/save', 'App\Http\Controllers\CountryController@save')->nam
 Route::get('/alliance', 'App\Http\Controllers\AllianceController@index')->name('alliance.index');
 Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
 Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");
+Route::get('/alliance/member', 'App\Http\Controllers\AllianceController@listMembers')->name("alliance.member");
 Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
 Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
 Route::get('/offer/create', 'App\Http\Controllers\OfferController@create')->name('offer.create');

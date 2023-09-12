@@ -35,10 +35,10 @@ class AllianceController extends Controller
         $image = $request->file('image');
         $imagePath = $image->store('img/images', 'public');
 
-        $data = $request->only(['name', 'image']);
-        $data['image'] = $imagePath;
+        $allianceData = $request->only(['name', 'image']);
+        $allianceData['image'] = $imagePath;
 
-        Alliance::create($data);
+        Alliance::create($allianceData);
         return redirect()->route('alliance.index');
     }
 

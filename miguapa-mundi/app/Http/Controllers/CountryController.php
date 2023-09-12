@@ -14,7 +14,7 @@ class CountryController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'Country Page - Miguapa Mundi';
-        $viewData['countries'] = Country::with('members.alliance', 'user_owner')->get();
+        $viewData['countries'] = Country::all();
 
         return view('country.index')->with('viewData', $viewData);
     }
@@ -35,11 +35,11 @@ class CountryController extends Controller
         $flag = $request->file('flag');
         $flagPath = $flag->store('img/flags', 'public');
 
-        $data = $request->only(['name', 'nick_name', 'color', 'minimum_offer_value', 'attractive_value', 'default_offer_value', 'user_owner_id']);
-        $data['flag'] = $flagPath;
-        $data['in_offer'] = $request->has('in_offer') ? true : false;
+        $countryData = $request->only(['name', 'nick_name', 'color', 'minimum_offer_value', 'attractive_value', 'default_offer_value', 'user_owner_id']);
+        $countryData['flag'] = $flagPath;
+        $countryData['in_offer'] = $request->has('in_offer') ? true : false;
 
-        Country::create($data);
+        Country::create($countryData);
         return redirect()->route('country.index');
     }
 }

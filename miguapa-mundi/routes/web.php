@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
+Route::get('/', 'App\Http\Controllers\CountryController@index')->name('country.index');
 Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
 Route::get('/news/search', 'App\Http\Controllers\NewsController@search')->name('news.search');
 Route::get('/news/show/{id}', 'App\Http\Controllers\NewsController@show')->name('news.show');
-Route::get('/countries', 'App\Http\Controllers\CountryController@index')->name('country.index');
-Route::get('/countries/create', 'App\Http\Controllers\CountryController@create')->name("country.create");
-Route::post('/countries/save', 'App\Http\Controllers\CountryController@save')->name("country.save");
-Route::get('/alliances', 'App\Http\Controllers\AllianceController@index')->name('alliance.index');
-Route::get('/alliances/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
-Route::post('/alliances/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");
+Route::get('/country/create', 'App\Http\Controllers\CountryController@create')->name("country.create");
+Route::post('/country/save', 'App\Http\Controllers\CountryController@save')->name("country.save");
+Route::get('/alliance', 'App\Http\Controllers\AllianceController@index')->name('alliance.index');
+Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
+Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");   

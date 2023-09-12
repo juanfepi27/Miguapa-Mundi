@@ -4,16 +4,16 @@
     @include('alliance.includes.nav2')
 @endsection
 @section('content')
-<div class="container container-1000px">
-    <div class="row">
+<div class="container">
+    <div class="d-flex justify-content-center gap-3">
         @foreach($viewData['alliances'] as $alliance)
-            <div class="col-md-8 col-lg-3 mb-2">
+            <div class="col-md-8 col-lg-3 mb-2 w-50">
                 <div class="card mt-3">
                     <div class="card">
                         <div class="card-header bg-secondary">
                             <h5 class="card-title text-center"><strong>{{ $alliance->getName() }}</strong></h5>
                         </div>
-                        <div class="row no-gutters">
+                        <div class="row">
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <p class="card-text">Founder: 
@@ -36,28 +36,28 @@
                                     <p class="card-text">Members: </p>
                                     <ul>
                                         @foreach ( $alliance->getMembers() as $member )
-                                            @if ($loop->iteration <= 3)
+                                            @if ($loop->iteration <= 1)
                                                 @if ($member->getIsAccepted())
                                                     <li>{{ $member->getCountry()->getName() }}</li>
                                                 @endif
                                             @endif
                                         @endforeach
                                     </ul>
-                                    @if ($alliance->getMembers()->count() > 3)
+                                    @if ($alliance->getMembers()->count() > 1)
                                     <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal">
                                         See more members
                                     </button>
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-4 ">
-                                <img class="img-fluid" src="{{ asset('storage/' . $alliance->getImage()) }}" alt="Alliance's image">
+                            <div class="col-md-4 row align-content-center">
+                                <img class="" src="{{ asset('storage/' . $alliance->getImage()) }}" alt="Alliance's image">
                             </div>
                         </div>
                         <div class="card-footer">
                             <form class="text-center" action="#" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Become a member</button>
+                                @csrf
+                                <button type="submit" class="btn bg-primary w-100">Become a member</button>
                             </form>
                         </div>
                     </div>
@@ -75,10 +75,8 @@
                         <div class="modal-body">
                             <ul>
                                 @foreach ( $alliance->getMembers() as $member )
-                                    @if ($loop->iteration > 3)
-                                        @if ($member->getIsAccepted())
-                                            <li>{{ $member->getCountry()->getName() }}</li>
-                                        @endif
+                                    @if ($member->getIsAccepted())
+                                        <li>{{ $member->getCountry()->getName() }}</li>
                                     @endif
                                 @endforeach
                             </ul>

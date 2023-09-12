@@ -44,8 +44,7 @@
                             <div class="form-group row">
                                 <label for="color" class="col-sm-4 col-form-label">Color for the country</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-lg mb-2" placeholder="Color for the country" name="color" value="{{ old('color') }}" />
-                                    <div id="colorHelp" class="form-text">Please write the hexadecimal of the color, without using the #. For example, if your color is #9a009a, just write 9a009a.</div>
+                                    <input type="color" class="form-control form-control-lg mb-2" placeholder="Color for the country" name="color" value="{{ old('color') }}" />
                                 </div>
                             </div>
                             <br>

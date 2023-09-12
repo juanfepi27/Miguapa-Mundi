@@ -10,14 +10,31 @@ a {
 }
 
 .btn-primary:hover{
+    background-color: #70a9f8aa !important;
+    border-color: #70a9f8 !important;
+    color: #ffffff !important;
+}
+
+.btn-secondary{
     background-color: #7b70f6 !important;
     border-color: #7b70f6 !important;
     color: #ffffff !important;
 }
 
-a:hover {
+.btn-secondary:hover{
+    background-color: #7b70f6aa !important;
+    border-color: #7b70f6 !important;
+    color: #ffffff !important;
+}
+
+a:hover {     /* change it to an especific anchor -> it is for the news */
     color: #888;
     text-decoration: none;
+}
+
+.link-nav2:hover{
+    border-radius: 1em;
+    background-color: hsla(47, 93%, 74%, 0.5);
 }
 
 .page-link{
@@ -47,6 +64,14 @@ a:hover {
     background-color: #fadf7d !important;
 }
 
+.bg-info1 {
+    background-color: #70a9f8 !important;
+}
+
+.bg-info2 {
+    background-color: #7b70f6 !important;
+}
+
 .copyright {
     background-color: #1a252f;
 }
@@ -69,4 +94,9 @@ nav{
 
 .ms-n5{
     margin-left: -40px;
+}
+
+.offer-card{
+    height: 250px;
+    width: 250px ;
 }

@@ -21,5 +21,13 @@ Route::get('/country/create', 'App\Http\Controllers\CountryController@create')->
 Route::post('/country/save', 'App\Http\Controllers\CountryController@save')->name("country.save");
 Route::get('/alliance', 'App\Http\Controllers\AllianceController@index')->name('alliance.index');
 Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
-Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");   
-Route::post('/member/save', 'App\Http\Controllers\MemberController@save')->name("member.save");
+Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");
+Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
+Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
+Route::get('/offer/create', 'App\Http\Controllers\OfferController@create')->name('offer.create');
+Route::get('/offer/delete/{id}', 'App\Http\Controllers\OfferController@delete')->name('offer.delete');
+Route::get('/offer/accept/{id}', 'App\Http\Controllers\OfferController@accept')->name('offer.accept');
+Route::get('/offer/reject/{id}', 'App\Http\Controllers\OfferController@reject')->name('offer.reject');
+Route::post('/offer/save', 'App\Http\Controllers\OfferController@save')->name('offer.save');
+
+Auth::routes();

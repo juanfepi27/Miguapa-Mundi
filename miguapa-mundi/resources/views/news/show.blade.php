@@ -11,8 +11,9 @@
             <p class="card-text">{{ $viewData['news']->getDescription() }}</p>
             <p class="card-text fw-bold">Countries involved: </p>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Country </li>
-                <li class="list-group-item">Country </li>
+                @foreach ($viewData['countries'] as $country)
+                    <li class="list-group-item">{{ $country->getName() }} </li>
+                @endforeach
             </ul>
         </div>
     </div>

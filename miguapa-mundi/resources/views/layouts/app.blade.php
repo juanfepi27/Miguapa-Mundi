@@ -16,6 +16,7 @@
     </div>
     <div class="navbar navbar-expand-lg navbar-light">
         <div class="container ">
+        @auth
             <div>
                 User: -----  Budget: $ -----
             </div>
@@ -26,19 +27,51 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link active" href="{{ route('country.index') }}">Countries</a>
-                    <a class="nav-link active" href="#">Offers</a>
+                    <a class="nav-link active" href="{{route('offer.toMe')}}">Offers</a>
                     <a class="nav-link active" href="{{ route('alliance.index') }}">Alliances</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="#">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
-                    <a class="nav-link active" href="#">Logout</a>
+                    <form id="logout" action="{{ route('logout') }}" method="POST"> 
+                        <a role="button" class="nav-link active" 
+                        onclick="document.getElementById('logout').submit();">Logout</a> 
+                        @csrf 
+                    </form> 
                 </div>
             </div>
+        @else
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" href="{{ route('login') }}">Login</a> 
+                    <a class="nav-link active" href="{{ route('register') }}">Register</a> 
+                </div>
+            </div>
+        @endauth
         </div>
     </div>
 </nav>
 @yield('secondary-nav')
 <!-- header -->
+
+<!-- messages -->
+@if($errors->any())
+<ul id="errors" class="alert alert-danger list-unstyled">
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+@if(session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Element created successfully.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+<!-- messages -->
 
 <div class="container my-4">
     @yield('content')

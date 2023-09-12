@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Member;
 use App\Models\Country;
 use App\Models\Alliance;
-use App\Models\Member;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -43,15 +43,21 @@ class AllianceController extends Controller
         $alliance = Alliance::create($allianceData);
         $allianceId = $alliance->id;
 
-        $memberData = $request->only('founder', 'moderator', 'country_id', 'alliance_id');
+        $memberData = $request->only('founder', 'moderator', 'country_id');
         $memberData['alliance_id'] = $allianceId;
-        $member = Member::create($memberData);
+        $memberData['is_accepted'] = 1;
+        Member::create($memberData);
 
-        $member->setAttribute('is_accepted', 1);
-        $member->save();
+        return redirect()->route('alliance.index')->with('success', 'Your alliance was created successfully');
+    }
 
+    public function saveMember(Request $request): RedirectResponse
+    {
+        Member::validate($request);
 
-        return redirect()->route('alliance.index');
+        Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
+        
+        return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');
     }
 
 }

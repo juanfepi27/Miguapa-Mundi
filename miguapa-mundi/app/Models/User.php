@@ -18,6 +18,7 @@ class User extends Authenticatable
     /*
     USER ATTRIBUTES
     $this -> attributes['id'] - int - contains the id of the User, primary key in the database
+    $this -> attributes['role'] - int - contains the role of the User, 0 for end users and 1 for admin users
     $this -> attributes['name'] - string - contains the full name of the user
     $this -> attributes['username'] - string - contains the alias that the user wants to have in the platform
     $this -> attributes['email'] - string - contains the email registered for the user 
@@ -50,6 +51,16 @@ class User extends Authenticatable
         return $this->attributes['id'];
     }
 
+    public function getRole(): int
+    {
+        return $this->attributes['role'];
+    }
+
+    public function setRole(int $role): void
+    {
+        $this->attributes['role'] = $role;
+    }
+
     public function getName(): string
     {
         return $this->attributes['name'];
@@ -79,9 +90,6 @@ class User extends Authenticatable
     {
         $this->attributes['email'] = $email;
     }
-
-    //getPassword
-    //setPassword
 
     public function getNationality(): string
     {

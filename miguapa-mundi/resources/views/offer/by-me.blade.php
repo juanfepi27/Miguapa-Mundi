@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
 @section('secondary-nav')
-    @include('offer.includes.nav2')
+    @include('offer.partials.navbar')
 @endsection
 @section('content')
 <div class="container d-flex flex-wrap gap-3 justify-content-evenly">

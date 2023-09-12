@@ -18,7 +18,7 @@ class NewsController extends Controller
         return view('news.index')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View | RedirectResponse
+    public function search(Request $request): View
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'News Page - Miguapa Mundi';
@@ -41,8 +41,8 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         $viewData['titleTemplate'] = ($news->getTitle()).' - Miguapa Mundi';
         $viewData['news'] = $news;
-        $viewData['countries'] = $news->financialEffects->map(function ($financialEffect) {
-            return $financialEffect->country;
+        $viewData['countries'] = $news->getFinancialEffects()->map(function ($financialEffect) {
+            return $financialEffect->getCounty();
         });
 
         return view('news.show')->with('viewData', $viewData);

@@ -29,7 +29,7 @@ class User extends Authenticatable
     $this -> attributes['updated_at] - updated_at - when the User was updated
     $this->boughtCountries - Country[] - contains the countries that the user owns
     */
-    protected $fillable = ['name','username','email','password','nationality','budget'];
+    protected $fillable = ['name','role','username','email','password','nationality','budget'];
 
     protected $hidden = ['password','remember_token',];
 

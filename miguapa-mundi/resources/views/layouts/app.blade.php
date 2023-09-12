@@ -26,9 +26,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="#">Countries</a>
+                    <a class="nav-link active" href="{{ route('country.index') }}">Countries</a>
                     <a class="nav-link active" href="{{route('offer.toMe')}}">Offers</a>
-                    <a class="nav-link active" href="#">Alliances</a>
+                    <a class="nav-link active" href="{{ route('alliance.index') }}">Alliances</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="#">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>

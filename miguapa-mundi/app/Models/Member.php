@@ -65,9 +65,9 @@ class Member extends Model
         return $this->attributes['is_accepted'];
     }
 
-    public function setIsAccepted(bool $is_accepted): void
+    public function setIsAccepted(bool $isAccepted): void
     {
-        $this->attributes['is_accepted'] = $is_accepted;
+        $this->attributes['is_accepted'] = $isAccepted;
     }
 
     public function getCreatedAt(): string
@@ -85,9 +85,9 @@ class Member extends Model
         return $this->attributes['country_id'];
     }
 
-    public function setCountryId(int $country_id): void
+    public function setCountryId(int $countryId): void
     {
-        $this->attributes['country_id'] = $country_id;
+        $this->attributes['country_id'] = $countryId;
     }
 
     public function country(): BelongsTo
@@ -110,9 +110,9 @@ class Member extends Model
         return $this->attributes['alliance_id'];
     }
 
-    public function setAllianceId(int $alliance_id): void 
+    public function setAllianceId(int $allianceId): void 
     {
-        $this->attributes['alliance_id'] = $alliance_id;
+        $this->attributes['alliance_id'] = $allianceId;
     }
 
     public function alliance(): BelongsTo

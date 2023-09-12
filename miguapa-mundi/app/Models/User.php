@@ -71,12 +71,12 @@ class User extends Authenticatable
         $this->attributes['name'] = $name;
     }
 
-    public function getUserName(): string
+    public function getUsername(): string
     {
         return $this->attributes['username'];
     }
 
-    public function setUserName(string $username): void
+    public function setUsername(string $username): void
     {
         $this->attributes['username'] = $username;
     }

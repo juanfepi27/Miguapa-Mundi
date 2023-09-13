@@ -33,17 +33,34 @@ class AdminController extends Controller
         $viewData = [];
         $viewData['titleTemplate'] = 'Country - Admin Miguapa Mundi';
         $viewData['country'] = Country::findOrFail($id);
+        $viewData['users'] = User::all();
 
         return view('admin.country.show')->with('viewData', $viewData);
     }
 
     public function countryUpdate(Request $request): RedirectResponse
     {
+        $country = Country::find($request['id']);
+        $country->setName($request['name']);
+        $country->setNickName($request['nick_name']);
+        $country->setUserOwnerId($request['user_owner_id']);
+        $country->setColor($request['color']);
+        $flag = $request->file('flag');
+        $flagPath = $flag->store('img/flags', 'public');
+        $country->setFlag($flagPath);
+        $country->setInOffer($request->has('in_offer') ? true : false);
+        $country->setDefaultOfferValue($request['default_offer_value']);
+        $country->setMinimumOfferValue($request['minimum_offer_value']);
+        $country->setAttractiveValue($request['attractive_value']);
+        $country->save();
         return redirect()->route('admin.country.index');
     }
 
     public function countryDelete(Request $request): RedirectResponse
     {
+        $country = Country::findOrFail($request['id']);
+        $country->delete();
+
         return redirect()->route('admin.country.index');
     }
 
@@ -68,7 +85,7 @@ class AdminController extends Controller
         $countryData['in_offer'] = $request->has('in_offer') ? true : false;
 
         Country::create($countryData);
-        return redirect()->route('admin.country.create');
+        return redirect()->route('admin.country.index');
     }
 
     public function newsIndex(): View

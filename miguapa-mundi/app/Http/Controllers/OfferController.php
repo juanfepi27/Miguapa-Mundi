@@ -68,9 +68,7 @@ class OfferController extends Controller
         if($offer->getPrice()>$userOfferror->getBudget()){
             return back()->withErrors(['no budget'=>'Sorry! the offeror doesn\'t have enough budget to buy your country']);
         }
-        //updating offer
-        $offer->setStatus("ACCEPTED");
-        $offer->save();
+        
         //updating new owner
         $userOfferror->setBudget($userOfferror->getBudget()-$offer->getPrice());
         $userOfferror->save();
@@ -79,6 +77,18 @@ class OfferController extends Controller
         //updating old owner
         $userOwner->setBudget($userOwner->getBudget()+$offer->getPrice());
         $userOwner->save();
+        //rejecting the other offers
+        $otherOffers=$country->getOffers();
+        foreach($otherOffers as $otherOffer){
+            if($otherOffer->getStatus()=='SENT')
+            {
+                $otherOffer->setStatus('REJECTED');
+                $otherOffer->save();
+            }
+        }
+        //updating offer
+        $offer->setStatus("ACCEPTED");
+        $offer->save();
 
         session()->flash('success', 'You sold correctly your country!');
         return back();

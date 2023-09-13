@@ -7,6 +7,8 @@
     <link href="{{ asset('/css/admin.css') }}" rel="stylesheet" />
     <title>@yield('title', 'Miguapa Mundi - Admin Panel')</title>
 </head>
+<body class="d-flex flex-column min-vh-100 overflow-x-hidden">
+<!-- header -->
 <nav class="bg-primary">
     <div class="row d-flex justify-content-center">
         <a class="navbar-brand text-center" href="{{route('admin.index')}}"><img class="img-logo" src="{{ asset('/img/LogoMiguapaMundi.png') }}" alt="logo miguapa mundi"></a>
@@ -35,6 +37,12 @@
     </div>
 </nav>
 @yield('secondary-nav')
+<!-- header -->
 <div class="container my-4">
     @yield('content')
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+</script>
+<script src="https://kit.fontawesome.com/6f83f56a7b.js" crossorigin="anonymous"></script>
+</body>
+</html>

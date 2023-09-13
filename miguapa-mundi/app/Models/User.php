@@ -43,7 +43,7 @@ class User extends Authenticatable
             'email' => 'required|email',
             'password' => 'required',
             'nationality' => 'required',
-            'budget' => 'required|numeric|min:50000',
+            'budget' => 'required|numeric|max:2147483647|min:50000',
         ]);
     }
 

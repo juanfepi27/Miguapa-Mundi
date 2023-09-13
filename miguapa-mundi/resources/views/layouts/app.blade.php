@@ -7,7 +7,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
     <title>@yield('title', 'Miguapa Mundi')</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 overflow-x-hidden">
 <!-- header -->
 <nav class="bg-primary">
     <div class="row d-flex justify-content-center">
@@ -82,7 +82,7 @@
 </div>
 
 <!-- footer -->
-<div class="bg-primary py-1 text-center">
+<div class="bg-primary py-1 text-center mt-auto">
     <div class="container pb-2 in-front">
         <small>
             Author - <a class="text-reset fw-bold text-decoration-none" target="_blank"

@@ -30,7 +30,7 @@
                     <a class="nav-link active" href="{{route('offer.toMe')}}">Offers</a>
                     <a class="nav-link active" href="{{ route('alliance.index') }}">Alliances</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
-                    <a class="nav-link active" href="#">Profile</a>
+                    <a class="nav-link active" href="{{ route('profile.index')}}">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
                     <form id="logout" action="{{ route('logout') }}" method="POST"> 
                         <a role="button" class="nav-link active" 

@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/offer/accept/{id}', 'App\Http\Controllers\OfferController@accept')->name('offer.accept');
     Route::get('/offer/reject/{id}', 'App\Http\Controllers\OfferController@reject')->name('offer.reject');
     Route::post('/offer/save', 'App\Http\Controllers\OfferController@save')->name('offer.save');
+    Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile.index');
+    Route::get('/profile/addBudget', 'App\Http\Controllers\ProfileController@addBudget')->name('profile.addBudget');
 });
 
 Route::middleware(['auth', 'role'])->group(function () {

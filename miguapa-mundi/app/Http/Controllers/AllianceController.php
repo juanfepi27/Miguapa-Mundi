@@ -68,6 +68,14 @@ class AllianceController extends Controller
         return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');
     }
 
+    public function deleteMember(string $id): RedirectResponse
+    {
+        $member = Member::findOrFail($id);
+        $member->delete();
+
+        return redirect()->route('alliance.member')->with('success', 'Got out of alliance successfully');
+    }
+
     public function listMembers(): View
     {
         $viewData = [];

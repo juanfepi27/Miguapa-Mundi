@@ -56,21 +56,20 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                        @if ($member->getIsAccepted() === null)
-                            <form class="text-center" action="{{ route('member.save') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn bg-primary w-100">Waiting for answer</button>
-                            </form>
+                            @if ($member->getIsAccepted() === null)
+                            <div class="card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">
+                                Waiting for answer
+                            </div>
                             @elseif ($member->getIsAccepted())
-                            <form class="text-center" action="{{ route('member.save') }}" method="POST">
+                            <form class="text-center" action="{{ route('member.delete', ['id' => $member->getId()]) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn bg-primary w-100">Get out of alliance</button>
+                                @method('DELETE')
+                                <button type="submit" class="btn card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">Get out of alliance</button>
                             </form>
                             @else
-                            <form class="text-center" action="{{ route('member.save') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn bg-primary w-100">Rejected!</button>
-                            </form>
+                            <div class="card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">
+                                Rejected!
+                            </div>
                             @endif
                         </div>
                     </div>

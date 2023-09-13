@@ -31,5 +31,6 @@ Route::get('/offer/accept/{id}', 'App\Http\Controllers\OfferController@accept')-
 Route::get('/offer/reject/{id}', 'App\Http\Controllers\OfferController@reject')->name('offer.reject');
 Route::post('/offer/save', 'App\Http\Controllers\OfferController@save')->name('offer.save');
 Route::post('/member/save', 'App\Http\Controllers\AllianceController@saveMember')->name('member.save');
+Route::delete('/member/delete/{id}', 'App\Http\Controllers\AllianceController@deleteMember')->name('member.delete');
 
 Auth::routes();

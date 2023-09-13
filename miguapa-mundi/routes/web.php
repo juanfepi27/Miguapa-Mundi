@@ -23,6 +23,8 @@ Route::get('/alliance', 'App\Http\Controllers\AllianceController@index')->name('
 Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
 Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");
 Route::get('/alliance/member', 'App\Http\Controllers\AllianceController@listMembers')->name("alliance.member");
+Route::get('/alliance/moderator', 'App\Http\Controllers\AllianceController@listModerators')->name("alliance.moderator");
+Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name("alliance.show");
 Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
 Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
 Route::get('/offer/create', 'App\Http\Controllers\OfferController@create')->name('offer.create');
@@ -32,5 +34,9 @@ Route::get('/offer/reject/{id}', 'App\Http\Controllers\OfferController@reject')-
 Route::post('/offer/save', 'App\Http\Controllers\OfferController@save')->name('offer.save');
 Route::post('/member/save', 'App\Http\Controllers\AllianceController@saveMember')->name('member.save');
 Route::delete('/member/delete/{id}', 'App\Http\Controllers\AllianceController@deleteMember')->name('member.delete');
+Route::post('/member/stop-moderator/{id}', 'App\Http\Controllers\AllianceController@stopModerator')->name("member.stopModerator");
+Route::post('/member/become-moderator/{id}', 'App\Http\Controllers\AllianceController@becomeModerator')->name("member.becomeModerator");
+Route::post('/member/accept-member/{id}', 'App\Http\Controllers\AllianceController@acceptMember')->name("member.acceptMember");
+Route::post('/member/decline-member/{id}', 'App\Http\Controllers\AllianceController@declineMember')->name("member.declineMember");
 
 Auth::routes();

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Member;
-use App\Models\Country;
 use App\Models\Alliance;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -93,6 +91,74 @@ class AllianceController extends Controller
 
         
         return view('alliance.member')->with('viewData', $viewData);
+    }
+
+    public function listModerators(): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = 'Alliance Moderator Page - Miguapa Mundi';
+        $user = auth()->user();
+
+        $boughtCountries = $user->getBoughtCountries();
+        $membersByCountry = [];
+
+        foreach ($boughtCountries as $country) {
+            $membersByCountry[$country->getName()] = $country->getMembers()->where('moderator', 1);
+        };  
+
+        $viewData['alliances_moderators'] = $membersByCountry;
+
+        
+        return view('alliance.moderator')->with('viewData', $viewData);
+    }
+
+    public function show(string $id): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = 'Alliance Details Page - Miguapa Mundi';
+        $viewData['alliance'] = Alliance::findOrFail($id);
+
+        return view('alliance.show')->with('viewData', $viewData);
+    }
+
+    public function stopModerator(string $id): RedirectResponse
+    {
+        $member = Member::findOrFail($id);
+        $member->setModerator(0);
+        $member->save();
+        
+        return redirect()->route('alliance.moderator')->with('success', 'Updated moderators successfully');
+
+    }
+
+    public function becomeModerator(string $id): RedirectResponse
+    {
+        $member = Member::findOrFail($id);
+        $member->setModerator(1);
+        $member->save();
+        
+        return redirect()->route('alliance.moderator')->with('success', 'Updated moderators successfully');
+
+    }
+
+    public function acceptMember(string $id): RedirectResponse
+    {
+        $member = Member::findOrFail($id);
+        $member->setIsAccepted(1);
+        $member->save();
+        
+        return redirect()->route('alliance.moderator')->with('success', 'Updated members successfully');
+
+    }
+
+    public function declineMember(string $id): RedirectResponse
+    {
+        $member = Member::findOrFail($id);
+        $member->setIsAccepted(0);
+        $member->save();
+        
+        return redirect()->route('alliance.moderator')->with('success', 'Updated members successfully');
+
     }
 
 }

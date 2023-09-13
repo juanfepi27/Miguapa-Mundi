@@ -14,14 +14,9 @@ class AllianceController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'Alliance Page - Miguapa Mundi';
+        $viewData['alliances'] = Alliance::all();
         $user = auth()->user();
-        $userAlliances = $user->getBoughtCountries()->flatMap(function($country){
-            return $country->getMembers()->pluck('alliance_id');
-        });
-
-        $viewData['alliances'] = Alliance::all()->reject(function($alliance) use ($userAlliances){
-            return in_array($alliance->getId(), $userAlliances->toArray());
-        });
+        $viewData['userCountries'] = $user->getBoughtCountries();
         
         return view('alliance.index')->with('viewData', $viewData);
     }

@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
-use App\Models\User;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CountryController extends Controller

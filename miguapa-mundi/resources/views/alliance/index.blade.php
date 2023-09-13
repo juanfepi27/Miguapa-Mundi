@@ -1,19 +1,19 @@
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
 @section('secondary-nav')
-    @include('alliance.includes.nav2')
+    @include('alliance.partials.navbar')
 @endsection
 @section('content')
-<div class="container container-1000px">
-    <div class="row">
+<div class="container">
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
         @foreach($viewData['alliances'] as $alliance)
-            <div class="col-md-8 col-lg-3 mb-2">
+            <div class="col-md-8 col-lg-3 mb-2 w-45 justify-content-center">
                 <div class="card mt-3">
                     <div class="card">
                         <div class="card-header bg-secondary">
                             <h5 class="card-title text-center"><strong>{{ $alliance->getName() }}</strong></h5>
                         </div>
-                        <div class="row no-gutters">
+                        <div class="row">
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <p class="card-text">Founder: 
@@ -36,35 +36,36 @@
                                     <p class="card-text">Members: </p>
                                     <ul>
                                         @foreach ( $alliance->getMembers() as $member )
-                                            @if ($loop->iteration <= 3)
-                                                @if ($member->getIsAccepted())
+                                            @if ($member->getIsAccepted())
+                                                @if ($loop->iteration <= 4)
                                                     <li>{{ $member->getCountry()->getName() }}</li>
                                                 @endif
                                             @endif
                                         @endforeach
                                     </ul>
-                                    @if ($alliance->getMembers()->count() > 3)
-                                    <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal">
+                                    @if ($alliance->getMembers()->count() > 4)
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal">
                                         See more members
                                     </button>
+                                    <br>
+                                    <br>
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-4 ">
-                                <img class="img-fluid" src="{{ asset('storage/' . $alliance->getImage()) }}" alt="Alliance's image">
+                            <div class="col-md-4 row align-content-center">
+                                <img src="{{ asset('storage/' . $alliance->getImage()) }}" alt="Alliance's image">
                             </div>
                         </div>
                         <div class="card-footer">
-                            <form class="text-center" action="#" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Become a member</button>
-                            </form>
+                            <button type="button" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white" data-bs-toggle="modal" data-bs-target="#modalBecomeMember">
+                                Become a member
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal see more members-->
             <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -75,13 +76,40 @@
                         <div class="modal-body">
                             <ul>
                                 @foreach ( $alliance->getMembers() as $member )
-                                    @if ($loop->iteration > 3)
-                                        @if ($member->getIsAccepted())
-                                            <li>{{ $member->getCountry()->getName() }}</li>
-                                        @endif
+                                    @if ($member->getIsAccepted())
+                                        <li>{{ $member->getCountry()->getName() }}</li>
                                     @endif
                                 @endforeach
                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal become member-->
+            <div class="modal fade" id="modalBecomeMember" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">Become a member of the alliance</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="text-center" action="{{ route('member.save') }}" method="POST">
+                                @csrf
+                                <label for="country_id">With which of your countries do you want to send the request?</label>
+                                <select name="country_id" class="form-select mb-2" value="{{ old('country_id') }}">
+                                    @foreach ($viewData["userCountries"] as $country)
+                                        <option value={{$country->getId()}}>{{ $country->getName() }}</option>
+                                    @endforeach
+                                </select>
+                                
+
+                                <input type="hidden" name="alliance_id" value="{{$alliance->getId()}}">
+                                <input type="hidden" name="founder" value="0">
+                                <input type="hidden" name="moderator" value="0">
+                                <button type="submit" class="btn btn-primary bg-info1 text-center text-white">Become a member</button>
+                            </form>
                         </div>
                     </div>
                 </div>

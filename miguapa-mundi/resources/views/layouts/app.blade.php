@@ -11,8 +11,8 @@
 <!-- header -->
 <nav class="bg-primary">
     <div class="row d-flex justify-content-center">
-        <a class="navbar-brand text-center" href="{{route('home.index')}}"><img class="img-logo" src="{{ asset('/img/LogoMiguapaMundi.png') }}" alt="logo miguapa mundi"></a>
-        <a class="navbar-brand text-center" href="{{route('home.index')}}">Miguapa Mundi</a>
+        <a class="navbar-brand text-center" href="{{ route('country.index') }}"><img class="img-logo" src="{{ asset('/img/LogoMiguapaMundi.png') }}" alt="logo miguapa mundi"></a>
+        <a class="navbar-brand text-center" href="{{ route('country.index') }}">Miguapa Mundi</a>
     </div>
     <div class="navbar navbar-expand-lg navbar-light">
         <div class="container ">

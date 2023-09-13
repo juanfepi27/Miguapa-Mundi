@@ -24,7 +24,7 @@ class Country extends Model
      * $this->attributes['updated_at'] - datetime - contains the date and time when the country's information was updated
      * $this->attributes['default_offer_value'] - int - contains the default offer value of the country
      * $this->attributes['user_owner_id'] - int - contains the associated User Id that owns the country
-     * $this->user_owner - User - contains the associated user that owns the country
+     * $this->userOwner - User - contains the associated user that owns the country
      * $this->members - Member[] - contains the associated members
      * $this->financialEffects - FinancialEffect[] - contains the associated financial effects
      * $this->offers - Offer[] - contains the associated offers
@@ -150,19 +150,19 @@ class Country extends Model
         $this->attributes['user_owner_id'] = $userOwnerId;
     }
 
-    public function user_owner(): BelongsTo
+    public function userOwner(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     public function getUserOwner(): User
     {
-        return $this->user_owner;
+        return $this->userOwner;
     }
 
     public function setUserOwner(User $userOwner): void
     {
-        $this->user_owner = $userOwner;
+        $this->userOwner = $userOwner;
     }
 
     public function members(): HasMany

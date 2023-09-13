@@ -58,7 +58,7 @@ class Member extends Model
         $this->attributes['moderator'] = $moderator;
     }
 
-    public function getIsAccepted(): bool
+    public function getIsAccepted(): bool | null
     {
         return $this->attributes['is_accepted'];
     }

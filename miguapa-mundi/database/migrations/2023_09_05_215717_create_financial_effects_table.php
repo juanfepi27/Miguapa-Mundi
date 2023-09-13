@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('financial_effect');
             $table->unsignedBigInteger('news_id');
             $table->foreign('news_id')->references('id')->on('news');
-            # foreign for countries is missing at this moment
+            // foreign for countries is missing at this moment
             $table->timestamps();
         });
     }

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\Alliance;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AllianceController extends Controller
 {
@@ -155,5 +155,4 @@ class AllianceController extends Controller
         return redirect()->route('alliance.moderator')->with('success', 'Updated members successfully');
 
     }
-
 }

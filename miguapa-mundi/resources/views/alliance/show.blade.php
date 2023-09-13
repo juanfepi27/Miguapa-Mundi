@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
 @section('secondary-nav')
-    @include('alliance.includes.nav2')
+    @include('alliance.partials.navbar')
 @endsection
 @section('content')
 <div class="container container-1000px">

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 class Offer extends Model
 {
@@ -71,7 +71,7 @@ class Offer extends Model
         return $this->attributes['country_id'];
     }
 
-    public function setCountryId(int $countryId): void 
+    public function setCountryId(int $countryId): void
     {
         $this->attributes['country_id'] = $countryId;
     }
@@ -96,7 +96,7 @@ class Offer extends Model
         return $this->attributes['user_offeror_id'];
     }
 
-    public function setUserOferrorId(int $userOfferorId): void 
+    public function setUserOferrorId(int $userOfferorId): void
     {
         $this->attributes['user_offeror_id'] = $userOfferorId;
     }
@@ -126,5 +126,4 @@ class Offer extends Model
     {
         return $this->attributes['updated_at'];
     }
-
 }

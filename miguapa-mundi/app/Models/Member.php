@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Country;
-use App\Models\Alliance;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 class Member extends Model
 {
@@ -60,7 +58,7 @@ class Member extends Model
         $this->attributes['moderator'] = $moderator;
     }
 
-    public function getIsAccepted(): bool
+    public function getIsAccepted(): bool | null
     {
         return $this->attributes['is_accepted'];
     }
@@ -110,7 +108,7 @@ class Member extends Model
         return $this->attributes['alliance_id'];
     }
 
-    public function setAllianceId(int $allianceId): void 
+    public function setAllianceId(int $allianceId): void
     {
         $this->attributes['alliance_id'] = $allianceId;
     }
@@ -129,5 +127,4 @@ class Member extends Model
     {
         $this->alliance = $alliance;
     }
-
 }

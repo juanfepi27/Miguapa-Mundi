@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Offer;
 use App\Models\User;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class OfferController extends Controller
 {
@@ -43,7 +43,7 @@ class OfferController extends Controller
 
         return view('offer.create')->with('viewData', $viewData);
     }
-    
+
     public function save(Request $request): RedirectResponse
     {
         $userOfferorId=$request->user()->getId();
@@ -93,7 +93,7 @@ class OfferController extends Controller
         session()->flash('success', 'You sold correctly your country!');
         return back();
     }
-    
+
     public function reject(int $id): RedirectResponse
     {
         $offer=Offer::findOrFail($id);
@@ -104,10 +104,11 @@ class OfferController extends Controller
         session()->flash('success', 'You rejected correctly an offer!');
         return back();
     }
-    
+
     public function delete(int $id): RedirectResponse
     {
         Offer::destroy($id);
+
         return back();
     }
 }

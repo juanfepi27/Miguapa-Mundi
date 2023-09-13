@@ -3,6 +3,10 @@ a {
     text-decoration: none;
 }
 
+.inline-blk{
+    display: inline-block;
+}
+
 .btn-primary{
     background-color: #70a9f8 !important;
     border-color: #70a9f8 !important;
@@ -99,8 +103,4 @@ nav{
 .offer-card{
     height: 250px;
     width: 250px ;
-}
-
-.w-45{
-    width: 45%;
 }

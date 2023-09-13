@@ -1,6 +1,9 @@
-@extends('layouts.app')
-@section('title', $viewData["titleTemplate"])
+@extends('layouts.admin')
+@section('title',$viewData['titleTemplate'])
 @section('content')
+@section('secondary-nav')
+    @include('admin.country.partials.navbar')
+@endsection
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,8 +17,7 @@
                                 @endforeach
                             </ul>
                         @endif
-
-                        <form method="POST" action="{{ route('country.save') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.country.save') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-sm-4 col-form-label">Name of the country</label>
@@ -36,7 +38,7 @@
                                 <div class="col-sm-8">
                                     <select name="user_owner_id" class="form-select mb-2" value="{{ old('user_owner_id') }}">
                                         @foreach ($viewData["users"] as $user)
-                                            {{-- <option value={{$user->getId()}}>{{ $user->getName() }}</option> --}}
+                                            <option value={{$user->getId()}}>{{ $user->getUsername() }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -44,8 +46,7 @@
                             <div class="form-group row">
                                 <label for="color" class="col-sm-4 col-form-label">Color for the country</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-lg mb-2" placeholder="Color for the country" name="color" value="{{ old('color') }}" />
-                                    <div id="colorHelp" class="form-text">Please write the hexadecimal of the color, without using the #. For example, if your color is #9a009a, just write 9a009a.</div>
+                                    <input type="color" class="form-control form-control-lg mb-2" placeholder="Color for the country" name="color" value="{{ old('color') }}" />
                                 </div>
                             </div>
                             <br>

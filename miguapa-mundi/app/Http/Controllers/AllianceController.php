@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Country;
 use App\Models\Alliance;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AllianceController extends Controller
 {
@@ -39,7 +37,7 @@ class AllianceController extends Controller
         $data['image'] = $imagePath;
 
         Alliance::create($data);
+
         return redirect()->route('alliance.index');
     }
-
 }

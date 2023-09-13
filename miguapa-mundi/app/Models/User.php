@@ -3,13 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -21,7 +21,7 @@ class User extends Authenticatable
     $this -> attributes['role'] - int - contains the role of the User, 0 for end users and 1 for admin users
     $this -> attributes['name'] - string - contains the full name of the user
     $this -> attributes['username'] - string - contains the alias that the user wants to have in the platform
-    $this -> attributes['email'] - string - contains the email registered for the user 
+    $this -> attributes['email'] - string - contains the email registered for the user
     $this -> attributes['password'] - string - contains the authentication password to log in
     $this -> attributes['nationality'] - string - contains the nationality for the user
     $this -> attributes['budget'] - int - contains the amount of money that the user has in the platform
@@ -29,11 +29,11 @@ class User extends Authenticatable
     $this -> attributes['updated_at] - updated_at - when the User was updated
     $this->boughtCountries - Country[] - contains the countries that the user owns
     */
-    protected $fillable = ['name','role','username','email','password','nationality','budget'];
+    protected $fillable = ['name', 'role', 'username', 'email', 'password', 'nationality', 'budget'];
 
-    protected $hidden = ['password','remember_token',];
+    protected $hidden = ['password', 'remember_token'];
 
-    protected $casts = ['email_verified_at' => 'datetime','password' => 'hashed',];
+    protected $casts = ['email_verified_at' => 'datetime', 'password' => 'hashed'];
 
     public static function validate(Request $request): void
     {
@@ -46,6 +46,7 @@ class User extends Authenticatable
             'budget' => 'required|numeric|min:50000',
         ]);
     }
+
     public function getId(): int
     {
         return $this->attributes['id'];

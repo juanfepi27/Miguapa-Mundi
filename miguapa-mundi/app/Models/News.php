@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 
 class News extends Model
 {
@@ -17,6 +18,17 @@ class News extends Model
     $this -> attributes['created_at'] - date - when the news was created
     $this -> attributes['updated_at] - date - when the news was updated
     */
+
+    protected $fillable = ['title', 'description'];
+
+    public static function validateCreateform(Request $request): void
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];

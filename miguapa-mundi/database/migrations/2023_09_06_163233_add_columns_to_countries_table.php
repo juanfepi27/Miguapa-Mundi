@@ -17,5 +17,4 @@ class AddColumnsToCountriesTable extends Migration
             $table->foreign('user_owner_id')->references('id')->on('users');
         });
     }
-
-};
+}

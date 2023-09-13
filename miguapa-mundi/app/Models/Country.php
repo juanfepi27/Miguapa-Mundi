@@ -2,15 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Offer;
-use App\Models\Member;
-use Illuminate\Http\Request;
-use App\Models\FinancialEffect;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 
 class Country extends Model
 {
@@ -169,7 +165,6 @@ class Country extends Model
         $this->user_owner = $userOwner;
     }
 
-    
     public function members(): HasMany
     {
         return $this->hasMany(Member::class);

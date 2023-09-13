@@ -11,7 +11,7 @@
             <p class="card-text"><strong>Username: </strong>{{ $viewData['user']->getUsername() }}</p>
             <p class="card-text"><strong>Email: </strong>{{ $viewData['user']->getEmail() }}</p>
             <p class="card-text"><strong>Nationality: </strong>{{ $viewData['user']->getNationality() }}</p>
-            <p class="card-text"><strong>Budget: </strong>{{ $viewData['user']->getBudget() }}</p>
+            <p class="card-text"><strong>Budget: </strong>$ {{ $viewData['user']->getBudgetFormatted() }}</p>
             <p class="card-text fw-bold">My countries:</p>
             <ul class="list-group list-group-flush">
                 @foreach ($viewData['user']->getBoughtCountries() as $country)

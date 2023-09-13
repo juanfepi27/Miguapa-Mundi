@@ -19,7 +19,8 @@
                 </select>
                 <div class="mb-3">
                     <label for="price" class="form-label">Value to offer</label>
-                    <div class="form-text">Remember that you may offer a value greater that the minimum offer value of the country to be a valid offer</div>
+                    <div class="form-text">- Remember that you may offer a value greater that the minimum offer value of the country to be a valid offer</div>
+                    <div class="form-text">- Remember that you have to add a value without dots or commas (for example: $1.000.000 must be 1000000)</div>
                     <input type="number" class="form-control" id="price" name="price" aria-describedby="offer value" required min="0" max="{{ request()->user()->getBudget() }}">
                 </div>
                 <div class="d-flex justify-content-center">

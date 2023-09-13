@@ -54,6 +54,13 @@ class Offer extends Model
         return $this->attributes['price'];
     }
 
+    public function getPriceFormatted(): string
+    {
+        $price = $this->getPrice();;
+        $priceFormatted = number_format($price, 0, ',', '.');
+        return $priceFormatted;
+    }
+
     public function setPrice(int $price): void
     {
         $this->attributes['price'] = $price;
@@ -111,7 +118,8 @@ class Offer extends Model
 
     public function getCreatedAt(): string
     {
-        return $this->attributes['created_at'];
+        $created_at = strtotime($this->attributes['created_at']);
+        return date('Y/m/d', $created_at);
     }
 
     public function getUpdatedAt(): string

@@ -106,6 +106,13 @@ class User extends Authenticatable
         return $this->attributes['budget'];
     }
 
+    public function getBudgetFormatted(): string
+    {
+        $budget = $this->getBudget();;
+        $budgetFormatted = number_format($budget, 0, ',', '.');
+        return $budgetFormatted;
+    }
+
     public function setBudget(int $budget): void
     {
         $this->attributes['budget'] = $budget;

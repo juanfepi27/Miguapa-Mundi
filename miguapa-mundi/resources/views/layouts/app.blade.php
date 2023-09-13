@@ -18,7 +18,7 @@
         <div class="container ">
         @auth
             <div>
-                User: {{ request()->user()->getUsername() }}  Budget: $ {{ request()->user()->getBudget() }}
+                User: {{ request()->user()->getUsername() }}  Budget: $ {{ request()->user()->getBudgetFormatted() }}
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

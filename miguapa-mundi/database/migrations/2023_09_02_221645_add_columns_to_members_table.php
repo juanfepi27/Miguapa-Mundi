@@ -18,5 +18,4 @@ class AddColumnsToMembersTable extends Migration
             $table->foreign('alliance_id')->references('id')->on('alliances');
         });
     }
-
-};
+}

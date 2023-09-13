@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Collection;
 
 class FinancialEffect extends model
 {
@@ -12,14 +11,13 @@ class FinancialEffect extends model
      * FINANCIAL EFFECT ATTRIBUTES
      * $this->attributes['id'] - int - contains the financial_effect primary key (id)
      * $this->attributes['effect] - int - contains the financial effect of the news
-     * $this->attributes['news_id] - int - contains the id of the news with the financial effect 
+     * $this->attributes['news_id] - int - contains the id of the news with the financial effect
      * $this->news - contains the news that the financial effect is related to
      * $this->attributes['country_id] - int - contains the id of the country with the financial effect
      * $this->country - contains the country that the financial effect is related to
      * $this->attributes['created_at'] - date - when the financial effect was created
      * $this->attributes['updated_at] - date - when the financial effect was updated
      */
-
     public function getId(): int
     {
         return $this->attributes['id'];

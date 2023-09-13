@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
+use App\Models\User;
 use App\Models\News;
+use App\Models\Country;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -50,13 +51,24 @@ class AdminController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'Create country - Admin Miguapa Mundi';
+        $viewData['users'] = User::all();
 
         return view('admin.country.create')->with('viewData', $viewData);
     }
 
     public function countrySave(Request $request): RedirectResponse
     {
-        return redirect()->route('admin.offer.save');
+        Country::validate($request);
+
+        $flag = $request->file('flag');
+        $flagPath = $flag->store('img/flags', 'public');
+
+        $countryData = $request->only(['name', 'nick_name', 'color', 'minimum_offer_value', 'attractive_value', 'default_offer_value', 'user_owner_id']);
+        $countryData['flag'] = $flagPath;
+        $countryData['in_offer'] = $request->has('in_offer') ? true : false;
+
+        Country::create($countryData);
+        return redirect()->route('admin.country.create');
     }
 
     public function newsIndex(): View

@@ -23,7 +23,12 @@
                     <a class="nav-link active" href="{{route('admin.news.index')}}">News</a>
                     <a class="nav-link active" href="{{route('admin.country.index')}}">Country</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
-                    <a class="nav-link active" href="#">Logout</a>
+                    <a class="nav-link active" href="{{route('country.index')}}">Home</a>
+                    <form id="logout" action="{{ route('logout') }}" method="POST"> 
+                        <a role="button" class="nav-link active" 
+                        onclick="document.getElementById('logout').submit();">Logout</a> 
+                        @csrf 
+                    </form> 
                 </div>
             </div>
         </div>

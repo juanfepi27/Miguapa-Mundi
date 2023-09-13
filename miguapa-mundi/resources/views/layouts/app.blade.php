@@ -32,6 +32,9 @@
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
                     <a class="nav-link active" href="{{ route('profile.index')}}">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
+                    @if(request()->user()->getRole()==1)
+                        <a class="nav-link active " href="{{ route('admin.index') }}">Admin Panel</a>
+                    @endif
                     <form id="logout" action="{{ route('logout') }}" method="POST"> 
                         <a role="button" class="nav-link active" 
                         onclick="document.getElementById('logout').submit();">Logout</a> 

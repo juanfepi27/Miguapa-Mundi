@@ -16,7 +16,7 @@ class CheckRole
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->user() || $request->user()->getRole()==0) {
-            abort(403, 'No tienes permisos para acceder a esta página.');
+            abort(403, 'You don\'t have permissions to access to the admin panel');
         }
         
         return $next($request);

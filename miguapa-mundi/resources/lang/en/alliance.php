@@ -33,4 +33,30 @@ return [
         'helpImage'=>'Attach an image, it can be of the types png, jpg or jpeg.',
         'btnCreate'=>'Create',
     ],
+
+    'member' => [
+        'titleTemplate'=>'Alliance Member Page - Miguapa Mundi',
+        'altImage'=>"Alliance's image",
+        'cardFounder'=>'Founder',
+        'cardModerators'=>'Moderators',
+        'cardFoundationDate'=>'Foundation date',
+        'cardMembers'=>'Members',
+        'btnSeeMoreMembers'=>'See more members',
+        'modalTitleSeeMembers'=>'Members of the alliance',
+        'btnGetOut'=>'Get out of alliance',
+        'footWaiting'=>'Waiting for answer',
+        'footRejected'=>'Rejected',
+    ],
+
+    'moderator' => [
+        'titleTemplate'=>'Alliance Moderator Page - Miguapa Mundi',
+        'altImage'=>"Alliance's image",
+        'cardFounder'=>'Founder',
+        'cardModerators'=>'Moderators',
+        'cardFoundationDate'=>'Foundation date',
+        'cardMembers'=>'Members',
+        'btnSeeMoreMembers'=>'See more members',
+        'modalTitleSeeMembers'=>'Members of the alliance',
+        'btnSeeDetails'=>'See details',
+    ],
 ];

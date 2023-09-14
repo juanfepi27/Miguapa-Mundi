@@ -17,14 +17,14 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <p class="card-text">Founder: 
+                                    <p class="card-text">@lang('alliance.member.cardFounder'): 
                                         @foreach ( $member->getAlliance()->getMembers() as $memberAlliance )
                                         @if ($memberAlliance->getFounder())
                                             {{ $memberAlliance->getCountry()->getName() }}
                                         @endif
                                         @endforeach
                                     </p>
-                                    <p class="card-text">Moderators: </p>
+                                    <p class="card-text">@lang('alliance.member.cardModerators'): </p>
                                     <ul>
                                         @foreach ( $member->getAlliance()->getMembers() as $memberAlliance )
                                             @if ($memberAlliance->getModerator())
@@ -32,9 +32,9 @@
                                             @endif
                                         @endforeach
                                     </ul>
-                                    <p class="card-text">Foundation date: {{ $member->getAlliance()->getCreatedAt() }}</p>
+                                    <p class="card-text">@lang('alliance.member.cardFoundationDate'): {{ $member->getAlliance()->getCreatedAt() }}</p>
                                     <br>
-                                    <p class="card-text">Members: </p>
+                                    <p class="card-text">@lang('alliance.member.cardMembers'): </p>
                                     <ul>
                                         @foreach ( $member->getAlliance()->getMembers() as $memberAlliance )
                                             @if ($memberAlliance->getIsAccepted())
@@ -46,7 +46,7 @@
                                     </ul>
                                     @if ($member->getAlliance()->getMembers()->where('is_accepted',1)->count() > 3)
                                         <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal">
-                                            See more members
+                                            @lang('alliance.member.btnSeeMoreMembers')
                                         </button>
                                         <br>
                                         <br>
@@ -54,23 +54,23 @@
                                 </div>
                             </div>
                             <div class="col-md-4 row align-content-center">
-                                <img src="{{ asset('storage/' . $member->getAlliance()->getImage()) }}" alt="Alliance's image">
+                                <img src="{{ asset('storage/' . $member->getAlliance()->getImage()) }}" alt="@lang('alliance.member.altImage')">
                             </div>
                         </div>
                         <div class="card-footer">
                             @if ($member->getIsAccepted() === null)
                                 <div class="card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">
-                                    Waiting for answer
+                                    @lang('alliance.member.footWaiting')
                                 </div>
                             @elseif ($member->getIsAccepted())
                                 <form class="text-center" action="{{ route('member.delete', ['id' => $member->getId()]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">Get out of alliance</button>
+                                    <button type="submit" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">@lang('alliance.member.btnGetOut')</button>
                                 </form>
                             @else
                                 <div class="card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">
-                                    Rejected!
+                                    @lang('alliance.member.footRejected')
                                 </div>
                             @endif
                         </div>
@@ -82,7 +82,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel">Members of the alliance</h5>
+                                <h5 class="modal-title" id="modalLabel">@lang('alliance.member.modalTitleSeeMembers')</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

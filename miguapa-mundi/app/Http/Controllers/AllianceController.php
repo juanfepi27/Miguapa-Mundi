@@ -72,7 +72,7 @@ class AllianceController extends Controller
     public function listMembers(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Member Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.member.titleTemplate');
         $user = auth()->user();
 
         $boughtCountries = $user->getBoughtCountries();
@@ -91,7 +91,7 @@ class AllianceController extends Controller
     public function listModerators(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Moderator Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.moderator.titleTemplate');
         $user = auth()->user();
 
         $boughtCountries = $user->getBoughtCountries();

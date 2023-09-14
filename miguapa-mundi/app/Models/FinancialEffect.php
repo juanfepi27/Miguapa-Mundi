@@ -38,6 +38,13 @@ class FinancialEffect extends model
         return $this->attributes['effect'];
     }
 
+    public function getEffectFormatted(): string
+    {
+        $effect = $this->getEffect();;
+        $effectFormatted = number_format($effect, 0, ',', '.');
+        return $effectFormatted;
+    }
+
     public function setEffect(int $effect): void
     {
         $this->attributes['effect'] = $effect;
@@ -73,7 +80,7 @@ class FinancialEffect extends model
         return $this->belongsTo(Country::class);
     }
 
-    public function getCounty(): Country
+    public function getCountry(): Country
     {
         return $this->country;
     }
@@ -85,7 +92,8 @@ class FinancialEffect extends model
 
     public function getCreatedAt(): string
     {
-        return $this->attributes['created_at'];
+        $created_at = strtotime($this->attributes['created_at']);
+        return date('Y/m/d', $created_at);
     }
 
     public function getUpdatedAt(): string

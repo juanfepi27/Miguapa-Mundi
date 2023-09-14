@@ -43,7 +43,12 @@
                             <label for="nationality" class="col-md-4 col-form-label text-md-end">{{ __('Nationality') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nationality" type="text" class="form-control @error('nationality') is-invalid @enderror" name="nationality" value="{{ old('nationality') }}" required autocomplete="nationality" autofocus>
+                                <select id="nationality" type="text" class="form-select @error('nationality') is-invalid @enderror" name="nationality" value="{{ old('nationality') }}" required autocomplete="nationality" autofocus>
+                                    <option selected></option>
+                                    <!-- array for the nationalities -->
+                                    <option value="colombian">Colombian</option>
+                                    <!-- end array -->
+                                </select>
 
                                 @error('nationality')
                                     <span class="invalid-feedback" role="alert">

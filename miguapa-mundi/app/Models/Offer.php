@@ -23,11 +23,12 @@ class Offer extends Model
 
     protected $fillable = ['status', 'price', 'country_id', 'user_offeror_id'];
 
-    public static function validate(Request $request): void
+    public static function validate(Request $request,int $minimumOfferValue): void
     {
+        $userBudget=$request->user()->getBudget();
         $request->validate([
             'status' => 'required|in:SENT,REJECTED,ACCEPTED',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|gt:0|min:'.$minimumOfferValue.'|max:'.$userBudget,
             'country_id' => 'required',
             'user_offeror_id' => 'required',
         ]);
@@ -51,6 +52,13 @@ class Offer extends Model
     public function getPrice(): int
     {
         return $this->attributes['price'];
+    }
+
+    public function getPriceFormatted(): string
+    {
+        $price = $this->getPrice();;
+        $priceFormatted = number_format($price, 0, ',', '.');
+        return $priceFormatted;
     }
 
     public function setPrice(int $price): void
@@ -110,7 +118,8 @@ class Offer extends Model
 
     public function getCreatedAt(): string
     {
-        return $this->attributes['created_at'];
+        $created_at = strtotime($this->attributes['created_at']);
+        return date('Y/m/d', $created_at);
     }
 
     public function getUpdatedAt(): string

@@ -6,13 +6,13 @@
 @endsection
 <div class="container d-flex flex-wrap gap-3 justify-content-evenly">
     @foreach($viewData['news'] as $notice)
-    <div class="offer-card card">
+    <div class="card w-25">
         <h5 class="card-header bg-secondary">New #{{$notice->getId()}}</h5>
         <div class="card-body">
             <p class="my-0 pb-1">Title: {{$notice->getTitle()}}</p>
             <p class="my-0 pb-1">Description: {{$notice->getDescription()}}</p>
             <p class="my-0 pb-1">Created at: {{$notice->getCreatedAt()}}</p>
-            <div class="position-absolute bottom-0 my-2">
+            <div class="my-2">
                 <a href="{{route ('admin.news.show',['id'=> $notice->getId()])}}" class="inline-blk btn btn-primary">Update</a>
                 <form action="{{ route('admin.news.delete') }}" method="post" class="inline-blk">
                     @csrf

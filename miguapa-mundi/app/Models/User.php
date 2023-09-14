@@ -43,7 +43,7 @@ class User extends Authenticatable
             'email' => 'required|email',
             'password' => 'required',
             'nationality' => 'required',
-            'budget' => 'required|numeric|min:50000',
+            'budget' => 'required|numeric|max:2147483647|min:50000',
         ]);
     }
 
@@ -107,6 +107,13 @@ class User extends Authenticatable
         return $this->attributes['budget'];
     }
 
+    public function getBudgetFormatted(): string
+    {
+        $budget = $this->getBudget();;
+        $budgetFormatted = number_format($budget, 0, ',', '.');
+        return $budgetFormatted;
+    }
+
     public function setBudget(int $budget): void
     {
         $this->attributes['budget'] = $budget;
@@ -114,7 +121,7 @@ class User extends Authenticatable
 
     public function boughtCountries(): HasMany
     {
-        return $this->hasMany(Country::class, 'user_owner_id');
+        return $this->hasMany(Country::class,'user_owner_id');
     }
 
     public function getBoughtCountries(): Collection
@@ -125,6 +132,21 @@ class User extends Authenticatable
     public function setBoughtCountries(Collection $boughtCountries): void
     {
         $this->boughtCountries = $boughtCountries;
+    }
+
+    public function sentOffers(): HasMany
+    {
+        return $this->hasMany(Offer::class,'user_offeror_id');
+    }
+
+    public function getSentOffers(): Collection
+    {
+        return $this->sentOffers;
+    }
+
+    public function setSentOffers(Collection $sentOffers): void
+    {
+        $this->sentOffers = $sentOffers;
     }
 
     public function getCreatedAt(): string

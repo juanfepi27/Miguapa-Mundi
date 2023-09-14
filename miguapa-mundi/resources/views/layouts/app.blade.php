@@ -7,7 +7,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
     <title>@yield('title', 'Miguapa Mundi')</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 overflow-x-hidden">
 <!-- header -->
 <nav class="bg-primary">
     <div class="row d-flex justify-content-center">
@@ -18,7 +18,7 @@
         <div class="container ">
         @auth
             <div>
-                User: -----  Budget: $ -----
+                User: {{ request()->user()->getUsername() }}  Budget: $ {{ request()->user()->getBudgetFormatted() }}
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,8 +30,11 @@
                     <a class="nav-link active" href="{{route('offer.toMe')}}">Offers</a>
                     <a class="nav-link active" href="{{ route('alliance.index') }}">Alliances</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">News</a>
-                    <a class="nav-link active" href="#">Profile</a>
+                    <a class="nav-link active" href="{{ route('profile.index')}}">Profile</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
+                    @if(request()->user()->getRole()==1)
+                        <a class="nav-link active " href="{{ route('admin.index') }}">Admin Panel</a>
+                    @endif
                     <form id="logout" action="{{ route('logout') }}" method="POST"> 
                         <a role="button" class="nav-link active" 
                         onclick="document.getElementById('logout').submit();">Logout</a> 
@@ -59,15 +62,16 @@
 
 <!-- messages -->
 @if($errors->any())
-<ul id="errors" class="alert alert-danger list-unstyled">
+<ul id="errors" class="alert alert-danger list-unstyled alert-dismissible fade show" role="alert">
     @foreach($errors->all() as $error)
     <li>{{ $error }}</li>
     @endforeach
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </ul>
 @endif
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    Element created successfully.
+    {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
@@ -78,7 +82,7 @@
 </div>
 
 <!-- footer -->
-<div class="bg-primary py-1 text-center">
+<div class="bg-primary py-1 text-center mt-auto">
     <div class="container pb-2 in-front">
         <small>
             Author - <a class="text-reset fw-bold text-decoration-none" target="_blank"

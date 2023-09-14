@@ -16,8 +16,8 @@
             @endif
         </h5>
         <div class="card-body position-relative">
-            <p class="my-0 pb-1">Country: {{$offer->getUserOferror()["name"]}}</p>
-            <p class="my-0 pb-1">Offered Value: {{$offer->getPrice()}}</p>
+            <p class="my-0 pb-1">Country: {{$offer->getCountry()->getName()}}</p>
+            <p class="my-0 pb-1">Offered Value: $ {{$offer->getPriceFormatted()}}</p>
             <p class="my-0 pb-1">Sent Date: {{$offer->getCreatedAt()}}</p>
             @if($offer->getStatus() == 'SENT')
             <div class="card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">

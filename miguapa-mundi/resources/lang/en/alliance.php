@@ -22,4 +22,15 @@ return [
         'modalBody'=>'With which of your countries do you want to send the request?',
         'modalBtnSendRequest'=>'Send request',
     ],
+
+    'create' => [
+        'titleTemplate'=>'Create alliance - Migupa Mundi',
+        'cardTitle'=>'Create a new alliance',
+        'labelName'=>'Name of the alliance',
+        'placeHolderName'=>'Name of the alliance',
+        'labelFounder'=>'Who is the founder of the alliance?',
+        'labelImage'=>'Image of the alliance',
+        'helpImage'=>'Attach an image, it can be of the types png, jpg or jpeg.',
+        'btnCreate'=>'Create',
+    ],
 ];

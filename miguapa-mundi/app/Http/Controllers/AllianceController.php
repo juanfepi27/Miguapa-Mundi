@@ -24,7 +24,7 @@ class AllianceController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Create alliance - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.create.titleTemplate');
         $user = auth()->user();
         $viewData['userCountries'] = $user->getBoughtCountries();
 

@@ -13,7 +13,7 @@ class AllianceController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.index.titleTemplate');
         $viewData['alliances'] = Alliance::all();
         $user = auth()->user();
         $viewData['userCountries'] = $user->getBoughtCountries();

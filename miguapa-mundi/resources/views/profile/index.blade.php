@@ -9,7 +9,7 @@
         <div class="card-body">
             <p class="card-text"><strong>@lang('profile.index.formName'): </strong>{{ $viewData['user']->getName() }}</p>
             <p class="card-text"><strong>@lang('profile.index.formUsername'): </strong>{{ $viewData['user']->getUsername() }}</p>
-            <p class="card-text"><strong>@lang('profile.index.formEmil'): </strong>{{ $viewData['user']->getEmail() }}</p>
+            <p class="card-text"><strong>@lang('profile.index.formEmail'): </strong>{{ $viewData['user']->getEmail() }}</p>
             <p class="card-text"><strong>@lang('profile.index.formNationality'): </strong>{{ $viewData['user']->getNationality() }}</p>
             <p class="card-text"><strong>@lang('profile.index.formBudget'): </strong>$ {{ $viewData['user']->getBudgetFormatted() }}</p>
             <p class="card-text fw-bold">@lang('profile.index.formCountries'):</p>

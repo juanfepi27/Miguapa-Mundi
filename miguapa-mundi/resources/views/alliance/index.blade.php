@@ -33,7 +33,7 @@
                                     </ul>
                                     <p class="card-text">@lang('alliance.index.cardFoundationDate'): {{ $alliance->getCreatedAt() }}</p>
                                     <br>
-                                    <p class="card-text">@lang('alliance.index.cardMemebers'): </p>
+                                    <p class="card-text">@lang('alliance.index.cardMembers'): </p>
                                     <ul>
                                         @foreach ( $alliance->getMembers() as $member )
                                             @if ($member->getIsAccepted())
@@ -45,7 +45,7 @@
                                     </ul>
                                     @if ($alliance->getMembers()->count() > 4)
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal">
-                                        @lang('alliance.index.btnSeeMoreMemebers')
+                                        @lang('alliance.index.btnSeeMoreMembers')
                                     </button>
                                     <br>
                                     <br>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="button" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white" data-bs-toggle="modal" data-bs-target="#modalBecomeMember">
-                                @lang('alliance.index.btnBecomeMemeber')
+                                @lang('alliance.index.btnBecomeMember')
                             </button>
                         </div>
                     </div>

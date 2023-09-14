@@ -41,7 +41,7 @@ class NewsController extends Controller
         $viewData['titleTemplate'] = ($news->getTitle()).' - Miguapa Mundi';
         $viewData['news'] = $news;
         $viewData['countries'] = $news->getFinancialEffects()->map(function ($financialEffect) {
-            return $financialEffect->getCounty();
+            return [$financialEffect->getCountry(), $financialEffect->getEffectFormatted()];
         });
 
         return view('news.show')->with('viewData', $viewData);

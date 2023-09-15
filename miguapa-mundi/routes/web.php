@@ -60,3 +60,4 @@ Route::middleware(['auth', 'role'])->group(function () {
 });
 
 Auth::routes();
+Route::get('/register-user', 'App\Http\Controllers\Auth\RegisterController@index')->name('register.index');

@@ -45,9 +45,9 @@
                             <div class="col-md-6">
                                 <select id="nationality" type="text" class="form-select @error('nationality') is-invalid @enderror" name="nationality" value="{{ old('nationality') }}" required autocomplete="nationality" autofocus>
                                     <option selected></option>
-                                    <!-- array for the nationalities -->
-                                    <option value="colombian">Colombian</option>
-                                    <!-- end array -->
+                                    @foreach($viewData['nationalities'] as $nationality)
+                                    <option value="{{$nationality}}">{{$nationality}}</option>
+                                    @endforeach
                                 </select>
 
                                 @error('nationality')

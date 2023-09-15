@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link active" href="{{ route('login') }}">@lang('layouts.app.aLogin')</a> 
-                    <a class="nav-link active" href="{{ route('register') }}">@lang('layouts.app.aRegister')</a> 
+                    <a class="nav-link active" href="{{ route('register.index') }}">@lang('layouts.app.aRegister')</a> 
                 </div>
             </div>
         @endauth

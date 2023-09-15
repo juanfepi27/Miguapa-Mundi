@@ -18,7 +18,15 @@ class OfferController extends Controller
         $countries=$request->user()->getBoughtCountries()->pluck('name');
         $viewData['offers'] = Offer::whereHas('country', function ($query) use ($countries) {
             $query->whereIn('name', $countries);
-        })->where('status','SENT')->get();
+        })->where('status','SENT');
+
+        if($request->input('orderBy')==null)
+        {
+            $viewData['offers']=$viewData['offers']->get();
+        }else
+        {
+            $viewData['offers']=$viewData['offers']->orderBy($request->input('orderBy'),'desc')->get();
+        }
 
         return view('offer.to-me')->with('viewData', $viewData);
     }
@@ -27,7 +35,14 @@ class OfferController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = __('offer.byMe.titleTemplate');
-        $viewData['offers'] = $request->user()->getSentOffers();
+
+        if($request->input('orderBy')==null)
+        {
+            $viewData['offers'] = $request->user()->getSentOffers();
+        }else
+        {
+            $viewData['offers'] = $request->user()->getSentOffers()->sortByDesc($request->input('orderBy'));
+        }
 
         return view('offer.by-me')->with('viewData', $viewData);
     }

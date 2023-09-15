@@ -5,6 +5,11 @@
 @endsection
 @section('content')
 <div class="container d-flex flex-wrap gap-3 justify-content-evenly">
+    <div class="row position-fixed top-50 start-0 translate-middle z-1">
+        <p class="bg-info1 m-1 p-1 rounded-pill text-end text-white fw-bold">order by:</p>
+        <a href="{{route('offer.toMe',['orderBy'=>'price'])}}" class="btn-primary m-1 p-1 rounded-pill text-end">amount</a>
+        <a href="{{route('offer.toMe',['orderBy'=>'created_at'])}}" class="btn-primary m-1 p-1 rounded-pill text-end">date</a>
+    </div>
     @foreach($viewData['offers'] as $offer)
     <div class="offer-card card">
         <h5 class="card-header bg-secondary">@lang('offer.toMe.cardTitle') #{{$offer->getId()}}</h5>

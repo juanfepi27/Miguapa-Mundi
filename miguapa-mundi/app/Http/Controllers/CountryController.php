@@ -22,12 +22,22 @@ class CountryController extends Controller
         return view('country.index')->with('viewData', $viewData);
     }
 
-    public function inOfferShow(int $id): View
+    public function inOfferShow(Request $request,int $id): View
     {
         $viewData = [];
         $viewData['titleTemplate'] = 'Country in offer - Miguapa Mundi';
+        //getting the country to show
         $viewData['country'] = Country::findOrFail($id);
-        $viewData['offers'] = Offer::where('country_id',$id)->where('status','SENT')->get();
+        //getting the offers to show (and ordering if required)
+        $viewData['offers'] = Offer::where('country_id',$id)->where('status','SENT');
+        if($request->input('orderBy')==null)
+        {
+            $viewData['offers']=$viewData['offers']->get();
+        }else
+        {
+            $viewData['offers']=$viewData['offers']->orderBy($request->input('orderBy'),'desc')->get();
+        }
+        //getting alliance names if there are
         $viewData['alliances'] = $viewData['country']->getMembers()->map(function ($member) {
             return $member->getAlliance()->getName();
         });

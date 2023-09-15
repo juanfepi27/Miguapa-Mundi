@@ -37,7 +37,9 @@
         </div>
     </div>
     <div class="card mt-3 row limit-card">
-        <div class="d-flex mt-2 justify-content-center">
+        <div class="d-flex mt-2 justify-content-center gap-2 flex-wrap">
+            <a href="{{route('country.inOfferShow',['id'=>$viewData['country']->getId(),'orderBy'=>'price'])}}" class="btn btn-primary">Order by amount</a>
+            <a href="{{route('country.inOfferShow',['id'=>$viewData['country']->getId(),'orderBy'=>'created_at'])}}" class="btn btn-primary">Order by date</a>
             <a href="{{route('offer.create')}}" class="btn btn-primary">Send Offer</a>
         </div>
         <div class="d-flex flex-wrap my-2 gap-1 justify-content-between ">

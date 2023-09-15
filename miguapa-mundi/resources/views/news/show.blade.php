@@ -12,7 +12,13 @@
             <p class="card-text fw-bold">Countries involved: </p>
             <ul class="list-group list-group-flush">
                 @foreach ($viewData['countries'] as $country)
-                    <li class="list-group-item">{{ $country->getName() }} </li>
+                @if($country[1]>0)
+                <li class="list-group-item text-success">
+                @else
+                <li class="list-group-item text-danger">
+                    @endif
+                    {{ $country[0]->getName() }} <i class="fa fa-arrow-right"></i> Financial effect: ${{ $country[1] }}
+                </li>
                 @endforeach
             </ul>
         </div>

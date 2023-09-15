@@ -14,7 +14,7 @@
     <div class="offer-card card">
         <h5 class="card-header bg-secondary">@lang('offer.toMe.cardTitle') #{{$offer->getId()}}</h5>
         <div class="card-body">
-            <p class="my-0 pb-1">@lang('offer.toMe.cardOfferor'): {{$offer->getUserOferror()->getName()}}</p>
+            <p class="my-0 pb-1">@lang('offer.toMe.cardOfferor'): {{$offer->getUserOfferor()->getName()}}</p>
             <p class="my-0 pb-1">@lang('offer.toMe.cardCountry'): {{$offer->getCountry()->getName()}}</p>
             <p class="my-0 pb-1">@lang('offer.toMe.cardValue'): $ {{$offer->getPriceFormatted()}}</p>
             <p class="my-0 pb-1">@lang('offer.toMe.cardDate'): {{$offer->getCreatedAt()}}</p>

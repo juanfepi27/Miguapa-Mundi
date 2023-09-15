@@ -79,7 +79,7 @@ class OfferController extends Controller
         $offer=Offer::findOrFail($id);
         $country=$offer->getCountry();
         $userOwner=$request->user();//actual owner
-        $userOfferror=$offer->getUserOferror();//actual offeror
+        $userOfferror=$offer->getUserOfferor();//actual offeror
         if($offer->getPrice()>$userOfferror->getBudget()){
             return back()->withErrors(['no budget'=> __('offer.accept.errorMsg')]);
         }

@@ -51,7 +51,7 @@
                 <div class="card-body">
                     <p class="card-text my-0 text-center fw-bold">Publish Date:</p>
                     <p class="card-text my-0 text-center">{{$offer->getCreatedAt()}}</p>
-                    <p class="card-text my-0"><span class="fw-bold">By:</span>{{$offer->getUserOferror()->getName()}}</p>
+                    <p class="card-text my-0"><span class="fw-bold">By:</span>{{$offer->getUserOfferor()->getName()}}</p>
                     <p class="card-text my-0">$ {{$offer->getPriceFormatted()}}</p>
                 </div>
             </div>

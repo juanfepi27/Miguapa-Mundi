@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('auth.confirm.cardTitle') }}</div>
 
                 <div class="card-body">
-                    {{ __('auth.confirm.cardText.') }}
+                    {{ __('auth.confirm.cardText') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf

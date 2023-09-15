@@ -101,6 +101,32 @@ nav{
     width: 250px ;
 }
 
+.country-offer-card{
+    width: 175px;
+    height: 175px;
+}
+
+.small-text{
+    font-size: small;
+}
+
 .w-45{
     width: 45%;
+}
+
+.limit-card{
+    width: 49%;
+}
+
+.country-show-flag{
+    float: left;
+    width: 50%;
+    max-height: 45%;
+    margin-bottom: 0.25em;
+}
+
+@media (max-width: 767.98px){
+    .limit-card{
+        min-width: 100%;
+    }
 }

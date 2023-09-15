@@ -105,6 +105,13 @@ class Country extends Model
         return $this->attributes['minimum_offer_value'];
     }
 
+    public function getMinimumOfferValueFormatted(): string
+    {
+        $minimumOfferValue = $this->getMinimumOfferValue();
+        $minimumOfferValueFormatted = number_format($minimumOfferValue, 0, ',', '.');
+        return $minimumOfferValueFormatted;
+    }
+
     public function setMinimumOfferValue(int $minimumOfferValue): void
     {
         $this->attributes['minimum_offer_value'] = $minimumOfferValue;
@@ -122,7 +129,8 @@ class Country extends Model
 
     public function getCreatedAt(): string
     {
-        return $this->attributes['created_at'];
+        $createdAt = strtotime($this->attributes['created_at']);
+        return date('Y/m/d', $createdAt);
     }
 
     public function getUpdatedAt(): string

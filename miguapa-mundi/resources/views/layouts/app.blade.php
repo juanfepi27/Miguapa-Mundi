@@ -19,7 +19,7 @@
         @auth
             <div class="d-flex">
                 @lang('layouts.app.navUser'): {{ request()->user()->getUsername() }}
-                <div class="vr bg-black mx-2 d-none d-lg-block"></div>
+                <div class="vr bg-black mx-2 d-block"></div>
                 @lang('layouts.app.navBudget'): $ {{ request()->user()->getBudgetFormatted() }}
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"

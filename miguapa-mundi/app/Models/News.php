@@ -56,7 +56,8 @@ class News extends Model
 
     public function getCreatedAt(): string
     {
-        return $this->attributes['created_at'];
+        $created_at = strtotime($this->attributes['created_at']);
+        return date('Y/m/d H:i:s', $created_at);
     }
 
     public function getUpdatedAt(): string

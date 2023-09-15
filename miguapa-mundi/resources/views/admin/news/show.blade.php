@@ -16,21 +16,21 @@
                     <form action="{{ route('admin.news.update') }}" method="post">
                         @csrf
                         <p class="card-text">
-                        Created at: {{ $viewData['news']->getCreatedAt() }}
+                        <span class="fw-bold">Created at:</span> {{ $viewData['news']->getCreatedAt() }}
                             <div class="row">
                                 <div class="col-lg-6 col-12">
-                                    Actual title: {{ $viewData['news']->getTitle() }}
+                                    <span class="fw-bold">Actual title:</span> {{ $viewData['news']->getTitle() }}
                                 </div>
                                 <div class="col-lg-6 col-12">
-                                    <input type="text" class="form-control mb-2" placeholder="Enter the title" name="title" value="{{ old('title') }}" />
+                                    <input type="text" class="form-control mb-2" placeholder="Enter the title" name="title" value="{{ $viewData['news']->getTitle() }}" />
                                 </div>
                             </div>
                             <div class="row">
                             <div class="col-lg-6 col-12">
-                                Actual description: {{ $viewData['news']->getDescription() }}
+                                <span class="fw-bold">Actual description:</span> {{ $viewData['news']->getDescription() }}
                                 </div>
                                 <div class="col-lg-6 col-12">
-                                    <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ old('descrption') }}" />
+                                    <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ $viewData['news']->getDescription() }}" />
                                 </div>
                             </div>
                         </p>

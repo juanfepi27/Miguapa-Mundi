@@ -55,7 +55,8 @@ class Alliance extends Model
 
     public function getCreatedAt(): string
     {
-        return $this->attributes['created_at'];
+        $createdAt = strtotime($this->attributes['created_at']);
+        return date('Y/m/d', $createdAt);
     }
 
     public function getUpdatedAt(): string

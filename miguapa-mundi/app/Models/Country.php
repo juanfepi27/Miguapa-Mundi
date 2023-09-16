@@ -143,6 +143,13 @@ class Country extends Model
         return $this->attributes['default_offer_value'];
     }
 
+    public function getDefaultOfferValueFormatted(): string
+    {
+        $defaultOfferValue = $this->getDefaultOfferValue();
+        $defaultOfferValueFormatted = number_format($defaultOfferValue, 0, ',', '.');
+        return $defaultOfferValueFormatted;
+    }
+
     public function setDefaultOfferValue(int $defaultOfferValue): void
     {
         $this->attributes['default_offer_value'] = $defaultOfferValue;

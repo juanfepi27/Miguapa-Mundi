@@ -30,9 +30,9 @@ class CountryController extends Controller
 
         foreach ($countries as $country) {
             $maxOffer = $country->getOffers()->max('price');
-            $country->maxOffer = $maxOffer;
+            $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
+            $country->maxOffer = $maxOfferFormatted;
         }
-
         $viewData['countries'] = $countries;
 
         return view('country.in-offer')->with('viewData', $viewData);
@@ -78,9 +78,10 @@ class CountryController extends Controller
         
         foreach ($countries as $country) {
             $maxOffer = $country->getOffers()->max('price');
-            $country->maxOffer = $maxOffer;
+            $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
+            $country->maxOffer = $maxOfferFormatted;
         }
-
+        
         $viewData['countries'] = $countries;
 
         return view('country.my-countries')->with('viewData', $viewData);

@@ -13,7 +13,7 @@
                             <p class="card-text text-center"><em>{{ $country->getNickName() }}</em></p>
                             <br>
                             <p class="card-text">@lang('country.index.cardOwner'): {{ $country->getUserOwner()->getUsername() }}</p>
-                            <p class="card-text">@lang('country.index.cardMinimumOfferValue'): ${{ $country->getMinimumOfferValue() }}</p>
+                            <p class="card-text">@lang('country.index.cardMinimumOfferValue'): ${{ $country->getMinimumOfferValueFormatted() }}</p>
                             <p class="card-text">@lang('country.index.cardAttractiveValue'): {{ $country->getAttractiveValue() }}</p>
                             @if ($country->getInOffer())
                                 <p>@lang('country.index.cardIsInOffer')</p>

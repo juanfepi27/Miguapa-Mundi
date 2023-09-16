@@ -18,8 +18,8 @@
                             <p class="card-text">@lang('country.myCountriesIndex.cardOwner'): {{ $country->getUserOwner()->getUsername() }}</p>
                             <p class="card-text">@lang('country.myCountriesIndex.cardAttractiveValue'): {{ $country->getAttractiveValue() }}</p>
                             <br>
-                            <p class="card-text">@lang('country.myCountriesIndex.cardMinimumOfferValue'): ${{ $country->getMinimumOfferValue() }}</p>
-                            @if($country->maxOffer !== null)
+                            <p class="card-text">@lang('country.myCountriesIndex.cardMinimumOfferValue'): ${{ $country->getMinimumOfferValueFormatted() }}</p>
+                            @if($country->maxOffer !== '0')
                                 <p class="card-text">@lang('country.myCountriesIndex.cardBestOffer'): ${{ $country->maxOffer }}</p>
                             @else
                                 <p class="card-text">@lang('country.myCountriesIndex.cardNoOffer')</p>

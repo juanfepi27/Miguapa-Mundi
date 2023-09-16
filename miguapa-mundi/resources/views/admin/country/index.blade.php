@@ -19,8 +19,8 @@
                 @else
                     <p class="d-inline-block"> @lang('admin.countryIndex.cardIsNotInOffer')</p>
                 @endif
-            <p class="my-0 pb-1">@lang('admin.countryIndex.cardDefaultOfferValue'): {{$country->getDefaultOfferValue()}}</p>
-            <p class="my-0 pb-1">@lang('admin.countryIndex.cardMinimumOfferValue'): {{$country->getMinimumOfferValue()}}</p>
+            <p class="my-0 pb-1">@lang('admin.countryIndex.cardDefaultOfferValue'): {{$country->getDefaultOfferValueFormatted()}}</p>
+            <p class="my-0 pb-1">@lang('admin.countryIndex.cardMinimumOfferValue'): {{$country->getMinimumOfferValueFormatted()}}</p>
             <p class="my-0 pb-1">@lang('admin.countryIndex.cardAttractiveValue'): {{$country->getAttractiveValue()}}</p>
             <p class="my-0 pb-1">@lang('admin.countryIndex.cardCreatedAt'): {{$country->getCreatedAt()}}</p>
             <div class="bottom-0 my-2">

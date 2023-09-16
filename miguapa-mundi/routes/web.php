@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/member/become-moderator/{id}', 'App\Http\Controllers\AllianceController@becomeModerator')->name("member.becomeModerator");
     Route::post('/member/accept-member/{id}', 'App\Http\Controllers\AllianceController@acceptMember')->name("member.acceptMember");
     Route::post('/member/decline-member/{id}', 'App\Http\Controllers\AllianceController@declineMember')->name("member.declineMember");
+    Route::get('/country/in-offer', 'App\Http\Controllers\CountryController@inOfferIndex')->name("country.inOfferIndex");
     Route::get('/country/in-offer/show/{id}', 'App\Http\Controllers\CountryController@inOfferShow')->name("country.inOfferShow");
 });
 

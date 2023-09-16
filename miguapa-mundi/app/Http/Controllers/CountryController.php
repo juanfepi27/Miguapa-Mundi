@@ -22,6 +22,22 @@ class CountryController extends Controller
         return view('country.index')->with('viewData', $viewData);
     }
 
+    public function inOfferIndex(): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = __('country.inOfferIndex.titleTemplate');
+        $countries = Country::all()->where('in_offer',1);
+
+        foreach ($countries as $country) {
+            $maxOffer = $country->getOffers()->max('price');
+            $country->maxOffer = $maxOffer;
+        }
+
+        $viewData['countries'] = $countries;
+
+        return view('country.in-offer')->with('viewData', $viewData);
+    }
+
     public function inOfferShow(Request $request,int $id): View
     {
         $viewData = [];

@@ -12,4 +12,15 @@ return [
         'cardAlliances'=>'Alliances',
         'btnSendOffer'=>'Send offer',
     ],
+
+    'inOfferIndex' => [
+        'titleTemplate'=>'In offer - Miguapa Mundi',
+        'altImage'=>"Country's flag",
+        'cardOwner'=>'Owner', 
+        'cardAttractiveValue'=>'Attractive value', 
+        'cardMinimumOfferValue'=>'Minimum offer value', 
+        'cardBestOffer'=>'Best actual offer',
+        'cardNoOffer'=>'There are no offers yet',
+        'aShowMore'=>'Show more',
+    ],
 ];

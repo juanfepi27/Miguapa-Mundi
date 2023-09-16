@@ -22,7 +22,7 @@ class AdminController extends Controller
     public function countryIndex(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Country list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.countryIndex.titleTemplate');
         $viewData['countries'] = Country::all();
 
         return view('admin.country.index')->with('viewData', $viewData);
@@ -31,7 +31,7 @@ class AdminController extends Controller
     public function countryShow(string $id): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Country - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.countryShow.titleTemplate');
         $viewData['country'] = Country::findOrFail($id);
         $viewData['users'] = User::all();
 

@@ -68,4 +68,46 @@ class CountryController extends Controller
 
         return view('country.show')->with('viewData', $viewData);
     }
+
+    public function myCountriesIndex(): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = __('country.myCountriesIndex.titleTemplate');
+        $user = auth()->user();
+        $countries = $user->getBoughtCountries();
+        
+        foreach ($countries as $country) {
+            $maxOffer = $country->getOffers()->max('price');
+            $country->maxOffer = $maxOffer;
+        }
+
+        $viewData['countries'] = $countries;
+
+        return view('country.my-countries')->with('viewData', $viewData);
+    }
+
+    public function myCountriesShow(int $id): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = __('country.myCountriesShow.titleTemplate');
+        $viewData['country'] = Country::findOrFail($id);
+        
+        return view('country.my-countries-show')->with('viewData', $viewData);
+    }
+
+    public function myCountriesUpdate(Request $request): RedirectResponse
+    {
+        $country = Country::find($request['id']);
+        $country->setNickName($request['nick_name']);
+        $country->setColor($request['color']);
+        if($request->file('flag')){
+            $flag = $request->file('flag');
+            $flagPath = $flag->store('img/flags', 'public');
+            $country->setFlag($flagPath);
+        }
+        $country->setInOffer($request->has('in_offer') ? true : false);
+        $country->update();
+
+        return redirect()->route('country.myCountriesIndex');
+    }
 }

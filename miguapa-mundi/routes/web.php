@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/member/decline-member/{id}', 'App\Http\Controllers\AllianceController@declineMember')->name("member.declineMember");
     Route::get('/country/in-offer', 'App\Http\Controllers\CountryController@inOfferIndex')->name("country.inOfferIndex");
     Route::get('/country/in-offer/show/{id}', 'App\Http\Controllers\CountryController@inOfferShow')->name("country.inOfferShow");
+    Route::get('/country/my-countries', 'App\Http\Controllers\CountryController@myCountriesIndex')->name("country.myCountriesIndex");
+    Route::get('/country/my-countries/show/{id}', 'App\Http\Controllers\CountryController@myCountriesShow')->name("country.myCountriesShow");
+    Route::post('/country/my-countries/update', 'App\Http\Controllers\CountryController@myCountriesUpdate')->name("country.myCountriesUpdate");
 });
 
 Route::middleware(['auth', 'role'])->group(function () {

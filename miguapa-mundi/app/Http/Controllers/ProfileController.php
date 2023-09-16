@@ -11,7 +11,7 @@ class ProfileController extends Controller
     public function index(Request $request): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Profile - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('profile.index.titleTemplate') ;
         $viewData['user']=$request->user();
 
         return view('profile.index')->with('viewData', $viewData);
@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $user->setBudget($user->getBudget()+5000);
         $user->save();
 
-        session()->flash('success', 'You has added $5.000 to your budget!');
+        session()->flash('success', __('profile.addBudget.successMsg'));
         return back();
     }
 }

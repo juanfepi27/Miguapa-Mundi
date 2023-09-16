@@ -13,12 +13,12 @@ class Offer extends Model
     $this -> attributes['id'] - int - contains the id of the offer, primary key in the database
     $this -> attributes['status'] - string - contains the status of the offer (SENT - ACCEPTED - REJECTED)
     $this -> attributes['price'] - int - contains the monetary value of the offer
-    $this -> attributes['created_at'] - created_at - when the offer was created
-    $this -> attributes['updated_at] - updated_at - when the offer was updated
     $this -> attributes['country_id'] - int - contains the id of the country, primary key in the database
     $this -> country - Country - contains the country of the offer
     $this -> attributes['user_offeror_id'] - int - contains the id of the offeror user, primary key in the database
-    $this -> offeror - User - contains the offeror user
+    $this -> userOfferor - User - contains the offeror user
+    $this -> attributes['created_at'] - created_at - when the offer was created
+    $this -> attributes['updated_at] - updated_at - when the offer was updated
     */
 
     protected $fillable = ['status', 'price', 'country_id', 'user_offeror_id'];
@@ -91,12 +91,12 @@ class Offer extends Model
         $this->country = $country;
     }
 
-    public function getUserOferrorId(): int
+    public function getUserOfferorId(): int
     {
         return $this->attributes['user_offeror_id'];
     }
 
-    public function setUserOferrorId(int $userOfferorId): void
+    public function setUserOfferorId(int $userOfferorId): void
     {
         $this->attributes['user_offeror_id'] = $userOfferorId;
     }
@@ -106,20 +106,20 @@ class Offer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUserOferror(): User
+    public function getUserOfferor(): User
     {
         return $this->userOfferor;
     }
 
-    public function setUserOferror(User $userOfferor): void
+    public function setUserOfferor(User $userOfferor): void
     {
         $this->userOfferor = $userOfferor;
     }
 
     public function getCreatedAt(): string
     {
-        $created_at = strtotime($this->attributes['created_at']);
-        return date('Y/m/d', $created_at);
+        $createdAt = strtotime($this->attributes['created_at']);
+        return date('Y/m/d', $createdAt);
     }
 
     public function getUpdatedAt(): string

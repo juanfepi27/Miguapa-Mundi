@@ -17,8 +17,10 @@
     <div class="navbar navbar-expand-lg navbar-light">
         <div class="container ">
         @auth
-            <div>
-                User: {{ request()->user()->getUsername() }}  Budget: $ {{ request()->user()->getBudgetFormatted() }}
+            <div class="d-flex">
+                @lang('layouts.app.navUser'): {{ request()->user()->getUsername() }}
+                <div class="vr bg-black mx-2 d-block"></div>
+                @lang('layouts.app.navBudget'): $ {{ request()->user()->getBudgetFormatted() }}
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,18 +28,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{ route('country.index') }}">Countries</a>
-                    <a class="nav-link active" href="{{route('offer.toMe')}}">Offers</a>
-                    <a class="nav-link active" href="{{ route('alliance.index') }}">Alliances</a>
-                    <a class="nav-link active" href="{{ route('news.index')}}">News</a>
-                    <a class="nav-link active" href="{{ route('profile.index')}}">Profile</a>
+                    <a class="nav-link active" href="{{ route('country.index') }}">@lang('layouts.app.aCountries')</a>
+                    <a class="nav-link active" href="{{route('offer.toMe')}}">@lang('layouts.app.aOffers')</a>
+                    <a class="nav-link active" href="{{ route('alliance.index') }}">@lang('layouts.app.aAlliances')</a>
+                    <a class="nav-link active" href="{{ route('news.index')}}">@lang('layouts.app.aNews')</a>
+                    <a class="nav-link active" href="{{ route('profile.index')}}">@lang('layouts.app.aProfile')</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
                     @if(request()->user()->getRole()==1)
-                        <a class="nav-link active " href="{{ route('admin.index') }}">Admin Panel</a>
+                        <a class="nav-link active " href="{{ route('admin.index') }}">@lang('layouts.app.aPanel')</a>
                     @endif
                     <form id="logout" action="{{ route('logout') }}" method="POST"> 
                         <a role="button" class="nav-link active" 
-                        onclick="document.getElementById('logout').submit();">Logout</a> 
+                        onclick="document.getElementById('logout').submit();">@lang('layouts.app.aLogout')</a> 
                         @csrf 
                     </form> 
                 </div>
@@ -49,8 +51,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{ route('login') }}">Login</a> 
-                    <a class="nav-link active" href="{{ route('register') }}">Register</a> 
+                    <a class="nav-link active" href="{{ route('login') }}">@lang('layouts.app.aLogin')</a> 
+                    <a class="nav-link active" href="{{ route('register.index') }}">@lang('layouts.app.aRegister')</a> 
                 </div>
             </div>
         @endauth
@@ -85,15 +87,15 @@
 <div class="bg-primary py-1 text-center mt-auto">
     <div class="container pb-2 in-front">
         <small>
-            Author - <a class="text-reset fw-bold text-decoration-none" target="_blank"
+            @lang('layouts.app.footAuthorMapa') - <a class="text-reset fw-bold text-decoration-none" target="_blank"
             href="https://www.linkedin.com/in/juan-felipe-pinzón-trejo-319711247">
             Maria Paula Ayala Lizarazo
             </a><br>
-            Author - <a class="text-reset fw-bold text-decoration-none" target="_blank"
+            @lang('layouts.app.footAuthorMigue') - <a class="text-reset fw-bold text-decoration-none" target="_blank"
             href="https://www.linkedin.com/in/juan-felipe-pinzón-trejo-319711247">
             Miguel Ángel Calvache Giraldo
             </a><br>
-            Author - <a class="text-reset fw-bold text-decoration-none" target="_blank"
+            @lang('layouts.app.footAuthorJuan') - <a class="text-reset fw-bold text-decoration-none" target="_blank"
             href="https://www.linkedin.com/in/juan-felipe-pinzón-trejo-319711247">
             Juan Felipe Pinzón Trejo
             </a>
@@ -102,7 +104,7 @@
     <div>
         <div>
             <img class="opacity-75 img-logo" src="{{ asset('/img/LogoMiguapaTeam.png') }}" alt="logo miguapa">
-            <p class="fw-bold pt-2">Copyright - Miguapa</p>
+            <p class="fw-bold pt-2">@lang('layouts.app.footCopyright') - Miguapa</p>
         </div>
     </div>
 </div>

@@ -14,11 +14,19 @@ class OfferController extends Controller
     public function toMe(Request $request): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'My Offers - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('offer.toMe.titleTemplate');
         $countries=$request->user()->getBoughtCountries()->pluck('name');
         $viewData['offers'] = Offer::whereHas('country', function ($query) use ($countries) {
             $query->whereIn('name', $countries);
-        })->where('status','SENT')->get();
+        })->where('status','SENT');
+
+        if($request->input('orderBy')==null)
+        {
+            $viewData['offers']=$viewData['offers']->get();
+        }else
+        {
+            $viewData['offers']=$viewData['offers']->orderBy($request->input('orderBy'),'desc')->get();
+        }
 
         return view('offer.to-me')->with('viewData', $viewData);
     }
@@ -26,8 +34,15 @@ class OfferController extends Controller
     public function byMe(Request $request): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Offers By Me - Miguapa Mundi';
-        $viewData['offers'] = $request->user()->getSentOffers();
+        $viewData['titleTemplate'] = __('offer.byMe.titleTemplate');
+
+        if($request->input('orderBy')==null)
+        {
+            $viewData['offers'] = $request->user()->getSentOffers();
+        }else
+        {
+            $viewData['offers'] = $request->user()->getSentOffers()->sortByDesc($request->input('orderBy'));
+        }
 
         return view('offer.by-me')->with('viewData', $viewData);
     }
@@ -35,7 +50,7 @@ class OfferController extends Controller
     public function create(Request $request): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Create Offer - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('offer.new.titleTemplate');
         $userCountries = $request->user()->getBoughtCountries()->pluck('name');
         $viewData['countries'] = Country::all()->reject(function($country) use ($userCountries){
             return in_array($country->getName(), $userCountries->toArray());
@@ -54,7 +69,7 @@ class OfferController extends Controller
         Offer::validate($request,$country->getMinimumOfferValue());
         Offer::create($request->only('status','price','country_id','user_offeror_id'));
 
-        session()->flash('success', 'Created Offer!');
+        session()->flash('success', __('offer.new.successMsg'));
 
         return back();
     }
@@ -64,9 +79,9 @@ class OfferController extends Controller
         $offer=Offer::findOrFail($id);
         $country=$offer->getCountry();
         $userOwner=$request->user();//actual owner
-        $userOfferror=$offer->getUserOferror();//actual offeror
+        $userOfferror=$offer->getUserOfferor();//actual offeror
         if($offer->getPrice()>$userOfferror->getBudget()){
-            return back()->withErrors(['no budget'=>'Sorry! the offeror doesn\'t have enough budget to buy your country']);
+            return back()->withErrors(['no budget'=> __('offer.accept.errorMsg')]);
         }
         
         //updating new owner
@@ -90,7 +105,7 @@ class OfferController extends Controller
         $offer->setStatus("ACCEPTED");
         $offer->save();
 
-        session()->flash('success', 'You sold correctly your country!');
+        session()->flash('success', __('offer.accept.successMsg'));
         return back();
     }
 
@@ -101,13 +116,14 @@ class OfferController extends Controller
         $offer->setStatus("REJECTED");
         $offer->save();
 
-        session()->flash('success', 'You rejected correctly an offer!');
+        session()->flash('success', __('offer.reject.successMsg'));
         return back();
     }
 
     public function delete(int $id): RedirectResponse
     {
         Offer::destroy($id);
+        session()->flash('success', __('offer.delete.successMsg'));
 
         return back();
     }

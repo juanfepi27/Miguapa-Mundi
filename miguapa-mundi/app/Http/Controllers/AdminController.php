@@ -67,7 +67,7 @@ class AdminController extends Controller
     public function countryCreate(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Create country - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.countryCreate.titleTemplate');
         $viewData['users'] = User::all();
 
         return view('admin.country.create')->with('viewData', $viewData);

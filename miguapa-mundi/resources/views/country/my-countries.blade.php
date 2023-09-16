@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
+@section('secondary-nav')
+    @include('country.partials.navbar')
+@endsection
 @section('content')
 <div class="container container-1000px">
     <div class="row">

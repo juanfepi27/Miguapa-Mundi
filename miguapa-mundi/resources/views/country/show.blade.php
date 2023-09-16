@@ -1,10 +1,13 @@
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
+@section('secondary-nav')
+    @include('country.partials.navbar')
+@endsection
 @section('content')
 <div class="d-flex flex-wrap justify-content-arround gap-4">
     <div class="card mt-3 limit-card">
         <div class="card-body position-relative">
-            <img class="country-show-flag" src="https://about.fb.com/wp-content/uploads/2021/09/NRP-Facebook-Reels_Reels-Experience_B.png?resize=890%2C816" alt="country-flag">
+            <img class="country-show-flag" src="{{ asset('storage/' . $viewData["country"]->getFlag()) }}" alt="country-flag">
             <p class="card-text fw-bold text-end my-0" style="color: '{{$viewData["country"]->getColor()}}';">{{$viewData["country"]->getName()}}</p>
             <p class="card-text fst-italic text-end mb-2">{{$viewData["country"]->getNickName()}}</p>
             <p class="card-text text-end clearfix my-0"><span class="fw-bold">Owner:</span> {{$viewData["country"]->getUserOwner()->getName()}}</p>

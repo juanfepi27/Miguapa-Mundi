@@ -13,6 +13,11 @@ return [
         'btnSendOffer'=>'Send offer',
     ],
 
+    'partials' => [
+        'aInOffer'=>'Countries in offer',
+        'aMyCountries'=>'My countries',
+    ],
+
     'inOfferIndex' => [
         'titleTemplate'=>'In offer - Miguapa Mundi',
         'altImage'=>"Country's flag",

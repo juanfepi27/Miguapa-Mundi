@@ -55,7 +55,13 @@ class AllianceController extends Controller
     public function saveMember(Request $request): RedirectResponse
     {
         Member::validate($request);
-        #check if theres a member object with the same alliance id and country id
+
+        $existingMember = Member::where('alliance_id', $request->input('alliance_id'))->where('country_id', $request->input('country_id'));
+
+        if($existingMember){
+            return redirect()->route('alliance.index')->with('success', 'It already exists a relationship between this country and this alliance');
+        }
+
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
         
         return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');
@@ -66,7 +72,7 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
 
-        return redirect()->route('alliance.member')->with('success', 'Updated members successfully');
+        return back()->with('success', 'Updated members successfully');
     }
 
     public function userAlliances(): View
@@ -103,7 +109,7 @@ class AllianceController extends Controller
         $member->setModerator(0);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated moderators successfully');
+        return back()->with('success', 'Updated moderators successfully');
 
     }
 
@@ -113,7 +119,7 @@ class AllianceController extends Controller
         $member->setModerator(1);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated moderators successfully');
+        return back()->with('success', 'Updated moderators successfully');
 
     }
 
@@ -123,7 +129,7 @@ class AllianceController extends Controller
         $member->setIsAccepted(1);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated members successfully');
+        return back()->with('success', 'Updated members successfully');
 
     }
 
@@ -133,7 +139,7 @@ class AllianceController extends Controller
         $member->setIsAccepted(0);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated members successfully');
+        return back()->with('success', 'Updated members successfully');
 
     }
 }

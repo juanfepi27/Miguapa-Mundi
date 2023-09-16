@@ -78,7 +78,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-12">
-                                    @lang('admin.countryShow.cardDefaultOfferValue'): {{ $viewData['country']->getDefaultOfferValueFormatted() }}
+                                    @lang('admin.countryShow.cardDefaultOfferValue'): ${{ $viewData['country']->getDefaultOfferValueFormatted() }}
                                 </div>
                                 <div class="col-lg-6 col-12">
                                     <input type="number" class="form-control mb-2" placeholder="@lang('admin.countryShow.placeHolderDefault')" name="default_offer_value" value="{{ old('default_offer_value') }}" />
@@ -86,7 +86,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-12">
-                                    @lang('admin.countryShow.cardMinimumOfferValue'): {{ $viewData['country']->getMinimumOfferValueFormatted() }}
+                                    @lang('admin.countryShow.cardMinimumOfferValue'): ${{ $viewData['country']->getMinimumOfferValueFormatted() }}
                                 </div>
                                 <div class="col-lg-6 col-12">
                                     <input type="number" class="form-control mb-2" placeholder="@lang('admin.countryShow.placeHolderMinimum')" name="minimum_offer_value" value="{{ old('minimum_offer_value') }}" />

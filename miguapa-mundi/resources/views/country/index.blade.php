@@ -30,10 +30,12 @@
                             @endif
                             @guest
                             @else
-                            <form class="text-center" action="#" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-primary">@lang('country.index.btnSendOffer')</button>
-                            </form>
+                            <br>
+                            <div class="card-footer">
+                                <a href="{{ route('offer.create') }}" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white">
+                                    @lang('country.index.aSendOffer')
+                                </a> 
+                            </div>
                            @endguest
                         </div>
                     </div>

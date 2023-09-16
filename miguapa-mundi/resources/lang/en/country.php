@@ -10,7 +10,7 @@ return [
         'cardIsInOffer'=>'The country is in offer', 
         'cardIsNotInOffer'=>"The country isn't in offer",
         'cardAlliances'=>'Alliances',
-        'btnSendOffer'=>'Send offer',
+        'aSendOffer'=>'Send offer',
     ],
 
     'partials' => [

@@ -55,7 +55,7 @@ class AllianceController extends Controller
     public function saveMember(Request $request): RedirectResponse
     {
         Member::validate($request);
-
+        #check if theres a member object with the same alliance id and country id
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
         
         return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');
@@ -66,45 +66,26 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
 
-        return redirect()->route('alliance.member')->with('success', 'Got out of alliance successfully');
+        return redirect()->route('alliance.member')->with('success', 'Updated members successfully');
     }
 
-    public function listMembers(): View
+    public function userAlliances(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = __('alliance.member.titleTemplate');
+        $viewData['titleTemplate'] = __('alliance.myAlliances.titleTemplate');
         $user = auth()->user();
 
         $boughtCountries = $user->getBoughtCountries();
         $membersByCountry = [];
 
         foreach ($boughtCountries as $country) {
-            $membersByCountry[$country->getName()] = $country->getMembers()->where('moderator', 0);
+            $membersByCountry[$country->getName()] = $country->getMembers();
         };  
 
         $viewData['alliances_members'] = $membersByCountry;
 
         
-        return view('alliance.member')->with('viewData', $viewData);
-    }
-
-    public function listModerators(): View
-    {
-        $viewData = [];
-        $viewData['titleTemplate'] = __('alliance.moderator.titleTemplate');
-        $user = auth()->user();
-
-        $boughtCountries = $user->getBoughtCountries();
-        $membersByCountry = [];
-
-        foreach ($boughtCountries as $country) {
-            $membersByCountry[$country->getName()] = $country->getMembers()->where('moderator', 1);
-        };  
-
-        $viewData['alliances_moderators'] = $membersByCountry;
-
-        
-        return view('alliance.moderator')->with('viewData', $viewData);
+        return view('alliance.my-alliances')->with('viewData', $viewData);
     }
 
     public function show(string $id): View

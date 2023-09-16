@@ -3,9 +3,8 @@
 return [
     'partials' => [
         'aAlliances'=>'Alliances',
-        'aMember'=>'My alliances as member',
-        'aModerator'=>'My alliances as moderator',
-        'aNew'=>'Start a new alliance',
+        'aMyAlliances'=>'My alliances',
+        'aNew'=>'New alliance',
     ],
 
     'index' => [
@@ -34,8 +33,8 @@ return [
         'btnCreate'=>'Create',
     ],
 
-    'member' => [
-        'titleTemplate'=>'Alliance Member Page - Miguapa Mundi',
+    'myAlliances' => [
+        'titleTemplate'=>'My alliances - Miguapa Mundi',
         'altImage'=>"Alliance's image",
         'cardFounder'=>'Founder',
         'cardModerators'=>'Moderators',
@@ -43,20 +42,10 @@ return [
         'cardMembers'=>'Members',
         'btnSeeMoreMembers'=>'See more members',
         'modalTitleSeeMembers'=>'Members of the alliance',
+        'aSeeDetails'=>'See details',
         'btnGetOut'=>'Get out of alliance',
         'footWaiting'=>'Waiting for answer',
         'footRejected'=>'Rejected',
     ],
 
-    'moderator' => [
-        'titleTemplate'=>'Alliance Moderator Page - Miguapa Mundi',
-        'altImage'=>"Alliance's image",
-        'cardFounder'=>'Founder',
-        'cardModerators'=>'Moderators',
-        'cardFoundationDate'=>'Foundation date',
-        'cardMembers'=>'Members',
-        'btnSeeMoreMembers'=>'See more members',
-        'modalTitleSeeMembers'=>'Members of the alliance',
-        'btnSeeDetails'=>'See details',
-    ],
 ];

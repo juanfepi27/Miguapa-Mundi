@@ -28,7 +28,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{ route('country.index') }}">@lang('layouts.app.aCountries')</a>
+                    <a class="nav-link active" href="{{ route('country.inOfferIndex') }}">@lang('layouts.app.aCountries')</a>
                     <a class="nav-link active" href="{{route('offer.toMe')}}">@lang('layouts.app.aOffers')</a>
                     <a class="nav-link active" href="{{ route('alliance.index') }}">@lang('layouts.app.aAlliances')</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">@lang('layouts.app.aNews')</a>

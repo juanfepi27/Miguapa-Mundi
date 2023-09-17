@@ -22,6 +22,22 @@ class CountryController extends Controller
         return view('country.index')->with('viewData', $viewData);
     }
 
+    public function inOfferIndex(): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = __('country.inOfferIndex.titleTemplate');
+        $countries = Country::all()->where('in_offer',1);
+
+        foreach ($countries as $country) {
+            $maxOffer = $country->getOffers()->max('price');
+            $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
+            $country->maxOffer = $maxOfferFormatted;
+        }
+        $viewData['countries'] = $countries;
+
+        return view('country.in-offer')->with('viewData', $viewData);
+    }
+
     public function inOfferShow(Request $request,int $id): View
     {
         $viewData = [];
@@ -51,5 +67,48 @@ class CountryController extends Controller
         }
 
         return view('country.show')->with('viewData', $viewData);
+    }
+
+    public function myCountriesIndex(): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = __('country.myCountriesIndex.titleTemplate');
+        $user = auth()->user();
+        $countries = $user->getBoughtCountries();
+        
+        foreach ($countries as $country) {
+            $maxOffer = $country->getOffers()->max('price');
+            $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
+            $country->maxOffer = $maxOfferFormatted;
+        }
+        
+        $viewData['countries'] = $countries;
+
+        return view('country.my-countries')->with('viewData', $viewData);
+    }
+
+    public function myCountriesShow(int $id): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = __('country.myCountriesShow.titleTemplate');
+        $viewData['country'] = Country::findOrFail($id);
+        
+        return view('country.my-countries-show')->with('viewData', $viewData);
+    }
+
+    public function myCountriesUpdate(Request $request): RedirectResponse
+    {
+        $country = Country::find($request['id']);
+        $country->setNickName($request['nick_name']);
+        $country->setColor($request['color']);
+        if($request->file('flag')){
+            $flag = $request->file('flag');
+            $flagPath = $flag->store('img/flags', 'public');
+            $country->setFlag($flagPath);
+        }
+        $country->setInOffer($request->has('in_offer') ? true : false);
+        $country->update();
+
+        return redirect()->route('country.myCountriesIndex');
     }
 }

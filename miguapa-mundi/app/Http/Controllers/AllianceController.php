@@ -13,7 +13,7 @@ class AllianceController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.index.titleTemplate');
         $viewData['alliances'] = Alliance::all();
         $user = auth()->user();
         $viewData['userCountries'] = $user->getBoughtCountries();
@@ -24,7 +24,7 @@ class AllianceController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Create alliance - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.create.titleTemplate');
         $user = auth()->user();
         $viewData['userCountries'] = $user->getBoughtCountries();
 
@@ -46,19 +46,24 @@ class AllianceController extends Controller
 
         $memberData = $request->only('founder', 'moderator', 'country_id');
         $memberData['alliance_id'] = $allianceId;
-        $memberData['is_accepted'] = 1;
-        Member::create($memberData);
+        $member = Member::create($memberData);
+        $member->setIsAccepted(1);
+        $member->save();
 
-        return redirect()->route('alliance.index')->with('success', 'Your alliance was created successfully');
+        return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.createAlliance'));
     }
 
     public function saveMember(Request $request): RedirectResponse
     {
-        Member::validate($request);
+        $existingMember = Member::where('alliance_id', $request->input('alliance_id'))->where('country_id', $request->input('country_id'))->exists();
+        if($existingMember != null){
+            return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.alreadyMember'));
+        }
 
+        Member::validate($request);
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
         
-        return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');
+        return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.requestMember'));
     }
 
     public function deleteMember(string $id): RedirectResponse
@@ -66,51 +71,32 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
 
-        return redirect()->route('alliance.member')->with('success', 'Got out of alliance successfully');
+        return back()->with('success', __('alliance.successMessages.updatedMembers'));
     }
 
-    public function listMembers(): View
+    public function userAlliances(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Member Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.myAlliances.titleTemplate');
         $user = auth()->user();
 
         $boughtCountries = $user->getBoughtCountries();
         $membersByCountry = [];
 
         foreach ($boughtCountries as $country) {
-            $membersByCountry[$country->getName()] = $country->getMembers()->where('moderator', 0);
+            $membersByCountry[$country->getName()] = $country->getMembers();
         };  
 
         $viewData['alliances_members'] = $membersByCountry;
 
         
-        return view('alliance.member')->with('viewData', $viewData);
-    }
-
-    public function listModerators(): View
-    {
-        $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Moderator Page - Miguapa Mundi';
-        $user = auth()->user();
-
-        $boughtCountries = $user->getBoughtCountries();
-        $membersByCountry = [];
-
-        foreach ($boughtCountries as $country) {
-            $membersByCountry[$country->getName()] = $country->getMembers()->where('moderator', 1);
-        };  
-
-        $viewData['alliances_moderators'] = $membersByCountry;
-
-        
-        return view('alliance.moderator')->with('viewData', $viewData);
+        return view('alliance.my-alliances')->with('viewData', $viewData);
     }
 
     public function show(string $id): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Details Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.show.titleTemplate');
         $viewData['alliance'] = Alliance::findOrFail($id);
 
         return view('alliance.show')->with('viewData', $viewData);
@@ -122,7 +108,7 @@ class AllianceController extends Controller
         $member->setModerator(0);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated moderators successfully');
+        return back()->with('success', __('alliance.successMessages.updatedModerators'));
 
     }
 
@@ -132,7 +118,7 @@ class AllianceController extends Controller
         $member->setModerator(1);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated moderators successfully');
+        return back()->with('success', __('alliance.successMessages.updatedModerators'));
 
     }
 
@@ -142,7 +128,7 @@ class AllianceController extends Controller
         $member->setIsAccepted(1);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated members successfully');
+        return back()->with('success', __('alliance.successMessages.updatedMembers'));
 
     }
 
@@ -152,7 +138,7 @@ class AllianceController extends Controller
         $member->setIsAccepted(0);
         $member->save();
         
-        return redirect()->route('alliance.moderator')->with('success', 'Updated members successfully');
+        return back()->with('success', __('alliance.successMessages.updatedMembers'));
 
     }
 }

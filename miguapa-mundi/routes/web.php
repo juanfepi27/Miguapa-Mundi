@@ -22,8 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/alliance', 'App\Http\Controllers\AllianceController@index')->name('alliance.index');
     Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
     Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");
-    Route::get('/alliance/member', 'App\Http\Controllers\AllianceController@listMembers')->name("alliance.member");
-    Route::get('/alliance/moderator', 'App\Http\Controllers\AllianceController@listModerators')->name("alliance.moderator");
+    Route::get('/alliance/my-alliances', 'App\Http\Controllers\AllianceController@userAlliances')->name("alliance.myAlliances");
     Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name("alliance.show");
     Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
     Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
@@ -40,7 +39,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/member/become-moderator/{id}', 'App\Http\Controllers\AllianceController@becomeModerator')->name("member.becomeModerator");
     Route::post('/member/accept-member/{id}', 'App\Http\Controllers\AllianceController@acceptMember')->name("member.acceptMember");
     Route::post('/member/decline-member/{id}', 'App\Http\Controllers\AllianceController@declineMember')->name("member.declineMember");
+    Route::get('/country/in-offer', 'App\Http\Controllers\CountryController@inOfferIndex')->name("country.inOfferIndex");
     Route::get('/country/in-offer/show/{id}', 'App\Http\Controllers\CountryController@inOfferShow')->name("country.inOfferShow");
+    Route::get('/country/my-countries', 'App\Http\Controllers\CountryController@myCountriesIndex')->name("country.myCountriesIndex");
+    Route::get('/country/my-countries/show/{id}', 'App\Http\Controllers\CountryController@myCountriesShow')->name("country.myCountriesShow");
+    Route::post('/country/my-countries/update', 'App\Http\Controllers\CountryController@myCountriesUpdate')->name("country.myCountriesUpdate");
 });
 
 Route::middleware(['auth', 'role'])->group(function () {

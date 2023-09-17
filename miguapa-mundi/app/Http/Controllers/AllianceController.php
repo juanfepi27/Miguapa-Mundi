@@ -96,7 +96,7 @@ class AllianceController extends Controller
     public function show(string $id): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Alliance Details Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('alliance.show.titleTemplate');
         $viewData['alliance'] = Alliance::findOrFail($id);
 
         return view('alliance.show')->with('viewData', $viewData);

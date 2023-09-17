@@ -48,6 +48,21 @@ return [
         'footRejected'=>'Rejected',
     ],
 
+    'show' => [
+        'titleTemplate'=>'Alliance Details Page - Miguapa Mundi',
+        'altImage'=>"Alliance's image",
+        'cardFounder'=>'Founder',
+        'cardModerators'=>'Moderators',
+        'cardFoundationDate'=>'Foundation date',
+        'cardMembers'=>'Members',
+        'btnStopModerator'=>'Stop being a moderator',
+        'btnMakeModerator'=>'Make moderator',
+        'btnKickAlliance'=>'Kick from alliance',
+        'cardRequests'=>'Requests to join',
+        'btnAccept'=>'Accept',
+        'btnDecline'=>'Decline',
+    ],
+
     'successMessages' => [
         'updatedMembers'=>'Updated members successfully',
         'updatedModerators'=>'Updated moderators successfully',

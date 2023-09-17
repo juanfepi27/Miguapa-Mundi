@@ -99,3 +99,10 @@ nav{
     height: 250px;
     width: 250px ;
 }
+
+.country-show-flag{
+    float: left;
+    width: 50%;
+    max-height: 45%;
+    margin-bottom: 0.25em;
+}

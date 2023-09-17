@@ -53,7 +53,7 @@ return [
     'countryShow' => [
         'titleTemplate'=>'País - Admin Miguapa Mundi',
         'h2Title'=>'Actualizar país',
-        'cardTitle'=>'País',
+        'altImage'=>"Bandera del país",
         'cardCreatedAt'=>'Fecha de creación',
         'cardName'=>'Nombre', 
         'cardNickName'=>'Apodo', 

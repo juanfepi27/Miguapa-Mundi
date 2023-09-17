@@ -54,14 +54,12 @@ class AllianceController extends Controller
 
     public function saveMember(Request $request): RedirectResponse
     {
-        Member::validate($request);
-
-        $existingMember = Member::where('alliance_id', $request->input('alliance_id'))->where('country_id', $request->input('country_id'));
-
-        if($existingMember){
+        $existingMember = Member::where('alliance_id', $request->input('alliance_id'))->where('country_id', $request->input('country_id'))->exists();
+        if($existingMember != null){
             return redirect()->route('alliance.index')->with('success', 'It already exists a relationship between this country and this alliance');
         }
 
+        Member::validate($request);
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
         
         return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');

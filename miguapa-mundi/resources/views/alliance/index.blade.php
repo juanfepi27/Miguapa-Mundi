@@ -56,8 +56,10 @@
                                 <img src="{{ asset('storage/' . $alliance->getImage()) }}" alt="@lang('alliance.index.altImage')">
                             </div>
                         </div>
+                        <br>
+                        <br>
                         <div class="card-footer">
-                            <button type="button" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white" data-bs-toggle="modal" data-bs-target="#modalBecomeMember">
+                            <button type="button" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white" data-bs-toggle="modal" data-bs-target="#modalBecomeMember-{{ $alliance->getId() }}">
                                 @lang('alliance.index.btnBecomeMember')
                             </button>
                         </div>
@@ -87,7 +89,7 @@
             </div>
 
             <!-- Modal become member-->
-            <div class="modal fade" id="modalBecomeMember" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalBecomeMember-{{ $alliance->getId() }}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -104,7 +106,6 @@
                                     @endforeach
                                 </select>
                                 
-
                                 <input type="hidden" name="alliance_id" value="{{$alliance->getId()}}">
                                 <input type="hidden" name="founder" value="0">
                                 <input type="hidden" name="moderator" value="0">

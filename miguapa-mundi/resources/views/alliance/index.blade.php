@@ -37,14 +37,14 @@
                                     <ul>
                                         @foreach ( $alliance->getMembers() as $member )
                                             @if ($member->getIsAccepted())
-                                                @if ($loop->iteration <= 4)
+                                                @if ($loop->iteration < 4)
                                                     <li>{{ $member->getCountry()->getName() }}</li>
                                                 @endif
                                             @endif
                                         @endforeach
                                     </ul>
-                                    @if ($alliance->getMembers()->count() > 4)
-                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal">
+                                    @if ($alliance->getMembers()->where('is_accepted',1)->count() >= 3)
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-{{ $alliance->getId() }}">
                                         @lang('alliance.index.btnSeeMoreMembers')
                                     </button>
                                     <br>
@@ -68,7 +68,7 @@
             </div>
 
             <!-- Modal see more members-->
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal-{{ $alliance->getId() }}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">

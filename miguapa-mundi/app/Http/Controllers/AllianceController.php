@@ -46,23 +46,24 @@ class AllianceController extends Controller
 
         $memberData = $request->only('founder', 'moderator', 'country_id');
         $memberData['alliance_id'] = $allianceId;
-        $memberData['is_accepted'] = 1;
-        Member::create($memberData);
+        $member = Member::create($memberData);
+        $member->setIsAccepted(1);
+        $member->save();
 
-        return redirect()->route('alliance.index')->with('success', 'Your alliance was created successfully');
+        return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.createAlliance'));
     }
 
     public function saveMember(Request $request): RedirectResponse
     {
         $existingMember = Member::where('alliance_id', $request->input('alliance_id'))->where('country_id', $request->input('country_id'))->exists();
         if($existingMember != null){
-            return redirect()->route('alliance.index')->with('success', 'It already exists a relationship between this country and this alliance');
+            return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.alreadyMember'));
         }
 
         Member::validate($request);
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
         
-        return redirect()->route('alliance.index')->with('success', 'Your request to become a member was sent successfully');
+        return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.requestMember'));
     }
 
     public function deleteMember(string $id): RedirectResponse
@@ -70,7 +71,7 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
 
-        return back()->with('success', 'Updated members successfully');
+        return back()->with('success', __('alliance.successMessages.updatedMembers'));
     }
 
     public function userAlliances(): View
@@ -107,7 +108,7 @@ class AllianceController extends Controller
         $member->setModerator(0);
         $member->save();
         
-        return back()->with('success', 'Updated moderators successfully');
+        return back()->with('success', __('alliance.successMessages.updatedModerators'));
 
     }
 
@@ -117,7 +118,7 @@ class AllianceController extends Controller
         $member->setModerator(1);
         $member->save();
         
-        return back()->with('success', 'Updated moderators successfully');
+        return back()->with('success', __('alliance.successMessages.updatedModerators'));
 
     }
 
@@ -127,7 +128,7 @@ class AllianceController extends Controller
         $member->setIsAccepted(1);
         $member->save();
         
-        return back()->with('success', 'Updated members successfully');
+        return back()->with('success', __('alliance.successMessages.updatedMembers'));
 
     }
 
@@ -137,7 +138,7 @@ class AllianceController extends Controller
         $member->setIsAccepted(0);
         $member->save();
         
-        return back()->with('success', 'Updated members successfully');
+        return back()->with('success', __('alliance.successMessages.updatedMembers'));
 
     }
 }

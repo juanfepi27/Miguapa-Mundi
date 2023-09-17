@@ -38,14 +38,14 @@
                                         <ul>
                                             @foreach ( $member->getAlliance()->getMembers() as $memberAlliance )
                                                 @if ($memberAlliance->getIsAccepted())
-                                                    @if ($loop->iteration <= 4)
+                                                    @if ($loop->iteration < 4)
                                                         <li>{{ $memberAlliance->getCountry()->getName() }}</li>
                                                     @endif
                                                 @endif
                                             @endforeach
                                         </ul>
-                                        @if ($member->getAlliance()->getMembers()->where('is_accepted',1)->count() > 3)
-                                            <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal">
+                                        @if ($member->getAlliance()->getMembers()->where('is_accepted',1)->count() >= 3)
+                                            <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal-{{ $member->getAlliance()->getId() }}">
                                                 @lang('alliance.myAlliances.btnSeeMoreMembers')
                                             </button>
                                         @endif
@@ -82,7 +82,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal-{{ $member->getAlliance()->getId() }}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">

@@ -48,4 +48,12 @@ return [
         'footRejected'=>'Rejected',
     ],
 
+    'successMessages' => [
+        'updatedMembers'=>'Updated members successfully',
+        'updatedModerators'=>'Updated moderators successfully',
+        'requestMember'=>'Your request to become a member was sent successfully',
+        'alreadyMember'=>'It already exists a relationship between this country and this alliance',
+        'createAlliance'=>'Your alliance was created successfully',
+    ],
+
 ];

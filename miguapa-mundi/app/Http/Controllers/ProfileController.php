@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
     public function index(Request $request): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Profile - Miguapa Mundi';
-        $viewData['user']=$request->user();
+        $viewData['titleTemplate'] = __('profile.index.titleTemplate');
+        $viewData['user'] = $request->user();
 
         return view('profile.index')->with('viewData', $viewData);
     }
@@ -20,10 +20,14 @@ class ProfileController extends Controller
     public function addBudget(Request $request): RedirectResponse
     {
         $user = $request->user();
-        $user->setBudget($user->getBudget()+5000);
-        $user->save();
+        if ($user->getBudget() + 5000 <= 2147483647) {
+            $user->setBudget($user->getBudget() + 5000);
+            $user->save();
+            session()->flash('success', __('profile.addBudget.successMsg'));
 
-        session()->flash('success', 'You has added $5.000 to your budget!');
-        return back();
+            return back();
+        } else {
+            return back()->withErrors(['full budget' => __('profile.addBudget.errorMsg')]);
+        }
     }
 }

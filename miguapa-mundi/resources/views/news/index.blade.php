@@ -4,7 +4,7 @@
 <div class="row mt-5">
     <form method="GET" action="{{ route('news.search') }}">
         <div class="col-md-5 mx-auto">
-            <div>Write the name of a country or a title</div>
+            <div>@lang('news.index.searchBar')</div>
             <div class="input-group">
                 <input class="form-control" name="search-bar" type="search">
                 <button class="btn bg-white border ms-n5" type="submit">

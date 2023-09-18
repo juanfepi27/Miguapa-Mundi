@@ -2,6 +2,6 @@
 @section('title',$viewData['titleTemplate'])
 @section('content')
 <div class="text-center">
-    Welcome to the miguapa mundi admin index
+    @lang('admin.index.divWelcome')
 </div>
 @endsection

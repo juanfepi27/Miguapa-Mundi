@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\Nationality;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class RegisterController extends Controller
 {
@@ -73,5 +75,14 @@ class RegisterController extends Controller
             'nationality' => $data['nationality'],
             'budget' => $data['budget'],
         ]);
+    }
+
+    public function index(): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = 'Miguapa Mundi';
+        $viewData['nationalities'] = Nationality::$nationalities;
+
+        return view('auth.register')->with('viewData', $viewData);
     }
 }

@@ -11,7 +11,7 @@ class NewsController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'News Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('news.index.titleTemplate');
         $viewData['news'] = News::paginate(3);
 
         return view('news.index')->with('viewData', $viewData);
@@ -20,7 +20,7 @@ class NewsController extends Controller
     public function search(Request $request): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'News Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('news.index.titleTemplate');
 
         $viewData['news'] = News::where('title', 'like', '%'.$request->input('search-bar').'%')
             ->orwhereHas('financialEffects', function ($query) use ($request) {

@@ -14,9 +14,9 @@ class News extends Model
     $this -> attributes['id'] - int - contains the id of the news primary key in the database
     $this -> attributes['title'] - string - contains the title of the news
     $this -> attributes['description'] - string - contains the description of the news
-    $this -> financialEffects - contains the financial effects of the news
-    $this -> attributes['created_at'] - date - when the news was created
-    $this -> attributes['updated_at] - date - when the news was updated
+    $this -> attributes['created_at'] - datetime - when the news was created
+    $this -> attributes['updated_at] - datetime - when the news was updated
+    $this -> financialEffects - FinancialEffect[] - contains the financial effects of the news
     */
 
     protected $fillable = ['title', 'description'];
@@ -56,8 +56,9 @@ class News extends Model
 
     public function getCreatedAt(): string
     {
-        $created_at = strtotime($this->attributes['created_at']);
-        return date('Y/m/d H:i:s', $created_at);
+        $createdAt = strtotime($this->attributes['created_at']);
+
+        return date('Y/m/d H:i:s', $createdAt);
     }
 
     public function getUpdatedAt(): string

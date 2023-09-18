@@ -25,9 +25,12 @@ class User extends Authenticatable
     $this -> attributes['password'] - string - contains the authentication password to log in
     $this -> attributes['nationality'] - string - contains the nationality for the user
     $this -> attributes['budget'] - int - contains the amount of money that the user has in the platform
-    $this -> attributes['created_at'] - created_at - when the User was created
-    $this -> attributes['updated_at] - updated_at - when the User was updated
+    $this -> attributes['remember_token'] - string - contains the token given by the app to remmember the session
+    $this -> attributes['email_verified_at'] - datetime - contains the date when the email was verified
+    $this -> attributes['created_at'] - datetime - when the User was created
+    $this -> attributes['updated_at] - datetime - when the User was updated
     $this->boughtCountries - Country[] - contains the countries that the user owns
+    $this->sentOffers - Offer[] - contains the offers sent by the user
     */
     protected $fillable = ['name', 'role', 'username', 'email', 'password', 'nationality', 'budget'];
 
@@ -109,8 +112,9 @@ class User extends Authenticatable
 
     public function getBudgetFormatted(): string
     {
-        $budget = $this->getBudget();;
+        $budget = $this->getBudget();
         $budgetFormatted = number_format($budget, 0, ',', '.');
+
         return $budgetFormatted;
     }
 
@@ -121,7 +125,7 @@ class User extends Authenticatable
 
     public function boughtCountries(): HasMany
     {
-        return $this->hasMany(Country::class,'user_owner_id');
+        return $this->hasMany(Country::class, 'user_owner_id');
     }
 
     public function getBoughtCountries(): Collection
@@ -136,7 +140,7 @@ class User extends Authenticatable
 
     public function sentOffers(): HasMany
     {
-        return $this->hasMany(Offer::class,'user_offeror_id');
+        return $this->hasMany(Offer::class, 'user_offeror_id');
     }
 
     public function getSentOffers(): Collection

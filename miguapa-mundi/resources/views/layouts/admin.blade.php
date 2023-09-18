@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link href="{{ asset('/css/admin.css') }}" rel="stylesheet" />
-    <title>@yield('title', 'Miguapa Mundi - Admin Panel')</title>
+    <title>@yield('title', __('layouts.admin.titleTemplate'))</title>
 </head>
 <body class="d-flex flex-column min-vh-100 overflow-x-hidden">
 <!-- header -->
@@ -22,13 +22,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{route('admin.news.index')}}">News</a>
-                    <a class="nav-link active" href="{{route('admin.country.index')}}">Country</a>
+                    <a class="nav-link active" href="{{route('admin.news.index')}}">@lang('layouts.admin.aNews')</a>
+                    <a class="nav-link active" href="{{route('admin.country.index')}}">@lang('layouts.admin.aCountry')</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
-                    <a class="nav-link active" href="{{route('country.index')}}">Home</a>
+                    <a class="nav-link active" href="{{route('country.index')}}">@lang('layouts.admin.aHome')</a>
                     <form id="logout" action="{{ route('logout') }}" method="POST"> 
                         <a role="button" class="nav-link active" 
-                        onclick="document.getElementById('logout').submit();">Logout</a> 
+                        onclick="document.getElementById('logout').submit();">@lang('layouts.admin.aLogout')</a> 
                         @csrf 
                     </form> 
                 </div>

@@ -15,5 +15,4 @@ class ChangeIsAcceptedInMembersTable extends Migration
             $table->boolean('is_accepted')->nullable()->change();
         });
     }
-
-};
+}

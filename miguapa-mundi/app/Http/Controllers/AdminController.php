@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\News;
 use App\Models\Country;
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.index.titleTemplate');
 
         return view('admin.index')->with('viewData', $viewData);
     }
@@ -22,7 +22,7 @@ class AdminController extends Controller
     public function countryIndex(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Country list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.countryIndex.titleTemplate');
         $viewData['countries'] = Country::all();
 
         return view('admin.country.index')->with('viewData', $viewData);
@@ -31,7 +31,7 @@ class AdminController extends Controller
     public function countryShow(string $id): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Country - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.countryShow.titleTemplate');
         $viewData['country'] = Country::findOrFail($id);
         $viewData['users'] = User::all();
 
@@ -45,14 +45,17 @@ class AdminController extends Controller
         $country->setNickName($request['nick_name']);
         $country->setUserOwnerId($request['user_owner_id']);
         $country->setColor($request['color']);
-        $flag = $request->file('flag');
-        $flagPath = $flag->store('img/flags', 'public');
-        $country->setFlag($flagPath);
+        if ($request->file('flag')) {
+            $flag = $request->file('flag');
+            $flagPath = $flag->store('img/flags', 'public');
+            $country->setFlag($flagPath);
+        }
         $country->setInOffer($request->has('in_offer') ? true : false);
         $country->setDefaultOfferValue($request['default_offer_value']);
         $country->setMinimumOfferValue($request['minimum_offer_value']);
         $country->setAttractiveValue($request['attractive_value']);
         $country->save();
+
         return redirect()->route('admin.country.index');
     }
 
@@ -67,7 +70,7 @@ class AdminController extends Controller
     public function countryCreate(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Create country - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.countryCreate.titleTemplate');
         $viewData['users'] = User::all();
 
         return view('admin.country.create')->with('viewData', $viewData);
@@ -85,13 +88,14 @@ class AdminController extends Controller
         $countryData['in_offer'] = $request->has('in_offer') ? true : false;
 
         Country::create($countryData);
+
         return redirect()->route('admin.country.index');
     }
 
     public function newsIndex(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'News list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.newsIndex.titleTemplate');
         $news = News::all();
         $viewData['news'] = $news;
 
@@ -102,7 +106,7 @@ class AdminController extends Controller
     {
         $viewData = [];
         $news = News::findOrFail($id);
-        $viewData['titleTemplate'] = 'News list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.newsShow.titleTemplate');
         $viewData['news'] = $news;
 
         return view('admin.news.show')->with('viewData', $viewData);
@@ -130,7 +134,7 @@ class AdminController extends Controller
     public function newsCreate(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'News list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.newsCreate.titleTemplate');
 
         return view('admin.news.create')->with('viewData', $viewData);
     }

@@ -10,13 +10,13 @@ class FinancialEffect extends model
     /**
      * FINANCIAL EFFECT ATTRIBUTES
      * $this->attributes['id'] - int - contains the financial_effect primary key (id)
-     * $this->attributes['effect] - int - contains the financial effect of the news
      * $this->attributes['news_id] - int - contains the id of the news with the financial effect
-     * $this->news - contains the news that the financial effect is related to
      * $this->attributes['country_id] - int - contains the id of the country with the financial effect
-     * $this->country - contains the country that the financial effect is related to
-     * $this->attributes['created_at'] - date - when the financial effect was created
-     * $this->attributes['updated_at] - date - when the financial effect was updated
+     * $this->attributes['effect] - int - contains the financial effect of the news
+     * $this->attributes['created_at'] - datetime - when the financial effect was created
+     * $this->attributes['updated_at] - datetime - when the financial effect was updated
+     * $this->news - News - contains the news that the financial effect is related to
+     * $this->country - Country - contains the country that the financial effect is related to
      */
     public function getId(): int
     {
@@ -40,8 +40,9 @@ class FinancialEffect extends model
 
     public function getEffectFormatted(): string
     {
-        $effect = $this->getEffect();;
+        $effect = $this->getEffect();
         $effectFormatted = number_format($effect, 0, ',', '.');
+
         return $effectFormatted;
     }
 
@@ -92,8 +93,9 @@ class FinancialEffect extends model
 
     public function getCreatedAt(): string
     {
-        $created_at = strtotime($this->attributes['created_at']);
-        return date('Y/m/d', $created_at);
+        $createdAt = strtotime($this->attributes['created_at']);
+
+        return date('Y/m/d', $createdAt);
     }
 
     public function getUpdatedAt(): string

@@ -57,7 +57,7 @@ class AllianceController extends Controller
     {
         $existingMember = Member::where('alliance_id', $request->input('alliance_id'))->where('country_id', $request->input('country_id'))->exists();
         if ($existingMember != null) {
-            return redirect()->route('alliance.index')->withErrors(['alreadyMember'=> __('alliance.Messages.alreadyMember')]);
+            return redirect()->route('alliance.index')->withErrors(['alreadyMember' => __('alliance.Messages.alreadyMember')]);
         }
 
         Member::validate($request);

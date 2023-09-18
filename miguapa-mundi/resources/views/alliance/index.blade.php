@@ -43,8 +43,8 @@
                                             @endif
                                         @endforeach
                                     </ul>
-                                    @if ($alliance->getMembers()->where('is_accepted',1)->count() >= 3)
-                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-{{ $alliance->getId() }}">
+                                    @if ($alliance->getMembers()->where('is_accepted',1)->count() > 3)
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-{{ $alliance->getId() }}">
                                         @lang('alliance.index.btnSeeMoreMembers')
                                     </button>
                                     <br>

@@ -20,10 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/news/search', 'App\Http\Controllers\NewsController@search')->name('news.search');
     Route::get('/news/show/{id}', 'App\Http\Controllers\NewsController@show')->name('news.show');
     Route::get('/alliance', 'App\Http\Controllers\AllianceController@index')->name('alliance.index');
-    Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name("alliance.create");
-    Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name("alliance.save");
-    Route::get('/alliance/my-alliances', 'App\Http\Controllers\AllianceController@userAlliances')->name("alliance.myAlliances");
-    Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name("alliance.show");
+    Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name('alliance.create');
+    Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name('alliance.save');
+    Route::get('/alliance/my-alliances', 'App\Http\Controllers\AllianceController@userAlliances')->name('alliance.myAlliances');
+    Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name('alliance.show');
     Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
     Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
     Route::get('/offer/create', 'App\Http\Controllers\OfferController@create')->name('offer.create');
@@ -35,15 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/addBudget', 'App\Http\Controllers\ProfileController@addBudget')->name('profile.addBudget');
     Route::post('/member/save', 'App\Http\Controllers\AllianceController@saveMember')->name('member.save');
     Route::delete('/member/delete/{id}', 'App\Http\Controllers\AllianceController@deleteMember')->name('member.delete');
-    Route::post('/member/stop-moderator/{id}', 'App\Http\Controllers\AllianceController@stopModerator')->name("member.stopModerator");
-    Route::post('/member/become-moderator/{id}', 'App\Http\Controllers\AllianceController@becomeModerator')->name("member.becomeModerator");
-    Route::post('/member/accept-member/{id}', 'App\Http\Controllers\AllianceController@acceptMember')->name("member.acceptMember");
-    Route::post('/member/decline-member/{id}', 'App\Http\Controllers\AllianceController@declineMember')->name("member.declineMember");
-    Route::get('/country/in-offer', 'App\Http\Controllers\CountryController@inOfferIndex')->name("country.inOfferIndex");
-    Route::get('/country/in-offer/show/{id}', 'App\Http\Controllers\CountryController@inOfferShow')->name("country.inOfferShow");
-    Route::get('/country/my-countries', 'App\Http\Controllers\CountryController@myCountriesIndex')->name("country.myCountriesIndex");
-    Route::get('/country/my-countries/show/{id}', 'App\Http\Controllers\CountryController@myCountriesShow')->name("country.myCountriesShow");
-    Route::post('/country/my-countries/update', 'App\Http\Controllers\CountryController@myCountriesUpdate')->name("country.myCountriesUpdate");
+    Route::post('/member/stop-moderator/{id}', 'App\Http\Controllers\AllianceController@stopModerator')->name('member.stopModerator');
+    Route::post('/member/become-moderator/{id}', 'App\Http\Controllers\AllianceController@becomeModerator')->name('member.becomeModerator');
+    Route::post('/member/accept-member/{id}', 'App\Http\Controllers\AllianceController@acceptMember')->name('member.acceptMember');
+    Route::post('/member/decline-member/{id}', 'App\Http\Controllers\AllianceController@declineMember')->name('member.declineMember');
+    Route::get('/country/in-offer', 'App\Http\Controllers\CountryController@inOfferIndex')->name('country.inOfferIndex');
+    Route::get('/country/in-offer/show/{id}', 'App\Http\Controllers\CountryController@inOfferShow')->name('country.inOfferShow');
+    Route::get('/country/my-countries', 'App\Http\Controllers\CountryController@myCountriesIndex')->name('country.myCountriesIndex');
+    Route::get('/country/my-countries/show/{id}', 'App\Http\Controllers\CountryController@myCountriesShow')->name('country.myCountriesShow');
+    Route::post('/country/my-countries/update', 'App\Http\Controllers\CountryController@myCountriesUpdate')->name('country.myCountriesUpdate');
 });
 
 Route::middleware(['auth', 'role'])->group(function () {

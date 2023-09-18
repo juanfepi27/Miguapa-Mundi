@@ -80,7 +80,7 @@ class RegisterController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = "Miguapa Mundi";
+        $viewData['titleTemplate'] = 'Miguapa Mundi';
         $viewData['nationalities'] = Nationality::$nationalities;
 
         return view('auth.register')->with('viewData', $viewData);

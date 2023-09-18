@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\News;
 use App\Models\Country;
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.index.titleTemplate');
 
         return view('admin.index')->with('viewData', $viewData);
     }
@@ -53,6 +53,7 @@ class AdminController extends Controller
         $country->setMinimumOfferValue($request['minimum_offer_value']);
         $country->setAttractiveValue($request['attractive_value']);
         $country->save();
+
         return redirect()->route('admin.country.index');
     }
 
@@ -85,13 +86,14 @@ class AdminController extends Controller
         $countryData['in_offer'] = $request->has('in_offer') ? true : false;
 
         Country::create($countryData);
+
         return redirect()->route('admin.country.index');
     }
 
     public function newsIndex(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'News list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.newsIndex.titleTemplate');
         $news = News::all();
         $viewData['news'] = $news;
 
@@ -102,7 +104,7 @@ class AdminController extends Controller
     {
         $viewData = [];
         $news = News::findOrFail($id);
-        $viewData['titleTemplate'] = 'News list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.newsShow.titleTemplate');
         $viewData['news'] = $news;
 
         return view('admin.news.show')->with('viewData', $viewData);
@@ -130,7 +132,7 @@ class AdminController extends Controller
     public function newsCreate(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'News list - Admin Miguapa Mundi';
+        $viewData['titleTemplate'] = __('admin.newsCreate.titleTemplate');
 
         return view('admin.news.create')->with('viewData', $viewData);
     }

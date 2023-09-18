@@ -13,6 +13,7 @@ class Country extends Model
     /**
      * COUNTRY ATTRIBUTES
      * $this->attributes['id'] - int - contains the country primary key (id)
+     * $this->attributes['user_owner_id'] - int - contains the associated User Id that owns the country
      * $this->attributes['name'] - string - contains the country name
      * $this->attributes['nick_name'] - string - contains the country nickname
      * $this->attributes['color'] - string - contains the color for the country
@@ -20,10 +21,9 @@ class Country extends Model
      * $this->attributes['in_offer'] - boolean - contains whether or not the country is in offer
      * $this->attributes['minimum_offer_value'] - int - contains the minimum value to sell the country
      * $this->attributes['attractive_value'] - int - contains the attractive value the country has
+     * $this->attributes['default_offer_value'] - int - contains the default offer value of the country
      * $this->attributes['created_at'] - datetime - contains the date and time when the country was created
      * $this->attributes['updated_at'] - datetime - contains the date and time when the country's information was updated
-     * $this->attributes['default_offer_value'] - int - contains the default offer value of the country
-     * $this->attributes['user_owner_id'] - int - contains the associated User Id that owns the country
      * $this->userOwner - User - contains the associated user that owns the country
      * $this->members - Member[] - contains the associated members
      * $this->financialEffects - FinancialEffect[] - contains the associated financial effects
@@ -109,6 +109,7 @@ class Country extends Model
     {
         $minimumOfferValue = $this->getMinimumOfferValue();
         $minimumOfferValueFormatted = number_format($minimumOfferValue, 0, ',', '.');
+
         return $minimumOfferValueFormatted;
     }
 
@@ -130,6 +131,7 @@ class Country extends Model
     public function getCreatedAt(): string
     {
         $createdAt = strtotime($this->attributes['created_at']);
+
         return date('Y/m/d', $createdAt);
     }
 
@@ -147,6 +149,7 @@ class Country extends Model
     {
         $defaultOfferValue = $this->getDefaultOfferValue();
         $defaultOfferValueFormatted = number_format($defaultOfferValue, 0, ',', '.');
+
         return $defaultOfferValueFormatted;
     }
 

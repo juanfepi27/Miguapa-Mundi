@@ -11,21 +11,21 @@ class Offer extends Model
     /*
     OFFER ATTRIBUTES
     $this -> attributes['id'] - int - contains the id of the offer, primary key in the database
+    $this -> attributes['country_id'] - int - contains the id of the country, primary key in the database
+    $this -> attributes['user_offeror_id'] - int - contains the id of the offeror user, primary key in the database
     $this -> attributes['status'] - string - contains the status of the offer (SENT - ACCEPTED - REJECTED)
     $this -> attributes['price'] - int - contains the monetary value of the offer
-    $this -> attributes['country_id'] - int - contains the id of the country, primary key in the database
+    $this -> attributes['created_at'] - datetime - when the offer was created
+    $this -> attributes['updated_at] - datetime - when the offer was updated
     $this -> country - Country - contains the country of the offer
-    $this -> attributes['user_offeror_id'] - int - contains the id of the offeror user, primary key in the database
     $this -> userOfferor - User - contains the offeror user
-    $this -> attributes['created_at'] - created_at - when the offer was created
-    $this -> attributes['updated_at] - updated_at - when the offer was updated
     */
 
     protected $fillable = ['status', 'price', 'country_id', 'user_offeror_id'];
 
-    public static function validate(Request $request,int $minimumOfferValue): void
+    public static function validate(Request $request, int $minimumOfferValue): void
     {
-        $userBudget=$request->user()->getBudget();
+        $userBudget = $request->user()->getBudget();
         $request->validate([
             'status' => 'required|in:SENT,REJECTED,ACCEPTED',
             'price' => 'required|numeric|gt:0|min:'.$minimumOfferValue.'|max:'.$userBudget,
@@ -56,8 +56,9 @@ class Offer extends Model
 
     public function getPriceFormatted(): string
     {
-        $price = $this->getPrice();;
+        $price = $this->getPrice();
         $priceFormatted = number_format($price, 0, ',', '.');
+
         return $priceFormatted;
     }
 
@@ -119,6 +120,7 @@ class Offer extends Model
     public function getCreatedAt(): string
     {
         $createdAt = strtotime($this->attributes['created_at']);
+
         return date('Y/m/d', $createdAt);
     }
 

@@ -56,6 +56,7 @@ class Alliance extends Model
     public function getCreatedAt(): string
     {
         $createdAt = strtotime($this->attributes['created_at']);
+
         return date('Y/m/d', $createdAt);
     }
 

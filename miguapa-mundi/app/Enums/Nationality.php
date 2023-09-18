@@ -253,5 +253,5 @@ class Nationality
         'Yemen' => 'Yemeni',
         'Zambia' => 'Zambian',
         'Zimbabwe' => 'Zimbabwean',
-    ];    
+    ];
 }

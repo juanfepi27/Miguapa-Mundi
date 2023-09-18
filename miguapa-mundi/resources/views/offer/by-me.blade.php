@@ -6,9 +6,9 @@
 @section('content')
 <div class=" position-relative d-flex flex-wrap gap-3 justify-content-evenly">
     <div class="row position-fixed top-50 start-0 translate-middle z-1">
-        <p class="bg-info1 m-1 p-1 rounded-pill text-end text-white fw-bold">order by:</p>
-        <a href="{{route('offer.byMe',['orderBy'=>'price'])}}" class="btn-primary m-1 p-1 rounded-pill text-end">amount</a>
-        <a href="{{route('offer.byMe',['orderBy'=>'created_at'])}}" class="btn-primary m-1 p-1 rounded-pill text-end">date</a>
+        <p class="bg-info1 m-1 p-1 rounded-pill text-end text-white fw-bold">@lang('offer.byMe.labelBtnOrder'):</p>
+        <a href="{{route('offer.byMe',['orderBy'=>'price'])}}" class="btn-primary m-1 p-1 rounded-pill text-end">@lang('offer.byMe.btnAmount')</a>
+        <a href="{{route('offer.byMe',['orderBy'=>'created_at'])}}" class="btn-primary m-1 p-1 rounded-pill text-end">@lang('offer.byMe.btnDate')</a>
     </div>
     @foreach($viewData['offers'] as $offer)
     <div class="offer-card card">
@@ -22,7 +22,7 @@
         </h5>
         <div class="card-body position-relative">
             <p class="my-0 pb-1">@lang('offer.byMe.cardCountry'): {{$offer->getCountry()->getName()}}</p>
-            <p class="my-0 pb-1">@lang('offer.byMe.cardValue'): $ {{$offer->getPriceFormatted()}}</p>
+            <p class="my-0 pb-1">@lang('offer.byMe.cardValue'): ${{$offer->getPriceFormatted()}}</p>
             <p class="my-0 pb-1">@lang('offer.byMe.cardDate'): {{$offer->getCreatedAt()}}</p>
             @if($offer->getStatus() == 'SENT')
             <div class="card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white fw-bolder">

@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alliance;
 use App\Models\Country;
-use App\Models\News;
 use App\Models\Offer;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -16,7 +13,7 @@ class CountryController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Country Page - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('country.index.titleTemplate');
         $viewData['countries'] = Country::all();
 
         return view('country.index')->with('viewData', $viewData);
@@ -26,10 +23,10 @@ class CountryController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = __('country.inOfferIndex.titleTemplate');
-        $countries = Country::all()->where('in_offer',1);
+        $countries = Country::all()->where('in_offer', 1);
 
         foreach ($countries as $country) {
-            $maxOffer = $country->getOffers()->max('price');
+            $maxOffer = $country->getOffers()->where('status','SENT')->max('price');
             $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
             $country->maxOffer = $maxOfferFormatted;
         }
@@ -38,32 +35,30 @@ class CountryController extends Controller
         return view('country.in-offer')->with('viewData', $viewData);
     }
 
-    public function inOfferShow(Request $request,int $id): View
+    public function inOfferShow(Request $request, int $id): View
     {
         $viewData = [];
-        $viewData['titleTemplate'] = 'Country in offer - Miguapa Mundi';
+        $viewData['titleTemplate'] = __('country.inOfferShow.titleTemplate');
         //getting the country to show
         $viewData['country'] = Country::findOrFail($id);
         //getting the offers to show (and ordering if required)
-        $viewData['offers'] = Offer::where('country_id',$id)->where('status','SENT');
-        if($request->input('orderBy')==null)
-        {
-            $viewData['offers']=$viewData['offers']->get();
-        }else
-        {
-            $viewData['offers']=$viewData['offers']->orderBy($request->input('orderBy'),'desc')->get();
+        $viewData['offers'] = Offer::where('country_id', $id)->where('status', 'SENT');
+        if ($request->input('orderBy') == null) {
+            $viewData['offers'] = $viewData['offers']->get();
+        } else {
+            $viewData['offers'] = $viewData['offers']->orderBy($request->input('orderBy'), 'desc')->get();
         }
         //getting alliance names if there are
-        $viewData['alliances'] = $viewData['country']->getMembers()->map(function ($member) {
+        $viewData['alliances'] = $viewData['country']->getMembers()->filter(function ($member) {
+            return $member->getIsAccepted();
+        })->map(function ($member) {
             return $member->getAlliance()->getName();
         });
         $finnancialEffects = $viewData['country']->getFinancialEffects();
-        if(count($finnancialEffects)>0)
-        {
-            $viewData['lastNews']=$finnancialEffects->sortByDesc('created_at')->first()->getNews();
-        }else
-        {
-            $viewData['lastNews']=false;
+        if (count($finnancialEffects) > 0) {
+            $viewData['lastNews'] = $finnancialEffects->sortByDesc('created_at')->first()->getNews();
+        } else {
+            $viewData['lastNews'] = false;
         }
 
         return view('country.show')->with('viewData', $viewData);
@@ -75,13 +70,13 @@ class CountryController extends Controller
         $viewData['titleTemplate'] = __('country.myCountriesIndex.titleTemplate');
         $user = auth()->user();
         $countries = $user->getBoughtCountries();
-        
+
         foreach ($countries as $country) {
-            $maxOffer = $country->getOffers()->max('price');
+            $maxOffer = $country->getOffers()->where('status','SENT')->max('price');
             $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
             $country->maxOffer = $maxOfferFormatted;
         }
-        
+
         $viewData['countries'] = $countries;
 
         return view('country.my-countries')->with('viewData', $viewData);
@@ -92,7 +87,7 @@ class CountryController extends Controller
         $viewData = [];
         $viewData['titleTemplate'] = __('country.myCountriesShow.titleTemplate');
         $viewData['country'] = Country::findOrFail($id);
-        
+
         return view('country.my-countries-show')->with('viewData', $viewData);
     }
 
@@ -101,7 +96,7 @@ class CountryController extends Controller
         $country = Country::find($request['id']);
         $country->setNickName($request['nick_name']);
         $country->setColor($request['color']);
-        if($request->file('flag')){
+        if ($request->file('flag')) {
             $flag = $request->file('flag');
             $flagPath = $flag->store('img/flags', 'public');
             $country->setFlag($flagPath);

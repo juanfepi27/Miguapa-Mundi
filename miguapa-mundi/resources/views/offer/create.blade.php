@@ -21,7 +21,7 @@
                     <label for="price" class="form-label">@lang('offer.new.labelValue')</label>
                     <div class="form-text">- @lang('offer.new.helpValue1')</div>
                     <div class="form-text">- @lang('offer.new.helpValue2')</div>
-                    <input type="number" class="form-control" id="price" name="price" aria-describedby="offer value" required min="0" max="{{ request()->user()->getBudget() }}">
+                    <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}" aria-describedby="offer value" required min="0" max="{{ request()->user()->getBudget() }}">
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">@lang('offer.new.btnSubmit')</button>

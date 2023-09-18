@@ -11,13 +11,13 @@ class Member extends Model
     /**
      * MEMBER ATTRIBUTES
      * $this->attributes['id'] - int - contains the member primary key (id)
-     * $this->attributes['founder'] - boolean - contains whether it is a founder or not
-     * $this->attributes['moderator'] - boolean - contains whether it is a moderator or not
-     * $this->attributes['is_accepted'] - boolean - contains whether it is accepted or not as a member
-     * $this->attributes['created_at'] - datetime - contains the date and time when the member was created
-     * $this->attributes['updated_at'] - datetime - contains the date and time when the member's information was updated
      * $this->attributes['country_id'] - int - contains the associated Country Id
      * $this->attributes['alliance_id'] - int - contains the associated Alliance Id
+     * $this->attributes['founder'] - boolean - contains whether it is a founder or not
+     * $this->attributes['moderator'] - boolean - contains whether it is a moderator or not
+     * $this->attributes['is_accepted'] - boolean | NULL - contains whether it is accepted or not as a member
+     * $this->attributes['created_at'] - datetime - contains the date and time when the member was created
+     * $this->attributes['updated_at'] - datetime - contains the date and time when the member's information was updated
      * $this->country - Country - contains the associated Country
      * $this->alliance - Alliance - contains the associated Alliance
      */
@@ -58,7 +58,7 @@ class Member extends Model
         $this->attributes['moderator'] = $moderator;
     }
 
-    public function getIsAccepted(): bool | null
+    public function getIsAccepted(): ?bool
     {
         return $this->attributes['is_accepted'];
     }

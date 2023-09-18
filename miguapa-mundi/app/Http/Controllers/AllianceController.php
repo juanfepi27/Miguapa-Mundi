@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
 use App\Models\Alliance;
+use App\Models\Member;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -17,7 +17,7 @@ class AllianceController extends Controller
         $viewData['alliances'] = Alliance::all();
         $user = auth()->user();
         $viewData['userCountries'] = $user->getBoughtCountries();
-        
+
         return view('alliance.index')->with('viewData', $viewData);
     }
 
@@ -50,20 +50,20 @@ class AllianceController extends Controller
         $member->setIsAccepted(1);
         $member->save();
 
-        return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.createAlliance'));
+        return redirect()->route('alliance.index')->with('success', __('alliance.Messages.createAlliance'));
     }
 
     public function saveMember(Request $request): RedirectResponse
     {
         $existingMember = Member::where('alliance_id', $request->input('alliance_id'))->where('country_id', $request->input('country_id'))->exists();
-        if($existingMember != null){
-            return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.alreadyMember'));
+        if ($existingMember != null) {
+            return redirect()->route('alliance.index')->withErrors(['alreadyMember'=> __('alliance.Messages.alreadyMember')]);
         }
 
         Member::validate($request);
         Member::create($request->only(['founder', 'moderator', 'alliance_id', 'country_id']));
-        
-        return redirect()->route('alliance.index')->with('success', __('alliance.successMessages.requestMember'));
+
+        return redirect()->route('alliance.index')->with('success', __('alliance.Messages.requestMember'));
     }
 
     public function deleteMember(string $id): RedirectResponse
@@ -71,7 +71,7 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->delete();
 
-        return back()->with('success', __('alliance.successMessages.updatedMembers'));
+        return back()->with('success', __('alliance.Messages.updatedMembers'));
     }
 
     public function userAlliances(): View
@@ -85,11 +85,10 @@ class AllianceController extends Controller
 
         foreach ($boughtCountries as $country) {
             $membersByCountry[$country->getName()] = $country->getMembers();
-        };  
+        }
 
         $viewData['alliances_members'] = $membersByCountry;
 
-        
         return view('alliance.my-alliances')->with('viewData', $viewData);
     }
 
@@ -107,8 +106,8 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->setModerator(0);
         $member->save();
-        
-        return back()->with('success', __('alliance.successMessages.updatedModerators'));
+
+        return back()->with('success', __('alliance.Messages.updatedModerators'));
 
     }
 
@@ -117,8 +116,8 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->setModerator(1);
         $member->save();
-        
-        return back()->with('success', __('alliance.successMessages.updatedModerators'));
+
+        return back()->with('success', __('alliance.Messages.updatedModerators'));
 
     }
 
@@ -127,8 +126,8 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->setIsAccepted(1);
         $member->save();
-        
-        return back()->with('success', __('alliance.successMessages.updatedMembers'));
+
+        return back()->with('success', __('alliance.Messages.updatedMembers'));
 
     }
 
@@ -137,8 +136,8 @@ class AllianceController extends Controller
         $member = Member::findOrFail($id);
         $member->setIsAccepted(0);
         $member->save();
-        
-        return back()->with('success', __('alliance.successMessages.updatedMembers'));
+
+        return back()->with('success', __('alliance.Messages.updatedMembers'));
 
     }
 }

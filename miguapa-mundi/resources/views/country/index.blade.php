@@ -24,7 +24,9 @@
                             <p class="card-text">@lang('country.index.cardAlliances'):</p>
                             <ul>
                                 @foreach ( $country->getMembers() as $member )
-                                    <li>{{ $member->getAlliance()->getName() }}</li>
+                                    @if ($member->getIsAccepted())
+                                        <li>{{ $member->getAlliance()->getName() }}</li>
+                                    @endif
                                 @endforeach
                             </ul>
                             @endif

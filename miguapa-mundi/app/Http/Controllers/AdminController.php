@@ -45,9 +45,11 @@ class AdminController extends Controller
         $country->setNickName($request['nick_name']);
         $country->setUserOwnerId($request['user_owner_id']);
         $country->setColor($request['color']);
-        $flag = $request->file('flag');
-        $flagPath = $flag->store('img/flags', 'public');
-        $country->setFlag($flagPath);
+        if ($request->file('flag')) {
+            $flag = $request->file('flag');
+            $flagPath = $flag->store('img/flags', 'public');
+            $country->setFlag($flagPath);
+        }
         $country->setInOffer($request->has('in_offer') ? true : false);
         $country->setDefaultOfferValue($request['default_offer_value']);
         $country->setMinimumOfferValue($request['minimum_offer_value']);

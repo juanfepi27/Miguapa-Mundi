@@ -1,5 +1,7 @@
 <?php
 
+// Authors: Juan Felipe Pinzón, Miguel Ángel Calvache and Maria Paula Ayala
+
 use Illuminate\Support\Facades\Route;
 
 /*

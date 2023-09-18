@@ -1,5 +1,7 @@
 <?php
 
+//Author: Miguel Ángel Calvache
+
 namespace App\Http\Controllers;
 
 use App\Models\News;

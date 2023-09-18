@@ -1,3 +1,6 @@
+
+<!-- Author: Maria Paula Ayala -->
+
 @extends('layouts.admin')
 @section('title',$viewData['titleTemplate'])
 @section('content')

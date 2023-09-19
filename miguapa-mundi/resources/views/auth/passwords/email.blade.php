@@ -1,3 +1,6 @@
+
+<!-- Editor: Juan Felipe Pinzón -->
+
 @extends('layouts.app')
 
 @section('content')

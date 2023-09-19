@@ -1,5 +1,7 @@
 <?php
 
+//Author: Juan Felipe Pinzón 
+
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;

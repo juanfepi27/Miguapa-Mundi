@@ -1,3 +1,6 @@
+
+<!-- Author: Juan Felipe Pinzón -->
+
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
 @section('content')

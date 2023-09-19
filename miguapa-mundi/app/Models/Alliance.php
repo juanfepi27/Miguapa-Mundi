@@ -1,5 +1,7 @@
 <?php
 
+//Author: Maria Paula Ayala 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;

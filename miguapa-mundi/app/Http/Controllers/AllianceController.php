@@ -1,5 +1,7 @@
 <?php
 
+//Author: Maria Paula Ayala
+
 namespace App\Http\Controllers;
 
 use App\Models\Alliance;

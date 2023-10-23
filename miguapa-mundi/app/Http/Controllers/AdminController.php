@@ -1,5 +1,7 @@
 <?php
 
+//Authors: Miguel Ángel Calvache and Maria Paula Ayala
+
 namespace App\Http\Controllers;
 
 use App\Models\Country;

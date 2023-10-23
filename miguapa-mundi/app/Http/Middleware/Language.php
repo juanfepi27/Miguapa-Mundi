@@ -6,9 +6,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckRole
+class Language
 {
     /**
      * Handle an incoming request.
@@ -17,8 +18,8 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->user() || $request->user()->getRole() == 0) {
-            abort(403, 'You don\'t have permissions to access to the admin panel');
+        if (session()->has('locale')) {
+            App::setLocale(session()->get('locale'));
         }
 
         return $next($request);

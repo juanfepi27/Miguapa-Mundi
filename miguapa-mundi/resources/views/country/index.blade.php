@@ -1,3 +1,6 @@
+
+<!-- Author: Maria Paula Ayala -->
+
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
 @section('content')
@@ -20,16 +23,16 @@
                             @else
                                 <p>@lang('country.index.cardIsNotInOffer')</p>
                             @endif
-                            @if ( $country->getMembers()->isNotEmpty() )
-                            <p class="card-text">@lang('country.index.cardAlliances'):</p>
-                            <ul>
-                                @foreach ( $country->getMembers() as $member )
-                                    @if ($member->getIsAccepted())
-                                        <li>{{ $member->getAlliance()->getName() }}</li>
+                            @foreach ( $country->getMembers() as $member )
+                                @if ($member->getIsAccepted())
+                                    @if ($loop->iteration == 1)
+                                        <p class="card-text">@lang('country.index.cardAlliances'):</p>
                                     @endif
-                                @endforeach
-                            </ul>
-                            @endif
+                                    <ul>
+                                        <li>{{ $member->getAlliance()->getName() }}</li>
+                                    </ul>
+                                @endif
+                            @endforeach
                             @guest
                             @else
                             <br>

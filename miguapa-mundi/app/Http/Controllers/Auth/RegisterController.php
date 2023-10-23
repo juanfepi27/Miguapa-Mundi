@@ -1,5 +1,7 @@
 <?php
 
+//Editor: Juan Felipe Pinzón 
+
 namespace App\Http\Controllers\Auth;
 
 use App\Enums\Nationality;

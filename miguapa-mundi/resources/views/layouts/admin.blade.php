@@ -1,3 +1,6 @@
+
+<!-- Author: Miguel Ángel Calvache -->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +13,11 @@
 <body class="d-flex flex-column min-vh-100 overflow-x-hidden">
 <!-- header -->
 <nav class="bg-primary">
+    <a class="nav-link dropdown-toggle m-3 position-absolute top-0 start-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@lang('layouts.app.aLang')</a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{route('lang.changeLang',['locale'=>'en'])}}">@lang('layouts.app.aEnglish')</a></li>
+        <li><a class="dropdown-item" href="{{route('lang.changeLang',['locale'=>'es'])}}">@lang('layouts.app.aSpanish')</a></li>
+    </ul>
     <div class="row d-flex justify-content-center">
         <a class="navbar-brand text-center" href="{{route('admin.index')}}"><img class="img-logo" src="{{ asset('/img/LogoMiguapaMundi.png') }}" alt="logo miguapa mundi"></a>
         <a class="navbar-brand text-center" href="{{route('admin.index')}}">Miguapa Mundi</a>

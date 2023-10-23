@@ -2,6 +2,9 @@
 
 return [
     'app' => [
+        'aLang' => 'Select your Language',
+        'aEnglish' => 'English',
+        'aSpanish' => 'Spanish',
         'navUser' => 'User',
         'navBudget' => 'Budget',
         'aCountries' => 'Countries',
@@ -19,6 +22,9 @@ return [
         'footCopyright' => 'Copyright',
     ],
     'admin' => [
+        'aLang' => 'Select your Language',
+        'aEnglish' => 'English',
+        'aSpanish' => 'Spanish',
         'titleTemplate' => 'Admin Panel',
         'aNews' => 'News',
         'aCountry' => 'Country',

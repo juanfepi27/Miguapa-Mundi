@@ -11,6 +11,7 @@ return [
         'cardIsNotInOffer' => 'El país no está en oferta',
         'cardAlliances' => 'Alianzas',
         'aSendOffer' => 'Enviar oferta',
+        'searchBar'=> 'Busque un país',
     ],
     'partials' => [
         'aInOffer' => 'Paises en oferta',

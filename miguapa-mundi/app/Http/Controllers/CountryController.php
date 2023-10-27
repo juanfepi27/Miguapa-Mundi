@@ -17,6 +17,17 @@ class CountryController extends Controller
         $viewData = [];
         $viewData['titleTemplate'] = __('country.index.titleTemplate');
         $viewData['countries'] = Country::all();
+        $viewData['searchCountry'] ='';
+
+        return view('country.index')->with('viewData', $viewData);
+    }
+
+    public function search(Request $request): View
+    {
+        $viewData = [];
+        $viewData['titleTemplate'] = __('country.index.titleTemplate');
+        $viewData['countries'] = Country::all();;
+        $viewData['searchCountry'] = Country::where('name', 'like', '%'.$request->input('search-bar').'%')->first();
 
         return view('country.index')->with('viewData', $viewData);
     }

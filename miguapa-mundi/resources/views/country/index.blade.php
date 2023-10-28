@@ -37,7 +37,7 @@
                             @else
                             <br>
                             <div class="card-footer">
-                                <a href="{{ route('offer.create') }}" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white">
+                                <a href="{{ route('offer.create', ['id' => $country->getId()]) }}" class="btn btn-primary card-footer position-absolute start-0 bottom-0 w-100 bg-info1 text-center text-white">
                                     @lang('country.index.aSendOffer')
                                 </a> 
                             </div>

@@ -44,8 +44,16 @@ class OfferController extends Controller
         return view('offer.by-me')->with('viewData', $viewData);
     }
 
-    public function create(Request $request): View
+    public function create(Request $request, int $id): View
     {
+        if ($id==-1) {
+            #do nothing
+        }else{
+            $actualCountry=Country::findOrFail($id);
+            session()->flash('country_id', $actualCountry->getId());  
+            session()->flash('country_name', $actualCountry->getName());
+        }
+
         $viewData = [];
         $viewData['titleTemplate'] = __('offer.new.titleTemplate');
         $userCountries = $request->user()->getBoughtCountries()->pluck('name');

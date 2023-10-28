@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name('alliance.show');
     Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
     Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
-    Route::get('/offer/create', 'App\Http\Controllers\OfferController@create')->name('offer.create');
+    Route::get('/offer/create/{id}', 'App\Http\Controllers\OfferController@create')->name('offer.create');
     Route::middleware('myOffer')->group(function () {
         Route::get('/offer/delete/{id}', 'App\Http\Controllers\OfferController@delete')->name('offer.delete');
     });

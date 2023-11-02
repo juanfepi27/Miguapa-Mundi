@@ -13,7 +13,7 @@
 <body class="d-flex flex-column min-vh-100 overflow-x-hidden">
 <!-- header -->
 <nav class="bg-primary">
-    <a class="nav-link dropdown-toggle m-3 position-absolute top-0 start-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@lang('layouts.app.aLang')</a>
+    <a class="w-50 nav-link dropdown-toggle m-3 position-absolute top-0 start-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@lang('layouts.app.aLang')</a>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="{{route('lang.changeLang',['locale'=>'en'])}}">@lang('layouts.app.aEnglish')</a></li>
         <li><a class="dropdown-item" href="{{route('lang.changeLang',['locale'=>'es'])}}">@lang('layouts.app.aSpanish')</a></li>

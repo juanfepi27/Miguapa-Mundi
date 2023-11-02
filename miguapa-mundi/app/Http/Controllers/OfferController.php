@@ -78,7 +78,7 @@ class OfferController extends Controller
 
         session()->flash('success', __('offer.new.successMsg'));
 
-        return back();
+        return redirect()->route('offer.byMe');
     }
 
     public function accept(Request $request, int $id): RedirectResponse

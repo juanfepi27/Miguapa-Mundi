@@ -2,18 +2,47 @@
 
 namespace App\Livewire;
 
+use App\Models\Country;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class SelectCountry extends Component
 {
-    public $viewData;
+    public array $viewData;
+    public int|null $countryId;
+    public string $countryName;
+    public string $minimumOfferValue;
 
-    public function mount($viewData)
+    public function setCountryInformation():void
     {
-        $this->viewData=$viewData;
+        $country = Country::findOrFail($this->countryId);
+        $this->countryName=$country->getName();
+        $this->minimumOfferValue=$country->getMinimumOfferValueFormatted();
     }
 
-    public function render()
+    public function mount(array $viewData): void
+    {
+        $this->viewData=$viewData;
+
+        if(session()->has('country_id')){
+            $this->countryId=session()->get('country_id');
+
+            $this->setCountryInformation();
+        }
+    }
+
+    public function updatedCountryId(int|null $countryId):void
+    {
+        $this->countryId=$countryId;
+        if($countryId){
+            $this->setCountryInformation();
+        }else{
+            $this->countryName="";
+            $this->minimumOfferValue="";
+        }
+    }
+
+    public function render(): View
     {
         return view('livewire.select-country');
     }

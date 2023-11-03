@@ -46,9 +46,7 @@ class OfferController extends Controller
 
     public function create(Request $request, int $id): View
     {
-        if ($id==-1) {
-            #do nothing
-        }else{
+        if ($id!=-1){
             $actualCountry=Country::findOrFail($id);
             session()->flash('country_id', $actualCountry->getId());  
             session()->flash('country_name', $actualCountry->getName());

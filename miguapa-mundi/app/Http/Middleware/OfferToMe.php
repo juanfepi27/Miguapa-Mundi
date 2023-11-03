@@ -24,7 +24,7 @@ class OfferToMe
         $country = $offer->getCountry();
 
         if ( $request->user() != $country->getUserOwner()) {
-            abort(403, 'You don\'t have permissions to modify in this way an offer that wasn\'t sent to you');
+            abort(403, __('middleware.OfferToMe.errorMsg'));
         }
 
         return $next($request);

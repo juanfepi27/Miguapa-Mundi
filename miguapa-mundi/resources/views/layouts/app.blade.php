@@ -19,7 +19,7 @@
         <li><a class="dropdown-item" href="{{route('lang.changeLang',['locale'=>'es'])}}">@lang('layouts.app.aSpanish')</a></li>
     </ul>
     <div class="row d-flex justify-content-center">
-        <a class="navbar-brand text-center" href="{{ route('country.index') }}"><img class="img-logo" src="{{ asset('/img/LogoMiguapaMundi.png') }}" alt="logo miguapa mundi"></a>
+        <a class="w-50 navbar-brand text-center" href="{{ route('country.index') }}"><img class="img-logo" src="{{ asset('/img/LogoMiguapaMundi.png') }}" alt="logo miguapa mundi"></a>
         <a class="navbar-brand text-center" href="{{ route('country.index') }}">Miguapa Mundi</a>
     </div>
     <div class="navbar navbar-expand-lg navbar-light">
@@ -96,11 +96,11 @@
     <div class="container pb-2 in-front">
         <small>
             @lang('layouts.app.footAuthorMapa') - <a class="text-reset fw-bold text-decoration-none" target="_blank"
-            href="https://www.linkedin.com/in/juan-felipe-pinzón-trejo-319711247">
+            href="https://www.linkedin.com/in/maria-paula-ayala-lizarazo-32249b293/">
             Maria Paula Ayala Lizarazo
             </a><br>
             @lang('layouts.app.footAuthorMigue') - <a class="text-reset fw-bold text-decoration-none" target="_blank"
-            href="https://www.linkedin.com/in/juan-felipe-pinzón-trejo-319711247">
+            href="https://www.linkedin.com/in/miguel-angel-calvache-giraldo-177549185/">
             Miguel Ángel Calvache Giraldo
             </a><br>
             @lang('layouts.app.footAuthorJuan') - <a class="text-reset fw-bold text-decoration-none" target="_blank"

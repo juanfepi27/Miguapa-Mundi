@@ -24,7 +24,11 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('auth.email.labelEmail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                @auth
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ request()->user()->getEmail() }}" required autocomplete="email" autofocus>
+                                @else
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                @endauth
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

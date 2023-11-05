@@ -19,7 +19,7 @@ Route::get('/', 'App\Http\Controllers\CountryController@index')->name('country.i
 Route::get('/search', 'App\Http\Controllers\CountryController@search')->name('country.search');
 Route::get('/lang/{locale}', 'App\Http\Controllers\LangController@changeLang')->name('lang.changeLang');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
     Route::get('/news/search', 'App\Http\Controllers\NewsController@search')->name('news.search');
     Route::get('/news/show/{id}', 'App\Http\Controllers\NewsController@show')->name('news.show');
@@ -30,10 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name('alliance.show');
     Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
     Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
-    Route::get('/offer/create', 'App\Http\Controllers\OfferController@create')->name('offer.create');
-    Route::get('/offer/delete/{id}', 'App\Http\Controllers\OfferController@delete')->name('offer.delete');
-    Route::get('/offer/accept/{id}', 'App\Http\Controllers\OfferController@accept')->name('offer.accept');
-    Route::get('/offer/reject/{id}', 'App\Http\Controllers\OfferController@reject')->name('offer.reject');
+    Route::get('/offer/create/{id}', 'App\Http\Controllers\OfferController@create')->name('offer.create');
+    Route::middleware('myOffer')->group(function () {
+        Route::get('/offer/delete/{id}', 'App\Http\Controllers\OfferController@delete')->name('offer.delete');
+    });
+    Route::middleware('offerToMe')->group(function () {
+        Route::get('/offer/accept/{id}', 'App\Http\Controllers\OfferController@accept')->name('offer.accept');
+        Route::get('/offer/reject/{id}', 'App\Http\Controllers\OfferController@reject')->name('offer.reject');
+    });
     Route::post('/offer/save', 'App\Http\Controllers\OfferController@save')->name('offer.save');
     Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile.index');
     Route::get('/profile/addBudget', 'App\Http\Controllers\ProfileController@addBudget')->name('profile.addBudget');
@@ -50,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/country/my-countries/update', 'App\Http\Controllers\CountryController@myCountriesUpdate')->name('country.myCountriesUpdate');
 });
 
-Route::middleware(['auth', 'role'])->group(function () {
+Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
     Route::get('/admin/country', 'App\Http\Controllers\AdminController@countryIndex')->name('admin.country.index');
     Route::get('/admin/country/create', 'App\Http\Controllers\AdminController@countryCreate')->name('admin.country.create');
@@ -66,5 +70,5 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/admin/news/show/{id}', 'App\Http\Controllers\AdminController@newsShow')->name('admin.news.show');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 Route::get('/register-user', 'App\Http\Controllers\Auth\RegisterController@index')->name('register.index');

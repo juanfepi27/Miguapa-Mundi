@@ -23,7 +23,7 @@
             </ul>
             <div class="d-flex justify-content-evenly gap-3">
                 <a href="{{ route('profile.addBudget') }}" class="btn btn-primary">@lang('profile.index.btnAdd')</a>
-                <a href="#" class="btn btn-secondary">@lang('profile.index.btnChange')</a>
+                <a href="{{ route('password.request') }}" class="btn btn-secondary">@lang('profile.index.btnChange')</a>
             </div>
         </div>
     </div>

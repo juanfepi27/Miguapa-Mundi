@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'myOffer' => \App\Http\Middleware\MyOffer::class,
         'offerToMe' => \App\Http\Middleware\OfferToMe::class,
         'myAlliance' => \App\Http\Middleware\MyAlliance::class,
+        'myCountry' => \App\Http\Middleware\MyCountry::class,
     ];
 }

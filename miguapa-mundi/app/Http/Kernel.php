@@ -1,6 +1,6 @@
 <?php
 
-//Author: Juan Felipe Pinzón 
+//Author: Juan Felipe Pinzón and Maria Paula Ayala 
 
 namespace App\Http;
 

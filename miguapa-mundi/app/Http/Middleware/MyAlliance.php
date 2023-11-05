@@ -1,10 +1,10 @@
 <?php
+//Author: Maria Paula Ayala 
 
 namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Alliance;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 

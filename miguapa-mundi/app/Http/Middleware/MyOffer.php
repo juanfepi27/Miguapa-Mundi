@@ -1,5 +1,7 @@
 <?php
 
+//Author: Juan Felipe Pinzón
+
 namespace App\Http\Middleware;
 
 use Closure;

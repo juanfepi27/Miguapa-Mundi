@@ -4,6 +4,7 @@ Authors: Juan Felipe Pinzón, Miguel Ángel Calvache and Maria Paula Ayala
 
 /* Estilos de la barra de desplazamiento (Webkit) */
 /* Establece el ancho y el color del riel de la barra de desplazamiento */
+
 ::-webkit-scrollbar {
     width: 5px;
     background-color: #f1f1f1;
@@ -72,6 +73,27 @@ a {
 
 .container-1000px{
     max-width: 1000px;
+}
+
+body{
+    /* background-color: #fbfbfb; */
+        --s: 50px; /* control the size */
+        --t: 6px;  /* control the thickness */
+        --c1: rgba(253, 255, 159,0.17);
+        --c2: rgba(251, 251, 251,0.17);
+        --_c: #ffffff00 calc(98% - var(--t)),var(--c1) calc(100% - var(--t)) 98%,#ffffff00;
+        --_s: calc(2*var(--s)) calc(5*var(--s)/2);
+        --_r0: /var(--_s) radial-gradient(calc(var(--s)/2) at 0    20%,var(--_c));
+        --_r1: /var(--_s) radial-gradient(calc(var(--s)/2) at 100% 20%,var(--_c));
+        background:
+            0 0 var(--_r0),calc(-1*var(--s)) calc(5*var(--s)/4) var(--_r0),
+            var(--s) 0 var(--_r1),0 calc(5*var(--s)/4) var(--_r1),
+            conic-gradient(at var(--t) calc(20% + 2*var(--t)),#0000 75%,var(--c1) 0)
+            calc(var(--t)/-2) calc(var(--s) - var(--t))/var(--s) calc(5*var(--s)/4),
+            repeating-conic-gradient(var(--c2) 0 25%,#0000 0 50%)
+            var(--s) calc(var(--s)/-8)/var(--_s),
+            conic-gradient(from 90deg at var(--t) var(--t),var(--c2) 25%,var(--c1) 0) 
+            calc((var(--s) - var(--t))/2) calc((var(--s) - var(--t))/2)/var(--s) calc(5*var(--s)/4);
 }
 
 .bg-secondary {
@@ -160,5 +182,73 @@ nav{
 @media (max-width: 767.98px){
     .limit-card{
         min-width: 100%;
+    }
+}
+
+/* Notice ticker bar in '/' */
+
+:root {
+    --height: 50px;
+    --speed: 30s;
+}
+
+.ticker-tape {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: var(--height);
+    padding-left: 100%;
+    border-bottom: #888 2px solid ;
+}
+
+.ticker-tape .ticker {
+    height: var(--height);
+    line-height: var(--height);
+    white-space: nowrap;
+    padding-right: 100%;
+    
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    -webkit-animation-duration: var(--speed);
+    
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ticker;
+    animation-duration: var(--speed);
+    
+}
+
+.ticker-tape .ticker__item {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding: 0 2rem;
+    letter-spacing: 0.2rem;
+    /* color: rgba(0,0,0,0.2); */
+    color: #888;
+}
+
+@-webkit-keyframes ticker {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes ticker {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
     }
 }

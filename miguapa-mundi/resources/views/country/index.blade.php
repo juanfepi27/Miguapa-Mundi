@@ -5,10 +5,17 @@
 @section('title', $viewData["titleTemplate"])
 @section('content')
 <div class="row">
-    <div class="col-lg-9 col-12" style="background-color: green;">
-        BARRA DE NOTICIAS
+    <div class="col-lg-9 col-12 mb-2 p-0">
+        <div class="ticker-tape">
+            <div class="ticker">
+                <div class="ticker__item">@lang('country.index.lastNews'): {{ $viewData["lastNews"] }}</div>
+                <div class="ticker__item">@lang('country.index.lastNews'): {{ $viewData["lastNews"] }}</div>
+                <div class="ticker__item">@lang('country.index.lastNews'): {{ $viewData["lastNews"] }}</div>
+                <div class="ticker__item">@lang('country.index.lastNews'): {{ $viewData["lastNews"] }}</div>
+            </div>
+        </div>
     </div>
-    <div class="col-lg-3 col-12 mb-2">
+    <div class="col-lg-3 col-12 pt-2">
         <form method="GET" action="{{ route('country.search') }}">
             <div class="input-group">
                 <input class="form-control" name="search-bar" type="search" placeholder="@lang('country.index.searchBar')">

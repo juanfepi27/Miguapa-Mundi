@@ -12,6 +12,7 @@ return [
         'cardAlliances' => 'Alliances',
         'aSendOffer' => 'Send offer',
         'searchBar'=> 'Search country',
+        'lastNews' => 'Breaking news',
     ],
     'partials' => [
         'aInOffer' => 'Countries in offer',

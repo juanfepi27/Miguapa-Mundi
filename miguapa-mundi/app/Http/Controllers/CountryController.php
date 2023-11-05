@@ -5,6 +5,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\News;
 use App\Models\Offer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class CountryController extends Controller
         $viewData['titleTemplate'] = __('country.index.titleTemplate');
         $viewData['countries'] = Country::all();
         $viewData['searchCountry'] ='';
+        $viewData['lastNews'] = News::orderBy('created_at', 'desc')->first()['title'];
 
         return view('country.index')->with('viewData', $viewData);
     }
@@ -28,6 +30,7 @@ class CountryController extends Controller
         $viewData['titleTemplate'] = __('country.index.titleTemplate');
         $viewData['countries'] = Country::all();;
         $viewData['searchCountry'] = Country::where('name', 'like', '%'.$request->input('search-bar').'%')->first();
+        $viewData['lastNews'] = News::orderBy('created_at', 'desc')->first()['title'];
 
         return view('country.index')->with('viewData', $viewData);
     }

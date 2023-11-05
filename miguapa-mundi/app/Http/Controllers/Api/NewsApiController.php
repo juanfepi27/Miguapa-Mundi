@@ -18,7 +18,7 @@ class NewsApiController extends Controller
         $response = Http::get('https://newsapi.org/v2/everything?q='.$subject.'&pageSize=1&apiKey=55ac1e51e3a745e7af07c9a2cbefe154'); ###############################################33
 
         if($response->ok() == false) {
-            return response()->json(['error' => 'Error getting news from NewsAPI'], 500);
+            return response()->json(['error'], 500);
         }
 
         $title = $response->json()['articles'][0]['title'];
@@ -59,6 +59,6 @@ class NewsApiController extends Controller
             $countries[$i]->save();
         }
 
-        return response()->json('Succesfully created', 200);
+        return response()->json('OK', 200);
     }
 }

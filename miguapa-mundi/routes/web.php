@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\CountryController@index')->name('country.index');
 Route::get('/lang/{locale}', 'App\Http\Controllers\LangController@changeLang')->name('lang.changeLang');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
     Route::get('/news/search', 'App\Http\Controllers\NewsController@search')->name('news.search');
     Route::get('/news/show/{id}', 'App\Http\Controllers\NewsController@show')->name('news.show');
@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/country/my-countries/update', 'App\Http\Controllers\CountryController@myCountriesUpdate')->name('country.myCountriesUpdate');
 });
 
-Route::middleware(['auth', 'role'])->group(function () {
+Route::middleware(['auth', 'verified', 'role'])->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
     Route::get('/admin/country', 'App\Http\Controllers\AdminController@countryIndex')->name('admin.country.index');
     Route::get('/admin/country/create', 'App\Http\Controllers\AdminController@countryCreate')->name('admin.country.create');
@@ -69,5 +69,5 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/admin/news/show/{id}', 'App\Http\Controllers\AdminController@newsShow')->name('admin.news.show');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 Route::get('/register-user', 'App\Http\Controllers\Auth\RegisterController@index')->name('register.index');

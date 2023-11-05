@@ -26,7 +26,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/alliance/create', 'App\Http\Controllers\AllianceController@create')->name('alliance.create');
     Route::post('/alliance/save', 'App\Http\Controllers\AllianceController@save')->name('alliance.save');
     Route::get('/alliance/my-alliances', 'App\Http\Controllers\AllianceController@userAlliances')->name('alliance.myAlliances');
-    Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name('alliance.show');
+    Route::middleware('myAlliance')->group(function () {
+        Route::get('/alliance/show/{id}', 'App\Http\Controllers\AllianceController@show')->name('alliance.show');
+    });
     Route::get('/offer/to-me', 'App\Http\Controllers\OfferController@toMe')->name('offer.toMe');
     Route::get('/offer/by-me', 'App\Http\Controllers\OfferController@byMe')->name('offer.byMe');
     Route::get('/offer/create/{id}', 'App\Http\Controllers\OfferController@create')->name('offer.create');

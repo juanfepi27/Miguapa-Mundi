@@ -10,4 +10,7 @@ return [
     'OfferToMe' => [
         'errorMsg' => 'No tienes permisos de modificar de esta manera una oferta que no se te fue enviada'
     ],
+    'MyAlliance'=> [
+        'errorMsg' => 'No tienes permisos de modificar de esta manera una alianza de la cual no eres moderador'
+    ],
 ];

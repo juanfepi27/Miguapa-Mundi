@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'myOffer' => \App\Http\Middleware\MyOffer::class,
         'offerToMe' => \App\Http\Middleware\OfferToMe::class,
+        'myAlliance' => \App\Http\Middleware\MyAlliance::class,
     ];
 }

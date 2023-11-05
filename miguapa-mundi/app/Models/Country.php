@@ -30,6 +30,8 @@ class Country extends Model
      * $this->members - Member[] - contains the associated members
      * $this->financialEffects - FinancialEffect[] - contains the associated financial effects
      * $this->offers - Offer[] - contains the associated offers
+     * 
+     * $this->maxOffer - int - contains the maximum offer made to the country
      */
     protected $fillable = ['name', 'nick_name', 'color', 'flag', 'in_offer', 'minimum_offer_value', 'attractive_value', 'default_offer_value', 'user_owner_id'];
 
@@ -228,5 +230,17 @@ class Country extends Model
     public function setOffers(Collection $offers): void
     {
         $this->offers = $offers;
+    }
+
+    public function setMaxOffer(Country $country): void
+    {
+        $maxOffer = $country->getOffers()->where('status', 'SENT')->max('price');
+        $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
+        $this->maxOffer = $maxOfferFormatted;
+    }
+
+    public function getMaxOfferFormatted(): string
+    {
+        return $this->maxOffer;
     }
 }

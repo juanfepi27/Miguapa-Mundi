@@ -28,9 +28,7 @@ class CountryController extends Controller
         $countries = Country::all()->where('in_offer', 1);
 
         foreach ($countries as $country) {
-            $maxOffer = $country->getOffers()->where('status', 'SENT')->max('price');
-            $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
-            $country->maxOffer = $maxOfferFormatted;
+            $country->setMaxOffer($country);
         }
         $viewData['countries'] = $countries;
 

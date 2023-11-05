@@ -46,7 +46,7 @@
         <div class="d-flex mt-2 justify-content-center gap-2 flex-wrap">
             <a href="{{route('country.inOfferShow',['id'=>$viewData['country']->getId(),'orderBy'=>'price'])}}" class="btn btn-primary">@lang('country.inOfferShow.btnOrderByamount')</a>
             <a href="{{route('country.inOfferShow',['id'=>$viewData['country']->getId(),'orderBy'=>'created_at'])}}" class="btn btn-primary">@lang('country.inOfferShow.btnOrderByPrice')</a>
-            <a href="{{route('offer.create')}}" class="btn btn-primary">@lang('country.inOfferShow.btnSend')</a>
+            <a href="{{route('offer.create', ['id'=>$viewData['country']->getId()] )}}" class="btn btn-primary">@lang('country.inOfferShow.btnSend')</a>
         </div>
         <div class="d-flex flex-wrap my-2 gap-1 justify-content-between ">
             @foreach($viewData['offers'] as $offer)

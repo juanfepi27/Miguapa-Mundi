@@ -44,8 +44,14 @@ class OfferController extends Controller
         return view('offer.by-me')->with('viewData', $viewData);
     }
 
-    public function create(Request $request): View
+    public function create(Request $request, int $id): View
     {
+        if ($id!=-1){
+            $actualCountry=Country::findOrFail($id);
+            session()->flash('country_id', $actualCountry->getId());  
+            session()->flash('country_name', $actualCountry->getName());
+        }
+
         $viewData = [];
         $viewData['titleTemplate'] = __('offer.new.titleTemplate');
         $userCountries = $request->user()->getBoughtCountries()->pluck('name');
@@ -63,12 +69,14 @@ class OfferController extends Controller
         $request = $request->merge(['user_offeror_id' => $userOfferorId]);
         $request = $request->merge(['status' => $status]);
         $country = Country::findOrFail($request->input('country_id'));
+        session()->flash('country_id', $country->getId());  
+        session()->flash('country_name', $country->getName());  
         Offer::validate($request, $country->getMinimumOfferValue());
         Offer::create($request->only('status', 'price', 'country_id', 'user_offeror_id'));
 
         session()->flash('success', __('offer.new.successMsg'));
 
-        return back();
+        return redirect()->route('offer.byMe');
     }
 
     public function accept(Request $request, int $id): RedirectResponse

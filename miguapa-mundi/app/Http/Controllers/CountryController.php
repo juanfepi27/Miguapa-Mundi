@@ -106,4 +106,14 @@ class CountryController extends Controller
 
         return redirect()->route('country.myCountriesIndex');
     }
+
+    public function showMap(): View
+    {
+        $countries = Country::all();
+        $countriesNames = array();
+        foreach ($countries as $country) {
+            array_push($countriesNames, $country->getName());
+        }
+        return view('country.map')->with('countriesNames', $countriesNames);
+    }
 }

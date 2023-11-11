@@ -22,7 +22,7 @@ class NewsController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = __('news.index.titleTemplate');
-        $viewData['news'] = News::paginate(3);
+        $viewData['news'] = News::paginate(5);
 
         return view('news.index')->with('viewData', $viewData);
     }
@@ -38,7 +38,7 @@ class NewsController extends Controller
                     $query->where('name', 'like', '%'.$request->input('search-bar').'%');
                 });
             })
-            ->paginate(3)
+            ->paginate(5)
             ->appends(['search-bar' => $request->input('search-bar')]);
 
         return view('news.index')->with('viewData', $viewData);

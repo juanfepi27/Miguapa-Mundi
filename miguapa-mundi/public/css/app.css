@@ -76,24 +76,11 @@ a {
 }
 
 body{
-    /* background-color: #fbfbfb; */
-        --s: 50px; /* control the size */
-        --t: 6px;  /* control the thickness */
-        --c1: rgba(253, 255, 159,0.17);
-        --c2: rgba(251, 251, 251,0.17);
-        --_c: #ffffff00 calc(98% - var(--t)),var(--c1) calc(100% - var(--t)) 98%,#ffffff00;
-        --_s: calc(2*var(--s)) calc(5*var(--s)/2);
-        --_r0: /var(--_s) radial-gradient(calc(var(--s)/2) at 0    20%,var(--_c));
-        --_r1: /var(--_s) radial-gradient(calc(var(--s)/2) at 100% 20%,var(--_c));
-        background:
-            0 0 var(--_r0),calc(-1*var(--s)) calc(5*var(--s)/4) var(--_r0),
-            var(--s) 0 var(--_r1),0 calc(5*var(--s)/4) var(--_r1),
-            conic-gradient(at var(--t) calc(20% + 2*var(--t)),#0000 75%,var(--c1) 0)
-            calc(var(--t)/-2) calc(var(--s) - var(--t))/var(--s) calc(5*var(--s)/4),
-            repeating-conic-gradient(var(--c2) 0 25%,#0000 0 50%)
-            var(--s) calc(var(--s)/-8)/var(--_s),
-            conic-gradient(from 90deg at var(--t) var(--t),var(--c2) 25%,var(--c1) 0) 
-            calc((var(--s) - var(--t))/2) calc((var(--s) - var(--t))/2)/var(--s) calc(5*var(--s)/4);
+    background-color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23fdff9f' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%237b70f6' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23fdff9f' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%237b70f6' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23fdff9f' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%237b70f6' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23fdff9f' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%237b70f6' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23fdff9f' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%237b70f6' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23fdff9f' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%237b70f6' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-y: center;
 }
 
 .bg-secondary {

@@ -4,12 +4,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\newsGenerator;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class NewsController extends Controller
 {
+    protected $newsGenerator;
+
+    public function __construct(newsGenerator $newsGenerator)
+    {
+        $this->newsGenerator = $newsGenerator;
+    }
+
     public function index(): View
     {
         $viewData = [];
@@ -47,5 +55,14 @@ class NewsController extends Controller
         });
 
         return view('news.show')->with('viewData', $viewData);
+    }
+
+    public function create(): string
+    {
+        $type = 'api';
+        $this->newsGenerator = app()->makeWith(newsGenerator::class, ['type' => $type]);
+        $this->newsGenerator->generate();
+        
+        return 'OK';
     }
 }

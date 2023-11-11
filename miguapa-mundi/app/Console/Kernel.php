@@ -13,11 +13,11 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\newsGenerator::class,
-    ];
+    ]; 
 
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('app:news-generator')->everyMinute();
+        $schedule->command('app:news-generator')->everyMinute()->onOneServer();
     }
 
     /**

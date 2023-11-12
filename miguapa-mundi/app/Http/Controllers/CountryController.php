@@ -112,7 +112,7 @@ class CountryController extends Controller
         $countries = Country::all();
         $countriesNames = array();
         foreach ($countries as $country) {
-            array_push($countriesNames, $country->getName());
+           array_push($countriesNames, $country->getName());
         }
         return view('country.map')->with('countriesNames', $countriesNames);
     }

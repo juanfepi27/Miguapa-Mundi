@@ -2,6 +2,21 @@
 Authors: Juan Felipe Pinzón, Miguel Ángel Calvache and Maria Paula Ayala
 */
 
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
+
 a {
     color: #1a252f;
     text-decoration: none;
@@ -53,6 +68,14 @@ a {
 
 .container-1000px{
     max-width: 1000px;
+}
+
+body{
+    background-color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23fdff9f' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%237b70f6' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23fdff9f' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%237b70f6' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23fdff9f' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%237b70f6' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23fdff9f' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%237b70f6' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23fdff9f' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%237b70f6' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23fdff9f' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%237b70f6' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-y: center;
 }
 
 .bg-secondary {
@@ -129,6 +152,10 @@ nav{
     margin-bottom: 0.25em;
 }
 
+.country-card{
+    height: 100%;
+}
+
 .alliance-show-flag{
     width: 50%;
     max-height: 45%;
@@ -137,5 +164,73 @@ nav{
 @media (max-width: 767.98px){
     .limit-card{
         min-width: 100%;
+    }
+}
+
+/* Notice ticker bar in '/' */
+
+:root {
+    --height: 50px;
+    --speed: 30s;
+}
+
+.ticker-tape {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: var(--height);
+    padding-left: 100%;
+    border-bottom: #888 2px solid ;
+}
+
+.ticker-tape .ticker {
+    height: var(--height);
+    line-height: var(--height);
+    white-space: nowrap;
+    padding-right: 100%;
+    
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    -webkit-animation-duration: var(--speed);
+    
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ticker;
+    animation-duration: var(--speed);
+    
+}
+
+.ticker-tape .ticker__item {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding: 0 2rem;
+    letter-spacing: 0.2rem;
+    /* color: rgba(0,0,0,0.2); */
+    color: #888;
+}
+
+@-webkit-keyframes ticker {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes ticker {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
     }
 }

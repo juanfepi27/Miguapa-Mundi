@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\CountryController@index')->name('country.index');
+Route::get('/search', 'App\Http\Controllers\CountryController@search')->name('country.search');
 Route::get('/lang/{locale}', 'App\Http\Controllers\LangController@changeLang')->name('lang.changeLang');
 
 Route::middleware(['auth', 'verified'])->group(function () {

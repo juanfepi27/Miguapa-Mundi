@@ -11,6 +11,8 @@ return [
         'cardIsNotInOffer' => "The country isn't in offer",
         'cardAlliances' => 'Alliances',
         'aSendOffer' => 'Send offer',
+        'searchBar'=> 'Search country',
+        'lastNews' => 'Breaking news',
     ],
     'partials' => [
         'aInOffer' => 'Countries in offer',

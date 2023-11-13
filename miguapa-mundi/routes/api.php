@@ -18,4 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/news/generator', 'App\Http\Controllers\Api\NewsApiController@generator')->name('api.news.generator');
+Route::get('/countries-in-offer', 'App\Http\Controllers\Api\CountryApiController@inOffer')->name('api.country.inOffer');

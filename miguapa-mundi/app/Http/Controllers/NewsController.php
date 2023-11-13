@@ -62,7 +62,6 @@ class NewsController extends Controller
         $type = 'api';
         $this->newsGenerator = app()->makeWith(newsGenerator::class, ['type' => $type]);
         $this->newsGenerator->generate();
-        
         return 'OK';
     }
 }

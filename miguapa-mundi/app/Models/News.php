@@ -82,4 +82,36 @@ class News extends Model
     {
         $this->financialEffects = $financialEffects;
     }
+
+    public function assignFinancialEffects(): void
+    {
+        $numberOfCountriesAffected = rand(1, 5);
+        $countries = Country::all()->random($numberOfCountriesAffected);
+        $id = $this->getId();
+
+        for($i = 0; $i < $numberOfCountriesAffected; $i++) {
+            $newFinancialEffect['news_id'] = $id;
+            $newFinancialEffect['country_id'] = $countries[$i]->getId();
+            $newFinancialEffect['effect'] = rand(-1000, 1000);
+            FinancialEffect::create($newFinancialEffect);
+
+            if(($countries[$i]->getMinimumOfferValue() + $newFinancialEffect['effect'])<0){
+                $countries[$i]->setUserOwnerId(1); ###################33
+                $countries[$i]->setInOffer(true);
+                $countries[$i]->setColor('#000000');
+                $countries[$i]->setMinimumOfferValue($countries[$i]->getDefaultOfferValue());
+            }
+            else{
+                $countries[$i]->setMinimumOfferValue($countries[$i]->getMinimumOfferValue() + $newFinancialEffect['effect']);
+            }
+
+            if($newFinancialEffect['effect']>=0){
+                $countries[$i]->setAttractiveValue($countries[$i]->getAttractiveValue() + 1);
+            }
+            else{
+                $countries[$i]->setAttractiveValue($countries[$i]->getAttractiveValue() - 1);
+            }
+            $countries[$i]->save();
+        }
+    }
 }

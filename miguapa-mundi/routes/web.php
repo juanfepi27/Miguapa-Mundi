@@ -60,19 +60,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified', 'role'])->group(function () {
-    Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
-    Route::get('/admin/country', 'App\Http\Controllers\AdminController@countryIndex')->name('admin.country.index');
-    Route::get('/admin/country/create', 'App\Http\Controllers\AdminController@countryCreate')->name('admin.country.create');
-    Route::post('/admin/country/save', 'App\Http\Controllers\AdminController@countrySave')->name('admin.country.save');
-    Route::post('/admin/country/update', 'App\Http\Controllers\AdminController@countryUpdate')->name('admin.country.update');
-    Route::delete('/admin/country/delete', 'App\Http\Controllers\AdminController@countryDelete')->name('admin.country.delete');
-    Route::get('/admin/country/show/{id}', 'App\Http\Controllers\AdminController@countryShow')->name('admin.country.show');
-    Route::get('/admin/news', 'App\Http\Controllers\AdminController@newsIndex')->name('admin.news.index');
-    Route::get('/admin/news/create', 'App\Http\Controllers\AdminController@newsCreate')->name('admin.news.create');
-    Route::post('/admin/news/save', 'App\Http\Controllers\AdminController@newsSave')->name('admin.news.save');
-    Route::post('/admin/news/update', 'App\Http\Controllers\AdminController@newsUpdate')->name('admin.news.update');
-    Route::delete('/admin/news/delete', 'App\Http\Controllers\AdminController@newsDelete')->name('admin.news.delete');
-    Route::get('/admin/news/show/{id}', 'App\Http\Controllers\AdminController@newsShow')->name('admin.news.show');
+    Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@index')->name('admin.index');
+    Route::get('/admin/country', 'App\Http\Controllers\Admin\CountryAdminController@countryIndex')->name('admin.country.index');
+    Route::get('/admin/country/create', 'App\Http\Controllers\Admin\CountryAdminController@countryCreate')->name('admin.country.create');
+    Route::post('/admin/country/save', 'App\Http\Controllers\Admin\CountryAdminController@countrySave')->name('admin.country.save');
+    Route::post('/admin/country/update', 'App\Http\Controllers\Admin\CountryAdminController@countryUpdate')->name('admin.country.update');
+    Route::delete('/admin/country/delete', 'App\Http\Controllers\Admin\CountryAdminController@countryDelete')->name('admin.country.delete');
+    Route::get('/admin/country/show/{id}', 'App\Http\Controllers\Admin\CountryAdminController@countryShow')->name('admin.country.show');
+    Route::get('/admin/news', 'App\Http\Controllers\Admin\NewsAdminController@newsIndex')->name('admin.news.index');
+    Route::get('/admin/news/create', 'App\Http\Controllers\Admin\NewsAdminController@newsCreate')->name('admin.news.create');
+    Route::post('/admin/news/save', 'App\Http\Controllers\Admin\NewsAdminController@newsSave')->name('admin.news.save');
+    Route::post('/admin/news/update', 'App\Http\Controllers\Admin\NewsAdminController@newsUpdate')->name('admin.news.update');
+    Route::delete('/admin/news/delete', 'App\Http\Controllers\Admin\NewsAdminController@newsDelete')->name('admin.news.delete');
+    Route::get('/admin/news/show/{id}', 'App\Http\Controllers\Admin\NewsAdminController@newsShow')->name('admin.news.show');
 });
 
 Auth::routes(['verify'=>true]);

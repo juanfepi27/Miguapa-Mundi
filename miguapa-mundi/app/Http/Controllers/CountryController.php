@@ -20,6 +20,17 @@ class CountryController extends Controller
         $viewData['countries'] = Country::all();
         $viewData['searchCountry'] ='';
         $viewData['lastNews'] = News::orderBy('created_at', 'desc')->first()['title'];
+        $viewData['countriesNames'] = array();
+        $viewData['countriesNickNames'] = array();
+        $viewData['countriesColors'] = array();
+        $viewData['countriesFlags'] = array();
+
+        foreach ($viewData['countries'] as $country) {
+           array_push($viewData['countriesNames'], $country->getName());
+           array_push($viewData['countriesNickNames'], $country->getNickName());
+           array_push($viewData['countriesColors'], $country->getColor());
+           array_push($viewData['countriesFlags'], $country->getFlag());
+        }
 
         return view('country.index')->with('viewData', $viewData);
     }
@@ -28,9 +39,20 @@ class CountryController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = __('country.index.titleTemplate');
-        $viewData['countries'] = Country::all();;
+        $viewData['countries'] = Country::all();
         $viewData['searchCountry'] = Country::where('name', 'like', '%'.$request->input('search-bar').'%')->first();
         $viewData['lastNews'] = News::orderBy('created_at', 'desc')->first()['title'];
+        $viewData['countriesNames'] = array();
+        $viewData['countriesNickNames'] = array();
+        $viewData['countriesColors'] = array();
+        $viewData['countriesFlags'] = array();
+
+        foreach ($viewData['countries'] as $country) {
+           array_push($viewData['countriesNames'], $country->getName());
+           array_push($viewData['countriesNickNames'], $country->getNickName());
+           array_push($viewData['countriesColors'], $country->getColor());
+           array_push($viewData['countriesFlags'], $country->getFlag());
+        }
 
         return view('country.index')->with('viewData', $viewData);
     }
@@ -39,14 +61,7 @@ class CountryController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = __('country.inOfferIndex.titleTemplate');
-        $countries = Country::all()->where('in_offer', 1);
-
-        foreach ($countries as $country) {
-            $maxOffer = $country->getOffers()->where('status', 'SENT')->max('price');
-            $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
-            $country->maxOffer = $maxOfferFormatted;
-        }
-        $viewData['countries'] = $countries;
+        $viewData['countries'] = Country::all()->where('in_offer', 1);
 
         return view('country.in-offer')->with('viewData', $viewData);
     }
@@ -122,4 +137,5 @@ class CountryController extends Controller
 
         return redirect()->route('country.myCountriesIndex');
     }
+
 }

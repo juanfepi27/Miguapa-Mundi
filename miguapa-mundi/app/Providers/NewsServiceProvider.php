@@ -9,7 +9,7 @@ use App\Util\newsGeneratorArray;
 
 class NewsServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->app->bind(newsGenerator::class, function ($app,$params){
             

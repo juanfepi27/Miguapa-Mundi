@@ -22,8 +22,8 @@
                             <p class="card-text">@lang('country.myCountriesIndex.cardAttractiveValue'): {{ $country->getAttractiveValue() }}</p>
                             <br>
                             <p class="card-text">@lang('country.myCountriesIndex.cardMinimumOfferValue'): ${{ $country->getMinimumOfferValueFormatted() }}</p>
-                            @if($country->maxOffer !== '0')
-                                <p class="card-text">@lang('country.myCountriesIndex.cardBestOffer'): ${{ $country->maxOffer }}</p>
+                            @if($country->getMaxOffer() !== null)
+                                <p class="card-text">@lang('country.myCountriesIndex.cardBestOffer'): ${{ $country->getMaxOfferFormatted() }}</p>
                             @else
                                 <p class="card-text">@lang('country.myCountriesIndex.cardNoOffer')</p>
                             @endif

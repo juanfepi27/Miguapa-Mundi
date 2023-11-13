@@ -1,15 +1,15 @@
 <?php
 
-//Author: Juan Felipe Pinzón
+//Author: Maria Paula Ayala
 
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Offer;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MyOffer
+class MyCountry
 {
     /**
      * Handle an incoming request.
@@ -19,11 +19,11 @@ class MyOffer
     public function handle(Request $request, Closure $next): Response
     {
 
-        $offerId = $request->route("id");
-        $offer = Offer::findOrFail($offerId);
+        $countryId = $request->route("id");
+        $country = Country::findOrFail($countryId);
 
-        if ( $request->user() != $offer->getUserOfferor() || $offer->getStatus() != "SENT" ) {
-            abort(403, __('middleware.MyOffer.errorMsg'));
+        if ( $request->user() != $country->getUserOwner()) {
+            abort(403, __('middleware.MyCountry.errorMsg'));
         }
 
         return $next($request);

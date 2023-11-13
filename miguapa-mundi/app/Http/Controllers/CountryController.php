@@ -20,6 +20,17 @@ class CountryController extends Controller
         $viewData['countries'] = Country::all();
         $viewData['searchCountry'] ='';
         $viewData['lastNews'] = News::orderBy('created_at', 'desc')->first()['title'];
+        $viewData['countriesNames'] = array();
+        $viewData['countriesNickNames'] = array();
+        $viewData['countriesColors'] = array();
+        $viewData['countriesFlags'] = array();
+
+        foreach ($viewData['countries'] as $country) {
+           array_push($viewData['countriesNames'], $country->getName());
+           array_push($viewData['countriesNickNames'], $country->getNickName());
+           array_push($viewData['countriesColors'], $country->getColor());
+           array_push($viewData['countriesFlags'], $country->getFlag());
+        }
 
         return view('country.index')->with('viewData', $viewData);
     }
@@ -31,6 +42,17 @@ class CountryController extends Controller
         $viewData['countries'] = Country::all();;
         $viewData['searchCountry'] = Country::where('name', 'like', '%'.$request->input('search-bar').'%')->first();
         $viewData['lastNews'] = News::orderBy('created_at', 'desc')->first()['title'];
+        $viewData['countriesNames'] = array();
+        $viewData['countriesNickNames'] = array();
+        $viewData['countriesColors'] = array();
+        $viewData['countriesFlags'] = array();
+
+        foreach ($viewData['countries'] as $country) {
+           array_push($viewData['countriesNames'], $country->getName());
+           array_push($viewData['countriesNickNames'], $country->getNickName());
+           array_push($viewData['countriesColors'], $country->getColor());
+           array_push($viewData['countriesFlags'], $country->getFlag());
+        }
 
         return view('country.index')->with('viewData', $viewData);
     }
@@ -121,13 +143,4 @@ class CountryController extends Controller
         return redirect()->route('country.myCountriesIndex');
     }
 
-    public function showMap(): View
-    {
-        $countries = Country::all();
-        $countriesNames = array();
-        foreach ($countries as $country) {
-           array_push($countriesNames, $country->getName());
-        }
-        return view('country.map')->with('countriesNames', $countriesNames);
-    }
 }

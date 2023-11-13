@@ -3,6 +3,19 @@
 
 @extends('layouts.app')
 @section('title', $viewData["titleTemplate"])
+
+@section('head')
+<script>let countriesNames = @json($viewData["countriesNames"]); 
+        let countriesNickNames = @json($viewData["countriesNickNames"]);
+        let countriesColors = @json($viewData["countriesColors"]);
+        let countriesFlags = @json($viewData["countriesFlags"]);
+</script>
+<script type="module" src="{{ asset('/js/map2.js') }}"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key={{config('services.google_maps.api_key')}}&callback=initMap">
+</script>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-lg-9 col-12 mb-2 p-0">
@@ -66,7 +79,7 @@
         </div>
         @endif
 
-    <div id="map" class="col-12 position-relative" style="height: 800px; background-color: aqua;">
+    <div id="map" class="col-12 position-relative" style="height: 800px;">
         <!-- Country info view for computer -->
         @if($viewData['searchCountry'])
         <div class="country-card d-none d-lg-block col-lg-3 position-absolute top-50 end-0 translate-middle-y overflow-auto">

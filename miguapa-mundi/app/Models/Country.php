@@ -232,15 +232,22 @@ class Country extends Model
         $this->offers = $offers;
     }
 
-    public function setMaxOffer(Country $country): void
+    public function setMaxOffer(): void
     {
-        $maxOffer = $country->getOffers()->where('status', 'SENT')->max('price');
-        $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
-        $this->maxOffer = $maxOfferFormatted;
+        $maxOffer = $this->getOffers()->where('status', 'SENT')->max('price');
+        $this->maxOffer = $maxOffer;
+    }
+
+    public function getMaxOffer(): int|null
+    {
+        $this->setMaxOffer();
+        return $this->maxOffer;
     }
 
     public function getMaxOfferFormatted(): string
     {
-        return $this->maxOffer;
+        $maxOffer = $this->getMaxOffer();
+        $maxOfferFormatted = number_format($maxOffer, 0, ',', '.');
+        return $maxOfferFormatted;
     }
 }

@@ -61,12 +61,7 @@ class CountryController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = __('country.inOfferIndex.titleTemplate');
-        $countries = Country::all()->where('in_offer', 1);
-
-        foreach ($countries as $country) {
-            $country->setMaxOffer($country);
-        }
-        $viewData['countries'] = $countries;
+        $viewData['countries'] = Country::all()->where('in_offer', 1);
 
         return view('country.in-offer')->with('viewData', $viewData);
     }

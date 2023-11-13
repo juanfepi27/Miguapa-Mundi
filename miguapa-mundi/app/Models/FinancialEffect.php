@@ -20,6 +20,8 @@ class FinancialEffect extends model
      * $this->news - News - contains the news that the financial effect is related to
      * $this->country - Country - contains the country that the financial effect is related to
      */
+    protected $fillable = ['news_id', 'country_id', 'effect'];
+    
     public function getId(): int
     {
         return $this->attributes['id'];

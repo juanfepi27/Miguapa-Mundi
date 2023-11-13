@@ -79,7 +79,10 @@
         </div>
         @endif
 
-    <div id="map" class="col-12 position-relative" style="height: 800px;">
+
+    <div class="col-12 position-relative" style="height: 800px;">
+        <div id="map" style="height: 800px;">
+        </div>
         <!-- Country info view for computer -->
         @if($viewData['searchCountry'])
         <div class="country-card d-none d-lg-block col-lg-3 position-absolute top-50 end-0 translate-middle-y overflow-auto">

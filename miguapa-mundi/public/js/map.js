@@ -60,11 +60,11 @@ async function initMap() {
             map,
         });
 
-        let flagUrl = "{{ asset('storage/" + countriesData[country] +"') }}" ;
+        let flagUrl = "storage/" + countriesData[country].flag  ;
 
         let contentString = 
-        '<div id="content">' +
-            '<img src="' + flagUrl + '" alt="' + country + '">' +
+        '<div id="content" style="display: flex; flex-direction: column; align-items: center;">' +
+            '<img src="' + flagUrl + '" alt="' + country + '" style=" width: 200px; " >' +
             '<h1 id="firstHeading" class="firstHeading" style="margin: 0; line-height: 1.2; color:' + countriesData[country].color + '; text-shadow: 1px 1px 2px black;"">' + country + '</h1>' +
             '<p style="font-style: italic; margin: 0;">' + countriesData[country].nickname + '</p>' +
         '</div>';

@@ -10,7 +10,7 @@
         let countriesColors = @json($viewData["countriesColors"]);
         let countriesFlags = @json($viewData["countriesFlags"]);
 </script>
-<script type="module" src="{{ asset('/js/map2.js') }}"></script>
+<script type="module" src="{{ asset('/js/map.js') }}"></script>
 <script async
     src="https://maps.googleapis.com/maps/api/js?key={{config('services.google_maps.api_key')}}&callback=initMap">
 </script>

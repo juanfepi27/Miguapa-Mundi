@@ -39,7 +39,7 @@ class CountryController extends Controller
     {
         $viewData = [];
         $viewData['titleTemplate'] = __('country.index.titleTemplate');
-        $viewData['countries'] = Country::all();;
+        $viewData['countries'] = Country::all();
         $viewData['searchCountry'] = Country::where('name', 'like', '%'.$request->input('search-bar').'%')->first();
         $viewData['lastNews'] = News::orderBy('created_at', 'desc')->first()['title'];
         $viewData['countriesNames'] = array();

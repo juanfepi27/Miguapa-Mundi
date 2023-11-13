@@ -32,7 +32,7 @@ class newsGenerator extends Command
         $this->newsController = $newsController;
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->newsController->create();
     }

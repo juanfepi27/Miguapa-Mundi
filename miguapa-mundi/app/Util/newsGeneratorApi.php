@@ -5,8 +5,6 @@ namespace App\Util;
 use App\Interfaces\newsGenerator;
 use Illuminate\Support\Facades\Http;
 use App\Models\News;
-use App\Models\FinancialEffect;
-use App\Models\Country;
 
 class newsGeneratorApi implements newsGenerator
 {
@@ -27,38 +25,12 @@ class newsGeneratorApi implements newsGenerator
 
         $title = substr($title, 0, 200);
         $description = substr($description, 0, 250);
-
         $newNews['title'] = $title;
         $newNews['description'] = $description;
+
         $newsCreated = News::create($newNews);
+        $newsCreated->assignFinancialEffects();
 
-        $numberOfCountriesAffected = rand(1, 5);
-        $countries = Country::all()->random($numberOfCountriesAffected);
-
-        for($i = 0; $i < $numberOfCountriesAffected; $i++) {
-            $newFinancialEffect['news_id'] = $newsCreated->getId();
-            $newFinancialEffect['country_id'] = $countries[$i]->getId();
-            $newFinancialEffect['effect'] = rand(-1000, 1000);
-            FinancialEffect::create($newFinancialEffect);
-
-            if(($countries[$i]->getMinimumOfferValue() + $newFinancialEffect['effect'])<0){
-                $countries[$i]->setUserOwnerId(1); #########################################################################
-                $countries[$i]->setInOffer(true);
-                $countries[$i]->setColor('#000000');
-                $countries[$i]->setMinimumOfferValue($countries[$i]->getDefaultOfferValue());
-            }
-            else{
-                $countries[$i]->setMinimumOfferValue($countries[$i]->getMinimumOfferValue() + $newFinancialEffect['effect']);
-            }
-
-            if($newFinancialEffect['effect']>=0){
-                $countries[$i]->setAttractiveValue($countries[$i]->getAttractiveValue() + 1);
-            }
-            else{
-                $countries[$i]->setAttractiveValue($countries[$i]->getAttractiveValue() - 1);
-            }
-            $countries[$i]->save();
-        }
         return;
     }
 }

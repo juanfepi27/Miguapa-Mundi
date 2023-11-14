@@ -1,6 +1,6 @@
 <?php
 
-//Author: Juan Felipe Pinzón 
+//Author: Juan Felipe Pinzón and Maria Paula Ayala 
 
 namespace App\Http;
 
@@ -70,5 +70,7 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'myOffer' => \App\Http\Middleware\MyOffer::class,
         'offerToMe' => \App\Http\Middleware\OfferToMe::class,
+        'myAlliance' => \App\Http\Middleware\MyAlliance::class,
+        'myCountry' => \App\Http\Middleware\MyCountry::class,
     ];
 }

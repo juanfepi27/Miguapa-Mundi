@@ -16,7 +16,7 @@ class CountryResource extends JsonResource
             'owner' => $this->getUserOwner()->getUsername(),
             'minimum_offer_value' => $this->getMinimumOfferValueFormatted(),
             'attractive_value' => $this->getAttractiveValue(),
-            'best_actual_offer_value' => $this->getMinimumOfferValueFormatted(),//has to change when it has the correct method(formatted)
+            'best_actual_offer_value' => $this->getMaxOfferFormatted(),
         ];
     }
 }

@@ -10,4 +10,10 @@ return [
     'OfferToMe' => [
         'errorMsg' => 'You don\'t have permissions to modify in this way an offer that wasn\'t sent to you'
     ],
+    'MyAlliance' => [
+        'errorMsg' => 'You don\'t have permissions to modify in this way an alliance that you aren\'t a moderator of'
+    ],
+    'MyCountry'=> [
+        'errorMsg' => 'You don\'t have permissions to modify in this way a country that isn\'t yours'
+    ],
 ];

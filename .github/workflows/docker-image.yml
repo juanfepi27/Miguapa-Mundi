@@ -20,6 +20,7 @@ jobs:
 
     - name: Replace env credentials
       run: | 
+        cd miguapa-mundi
         sed -i "s/APP_NAME=Laravel.*/APP_NAME=${{ secrets.APP_NAME }}/g" .env
         sed -i "s/DB_HOST=127.0.0.1.*/DB_HOST=${{ secrets.DB_HOST }}/g" .env
         sed -i "s/DB_DATABASE=laravel.*/DB_DATABASE=${{ secrets.DB_DATABASE }}/g" .env
@@ -42,7 +43,9 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASS
       
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag juanfepi27/miguapa-mundi:latest
+      run: | 
+        cd miguapa-mundi
+        docker build . --file Dockerfile --tag juanfepi27/miguapa-mundi:latest
       
     - name: Docker Push
       run: docker push juanfepi27/miguapa-mundi

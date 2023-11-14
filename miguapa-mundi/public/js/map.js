@@ -17,7 +17,7 @@ function geocodeCountry(country) {
             countryCoordinates[country]= [lat, lng];
             resolve(); // Resolves the promise when the geocoder finds the country coordinates
         } else {
-            reject('No se pudo geocodificar la ubicación: ' + status);
+            reject('It couldn´t geocodify the country: ' + status);
         }
         });
     });
@@ -29,7 +29,7 @@ Promise.all(geocodingPromises)
         initMap();
     })
     .catch(error => {
-        console.error('Error de geocodificación: ' + error);
+        console.error('Error of geocodification: ' + error);
     });
 
 // Function to show the map and its markers.

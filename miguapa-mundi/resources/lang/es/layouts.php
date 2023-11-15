@@ -12,6 +12,7 @@ return [
         'aAlliances' => 'Alianzas',
         'aNews' => 'Noticias',
         'aProfile' => 'Perfil',
+        'aSponsor' => 'Patrocinador',
         'aPanel' => 'Panel de administrador',
         'aLogout' => 'Cerrar sesión',
         'aLogin' => 'Iniciar sesión',

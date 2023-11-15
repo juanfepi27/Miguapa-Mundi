@@ -42,6 +42,7 @@
                     <a class="nav-link active" href="{{ route('alliance.index') }}">@lang('layouts.app.aAlliances')</a>
                     <a class="nav-link active" href="{{ route('news.index')}}">@lang('layouts.app.aNews')</a>
                     <a class="nav-link active" href="{{ route('profile.index')}}">@lang('layouts.app.aProfile')</a>
+                    <a class="nav-link active" href="{{ route('sponsor.index')}}">@lang('layouts.app.aSponsor')</a>
                     <div class="vr bg-black mx-2 d-none d-lg-block"></div>
                     @if(request()->user()->getRole()==1)
                         <a class="nav-link active " href="{{ route('admin.index') }}">@lang('layouts.app.aPanel')</a>

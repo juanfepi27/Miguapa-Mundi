@@ -93,7 +93,7 @@
 </div>
 
 <!-- footer -->
-<div class="bg-primary py-1 text-center mt-auto">
+<div class="bg-info2 py-1 text-center mt-auto">
     <div class="container pb-2 in-front">
         <small>
             @lang('layouts.app.footAuthorMapa') - <a class="text-reset fw-bold text-decoration-none" target="_blank"
